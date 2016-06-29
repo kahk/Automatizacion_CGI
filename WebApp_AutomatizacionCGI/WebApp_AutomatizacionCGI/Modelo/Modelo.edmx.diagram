@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96850f858b074c71b2232e6a2e224fed" Name="Diagram1">
+        <EntityTypeShape EntityType="BD_ProyectoModel.Acceso" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Asistencia" Width="1.5" PointX="9.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Categoria" Width="1.5" PointX="7.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Curso" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Curso_Docente" Width="1.5" PointX="7.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.DetalleRespuesta" Width="1.5" PointX="12" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Docente" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Encargado" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Encuesta" Width="1.5" PointX="9.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Estado" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Pad" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Pregunta" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Respuesta" Width="1.5" PointX="12" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Usuario" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_DetalleRespuesta_Acceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Asistencia_Docente" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Asistencia_Pad" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Pregunta_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Curso_Docente_Curso" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Curso_Encargado" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Curso_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Pad_Curso" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Curso_Docente_Docente" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_DetalleRespuesta_Encuesta" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_DetalleRespuesta_Pregunta" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Docente_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Encargado_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Encuesta_Pad" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Pad_Estado" ManuallyRouted="false" />
+        <AssociationConnector Association="BD_ProyectoModel.FK_Respuesta_Pregunta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

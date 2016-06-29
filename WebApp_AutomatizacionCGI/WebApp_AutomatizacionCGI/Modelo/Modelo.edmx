@@ -1,0 +1,1067 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BD_ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="ID_Acceso" />
+          </Key>
+          <Property Name="ID_Acceso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Asistencia">
+          <Key>
+            <PropertyRef Name="ID_Asistencia" />
+          </Key>
+          <Property Name="ID_Asistencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Pad" Type="int" Nullable="false" />
+          <Property Name="Rut_Docente" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="ID_Categoria" />
+          </Key>
+          <Property Name="ID_Categoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="ID_Curso" />
+          </Key>
+          <Property Name="ID_Curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rut_Encargado" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID_Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Curso_Docente">
+          <Key>
+            <PropertyRef Name="ID_Curso_Docente" />
+          </Key>
+          <Property Name="ID_Curso_Docente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Curso" Type="int" Nullable="false" />
+          <Property Name="Rut_Docente" Type="varchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DetalleRespuesta">
+          <Key>
+            <PropertyRef Name="ID_DetalleRespuesta" />
+          </Key>
+          <Property Name="ID_DetalleRespuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Encuesta" Type="int" Nullable="false" />
+          <Property Name="ID_Pregunta" Type="int" Nullable="false" />
+          <Property Name="ID_Aceso" Type="int" Nullable="false" />
+          <Property Name="ID_Respuesta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="datetime" Nullable="false" />
+          <Property Name="ID_Estado" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Encargado">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Estado" Type="int" Nullable="false" />
+          <Property Name="Codigo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Encuesta">
+          <Key>
+            <PropertyRef Name="ID_Encuesta" />
+          </Key>
+          <Property Name="ID_Encuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Pad" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pad">
+          <Key>
+            <PropertyRef Name="ID_Pad" />
+          </Key>
+          <Property Name="ID_Pad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Curso" Type="int" Nullable="false" />
+          <Property Name="Sala" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sala_Coffe" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hora_Inicio" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hora_Termino" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="ID_Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID_Pregunta" />
+          </Key>
+          <Property Name="ID_Pregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Categoria" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="ID_Respuesta" />
+          </Key>
+          <Property Name="ID_Respuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Pregunta" Type="int" />
+          <Property Name="Detalle" Type="varchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nickname" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Asistencia_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="Rut_Docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asistencia_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="1" />
+          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="ID_Pad" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="ID_Pad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Docente_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curso_Docente" Type="Self.Curso_Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Curso_Docente">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Docente_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="1" />
+          <End Role="Curso_Docente" Type="Self.Curso_Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Curso_Docente">
+              <PropertyRef Name="Rut_Docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Encargado">
+          <End Role="Encargado" Type="Self.Encargado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encargado">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="Rut_Encargado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleRespuesta_Acceso">
+          <End Role="Acceso" Type="Self.Acceso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Acceso">
+              <PropertyRef Name="ID_Acceso" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Aceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleRespuesta_Encuesta">
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleRespuesta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Encargado" Type="Self.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encuesta_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="ID_Pad" />
+            </Principal>
+            <Dependent Role="Encuesta">
+              <PropertyRef Name="ID_Pad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pad_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pad" Type="Self.Pad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Pad">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pad_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Pad" Type="Self.Pad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Pad">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregunta_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="ID_Categoria" />
+            </Principal>
+            <Dependent Role="Pregunta">
+              <PropertyRef Name="ID_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuesta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Respuesta" Type="Self.Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="Respuesta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BD_ProyectoModelStoreContainer">
+          <EntitySet Name="Acceso" EntityType="Self.Acceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Asistencia" EntityType="Self.Asistencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Curso_Docente" EntityType="Self.Curso_Docente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleRespuesta" EntityType="Self.DetalleRespuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encargado" EntityType="Self.Encargado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encuesta" EntityType="Self.Encuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pad" EntityType="Self.Pad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Respuesta" EntityType="Self.Respuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Asistencia_Docente" Association="Self.FK_Asistencia_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asistencia_Pad" Association="Self.FK_Asistencia_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Docente_Curso" Association="Self.FK_Curso_Docente_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Curso_Docente" EntitySet="Curso_Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Docente_Docente" Association="Self.FK_Curso_Docente_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Curso_Docente" EntitySet="Curso_Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Encargado" Association="Self.FK_Curso_Encargado">
+            <End Role="Encargado" EntitySet="Encargado" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Estado" Association="Self.FK_Curso_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleRespuesta_Acceso" Association="Self.FK_DetalleRespuesta_Acceso">
+            <End Role="Acceso" EntitySet="Acceso" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleRespuesta_Encuesta" Association="Self.FK_DetalleRespuesta_Encuesta">
+            <End Role="Encuesta" EntitySet="Encuesta" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleRespuesta_Pregunta" Association="Self.FK_DetalleRespuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_Estado" Association="Self.FK_Docente_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Estado" Association="Self.FK_Encargado_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encuesta_Pad" Association="Self.FK_Encuesta_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Encuesta" EntitySet="Encuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pad_Curso" Association="Self.FK_Pad_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Pad" EntitySet="Pad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pad_Estado" Association="Self.FK_Pad_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Pad" EntitySet="Pad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregunta_Categoria" Association="Self.FK_Pregunta_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Pregunta" EntitySet="Pregunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuesta_Pregunta" Association="Self.FK_Respuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuesta" EntitySet="Respuesta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BD_ProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Acceso">
+          <Key>
+            <PropertyRef Name="ID_Acceso" />
+          </Key>
+          <Property Name="ID_Acceso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DetalleRespuesta" Relationship="Self.FK_DetalleRespuesta_Acceso" FromRole="Acceso" ToRole="DetalleRespuesta" />
+        </EntityType>
+        <EntityType Name="Asistencia">
+          <Key>
+            <PropertyRef Name="ID_Asistencia" />
+          </Key>
+          <Property Name="ID_Asistencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Pad" Type="Int32" Nullable="false" />
+          <Property Name="Rut_Docente" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Asistencia_Docente" FromRole="Asistencia" ToRole="Docente" />
+          <NavigationProperty Name="Pad" Relationship="Self.FK_Asistencia_Pad" FromRole="Asistencia" ToRole="Pad" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="ID_Categoria" />
+          </Key>
+          <Property Name="ID_Categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Pregunta_Categoria" FromRole="Categoria" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Curso">
+          <Key>
+            <PropertyRef Name="ID_Curso" />
+          </Key>
+          <Property Name="ID_Curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rut_Encargado" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Curso_Docente" Relationship="Self.FK_Curso_Docente_Curso" FromRole="Curso" ToRole="Curso_Docente" />
+          <NavigationProperty Name="Encargado" Relationship="Self.FK_Curso_Encargado" FromRole="Curso" ToRole="Encargado" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Curso_Estado" FromRole="Curso" ToRole="Estado" />
+          <NavigationProperty Name="Pad" Relationship="Self.FK_Pad_Curso" FromRole="Curso" ToRole="Pad" />
+        </EntityType>
+        <EntityType Name="Curso_Docente">
+          <Key>
+            <PropertyRef Name="ID_Curso_Docente" />
+          </Key>
+          <Property Name="ID_Curso_Docente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Curso" Type="Int32" Nullable="false" />
+          <Property Name="Rut_Docente" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Curso_Docente_Curso" FromRole="Curso_Docente" ToRole="Curso" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Curso_Docente_Docente" FromRole="Curso_Docente" ToRole="Docente" />
+        </EntityType>
+        <EntityType Name="DetalleRespuesta">
+          <Key>
+            <PropertyRef Name="ID_DetalleRespuesta" />
+          </Key>
+          <Property Name="ID_DetalleRespuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Encuesta" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pregunta" Type="Int32" Nullable="false" />
+          <Property Name="ID_Aceso" Type="Int32" Nullable="false" />
+          <Property Name="ID_Respuesta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Acceso" Relationship="Self.FK_DetalleRespuesta_Acceso" FromRole="DetalleRespuesta" ToRole="Acceso" />
+          <NavigationProperty Name="Encuesta" Relationship="Self.FK_DetalleRespuesta_Encuesta" FromRole="DetalleRespuesta" ToRole="Encuesta" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_DetalleRespuesta_Pregunta" FromRole="DetalleRespuesta" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha_Ingreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Asistencia" Relationship="Self.FK_Asistencia_Docente" FromRole="Docente" ToRole="Asistencia" />
+          <NavigationProperty Name="Curso_Docente" Relationship="Self.FK_Curso_Docente_Docente" FromRole="Docente" ToRole="Curso_Docente" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Docente_Estado" FromRole="Docente" ToRole="Estado" />
+        </EntityType>
+        <EntityType Name="Encargado">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+          <Property Name="Codigo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Curso_Encargado" FromRole="Encargado" ToRole="Curso" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Encargado_Estado" FromRole="Encargado" ToRole="Estado" />
+        </EntityType>
+        <EntityType Name="Encuesta">
+          <Key>
+            <PropertyRef Name="ID_Encuesta" />
+          </Key>
+          <Property Name="ID_Encuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Pad" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DetalleRespuesta" Relationship="Self.FK_DetalleRespuesta_Encuesta" FromRole="Encuesta" ToRole="DetalleRespuesta" />
+          <NavigationProperty Name="Pad" Relationship="Self.FK_Encuesta_Pad" FromRole="Encuesta" ToRole="Pad" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Curso_Estado" FromRole="Estado" ToRole="Curso" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Docente_Estado" FromRole="Estado" ToRole="Docente" />
+          <NavigationProperty Name="Encargado" Relationship="Self.FK_Encargado_Estado" FromRole="Estado" ToRole="Encargado" />
+          <NavigationProperty Name="Pad" Relationship="Self.FK_Pad_Estado" FromRole="Estado" ToRole="Pad" />
+        </EntityType>
+        <EntityType Name="Pad">
+          <Key>
+            <PropertyRef Name="ID_Pad" />
+          </Key>
+          <Property Name="ID_Pad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Curso" Type="Int32" Nullable="false" />
+          <Property Name="Sala" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sala_Coffe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Hora_Inicio" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Hora_Termino" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Asistencia" Relationship="Self.FK_Asistencia_Pad" FromRole="Pad" ToRole="Asistencia" />
+          <NavigationProperty Name="Curso" Relationship="Self.FK_Pad_Curso" FromRole="Pad" ToRole="Curso" />
+          <NavigationProperty Name="Encuesta" Relationship="Self.FK_Encuesta_Pad" FromRole="Pad" ToRole="Encuesta" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Pad_Estado" FromRole="Pad" ToRole="Estado" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID_Pregunta" />
+          </Key>
+          <Property Name="ID_Pregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Categoria" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK_Pregunta_Categoria" FromRole="Pregunta" ToRole="Categoria" />
+          <NavigationProperty Name="DetalleRespuesta" Relationship="Self.FK_DetalleRespuesta_Pregunta" FromRole="Pregunta" ToRole="DetalleRespuesta" />
+          <NavigationProperty Name="Respuesta" Relationship="Self.FK_Respuesta_Pregunta" FromRole="Pregunta" ToRole="Respuesta" />
+        </EntityType>
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="ID_Respuesta" />
+          </Key>
+          <Property Name="ID_Respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Pregunta" Type="Int32" />
+          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="Self.FK_Respuesta_Pregunta" FromRole="Respuesta" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="Rut" />
+          </Key>
+          <Property Name="Rut" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DetalleRespuesta_Acceso">
+          <End Role="Acceso" Type="Self.Acceso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Acceso">
+              <PropertyRef Name="ID_Acceso" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Aceso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asistencia_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="Rut_Docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Asistencia_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="1" />
+          <End Role="Asistencia" Type="Self.Asistencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="ID_Pad" />
+            </Principal>
+            <Dependent Role="Asistencia">
+              <PropertyRef Name="ID_Pad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pregunta_Categoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="ID_Categoria" />
+            </Principal>
+            <Dependent Role="Pregunta">
+              <PropertyRef Name="ID_Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Docente_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curso_Docente" Type="Self.Curso_Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Curso_Docente">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Encargado">
+          <End Role="Encargado" Type="Self.Encargado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encargado">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="Rut_Encargado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Curso" Type="Self.Curso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Curso">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pad_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Pad" Type="Self.Pad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Pad">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Curso_Docente_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="1" />
+          <End Role="Curso_Docente" Type="Self.Curso_Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="Rut" />
+            </Principal>
+            <Dependent Role="Curso_Docente">
+              <PropertyRef Name="Rut_Docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleRespuesta_Encuesta">
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetalleRespuesta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="DetalleRespuesta" Type="Self.DetalleRespuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="DetalleRespuesta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encargado_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Encargado" Type="Self.Encargado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Encargado">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Encuesta_Pad">
+          <End Role="Pad" Type="Self.Pad" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pad">
+              <PropertyRef Name="ID_Pad" />
+            </Principal>
+            <Dependent Role="Encuesta">
+              <PropertyRef Name="ID_Pad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pad_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Pad" Type="Self.Pad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Pad">
+              <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuesta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Respuesta" Type="Self.Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="Respuesta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bd_entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Acceso" EntityType="Self.Acceso" />
+          <EntitySet Name="Asistencia" EntityType="Self.Asistencia" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Curso" EntityType="Self.Curso" />
+          <EntitySet Name="Curso_Docente" EntityType="Self.Curso_Docente" />
+          <EntitySet Name="DetalleRespuesta" EntityType="Self.DetalleRespuesta" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" />
+          <EntitySet Name="Encargado" EntityType="Self.Encargado" />
+          <EntitySet Name="Encuesta" EntityType="Self.Encuesta" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="Pad" EntityType="Self.Pad" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" />
+          <EntitySet Name="Respuesta" EntityType="Self.Respuesta" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_DetalleRespuesta_Acceso" Association="Self.FK_DetalleRespuesta_Acceso">
+            <End Role="Acceso" EntitySet="Acceso" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asistencia_Docente" Association="Self.FK_Asistencia_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Asistencia_Pad" Association="Self.FK_Asistencia_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Asistencia" EntitySet="Asistencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pregunta_Categoria" Association="Self.FK_Pregunta_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Pregunta" EntitySet="Pregunta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Docente_Curso" Association="Self.FK_Curso_Docente_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Curso_Docente" EntitySet="Curso_Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Encargado" Association="Self.FK_Curso_Encargado">
+            <End Role="Encargado" EntitySet="Encargado" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Estado" Association="Self.FK_Curso_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Curso" EntitySet="Curso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pad_Curso" Association="Self.FK_Pad_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Pad" EntitySet="Pad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Curso_Docente_Docente" Association="Self.FK_Curso_Docente_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Curso_Docente" EntitySet="Curso_Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleRespuesta_Encuesta" Association="Self.FK_DetalleRespuesta_Encuesta">
+            <End Role="Encuesta" EntitySet="Encuesta" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetalleRespuesta_Pregunta" Association="Self.FK_DetalleRespuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="DetalleRespuesta" EntitySet="DetalleRespuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_Estado" Association="Self.FK_Docente_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encargado_Estado" Association="Self.FK_Encargado_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Encargado" EntitySet="Encargado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Encuesta_Pad" Association="Self.FK_Encuesta_Pad">
+            <End Role="Pad" EntitySet="Pad" />
+            <End Role="Encuesta" EntitySet="Encuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pad_Estado" Association="Self.FK_Pad_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Pad" EntitySet="Pad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuesta_Pregunta" Association="Self.FK_Respuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuesta" EntitySet="Respuesta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BD_ProyectoModelStoreContainer" CdmEntityContainer="bd_entities">
+          <EntitySetMapping Name="Acceso">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Acceso">
+              <MappingFragment StoreEntitySet="Acceso">
+                <ScalarProperty Name="ID_Acceso" ColumnName="ID_Acceso" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Asistencia">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Asistencia">
+              <MappingFragment StoreEntitySet="Asistencia">
+                <ScalarProperty Name="ID_Asistencia" ColumnName="ID_Asistencia" />
+                <ScalarProperty Name="ID_Pad" ColumnName="ID_Pad" />
+                <ScalarProperty Name="Rut_Docente" ColumnName="Rut_Docente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="ID_Categoria" ColumnName="ID_Categoria" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Curso">
+              <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
+                <ScalarProperty Name="Rut_Encargado" ColumnName="Rut_Encargado" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Curso_Docente">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Curso_Docente">
+              <MappingFragment StoreEntitySet="Curso_Docente">
+                <ScalarProperty Name="ID_Curso_Docente" ColumnName="ID_Curso_Docente" />
+                <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
+                <ScalarProperty Name="Rut_Docente" ColumnName="Rut_Docente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleRespuesta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.DetalleRespuesta">
+              <MappingFragment StoreEntitySet="DetalleRespuesta">
+                <ScalarProperty Name="ID_DetalleRespuesta" ColumnName="ID_DetalleRespuesta" />
+                <ScalarProperty Name="ID_Encuesta" ColumnName="ID_Encuesta" />
+                <ScalarProperty Name="ID_Pregunta" ColumnName="ID_Pregunta" />
+                <ScalarProperty Name="ID_Aceso" ColumnName="ID_Aceso" />
+                <ScalarProperty Name="ID_Respuesta" ColumnName="ID_Respuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docente">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Docente">
+              <MappingFragment StoreEntitySet="Docente">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Fecha_Ingreso" ColumnName="Fecha_Ingreso" />
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encargado">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Encargado">
+              <MappingFragment StoreEntitySet="Encargado">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encuesta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Encuesta">
+              <MappingFragment StoreEntitySet="Encuesta">
+                <ScalarProperty Name="ID_Encuesta" ColumnName="ID_Encuesta" />
+                <ScalarProperty Name="ID_Pad" ColumnName="ID_Pad" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pad">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Pad">
+              <MappingFragment StoreEntitySet="Pad">
+                <ScalarProperty Name="ID_Pad" ColumnName="ID_Pad" />
+                <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
+                <ScalarProperty Name="Sala" ColumnName="Sala" />
+                <ScalarProperty Name="Sala_Coffe" ColumnName="Sala_Coffe" />
+                <ScalarProperty Name="Hora_Inicio" ColumnName="Hora_Inicio" />
+                <ScalarProperty Name="Hora_Termino" ColumnName="Hora_Termino" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregunta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Pregunta">
+              <MappingFragment StoreEntitySet="Pregunta">
+                <ScalarProperty Name="ID_Pregunta" ColumnName="ID_Pregunta" />
+                <ScalarProperty Name="ID_Categoria" ColumnName="ID_Categoria" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respuesta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Respuesta">
+              <MappingFragment StoreEntitySet="Respuesta">
+                <ScalarProperty Name="ID_Respuesta" ColumnName="ID_Respuesta" />
+                <ScalarProperty Name="ID_Pregunta" ColumnName="ID_Pregunta" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Rut" ColumnName="Rut" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
