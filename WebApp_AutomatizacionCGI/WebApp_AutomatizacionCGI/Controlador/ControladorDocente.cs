@@ -19,7 +19,8 @@ namespace WebApp_AutomatizacionCGI.Controlador
             {
                 return null;
             }
-        }
+        }  
+
 
         public bool addDocentes(Docente nuevo)
         {
@@ -42,8 +43,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 original = contexto.Docente.Find(nuevo.Rut);
                 original.Nombre = nuevo.Nombre;
                 original.Apellido = nuevo.Apellido;
-                original.Correo = nuevo.Correo;
-                original.Estado = nuevo.Estado;
+                original.Correo = nuevo.Correo;                
                 return contexto.SaveChanges() > 0;
             }
             catch (Exception)
