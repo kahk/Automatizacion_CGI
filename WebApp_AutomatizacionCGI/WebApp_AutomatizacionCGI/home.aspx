@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -73,6 +75,7 @@
                         <br />
                         <br />
                         <asp:Button ID="btn_addDocente" runat="server" Text="Añadir" CssClass="btn btn-danger btn-lg btn-block" OnClick="btn_addDocente_Click" />
+                        <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-default btn-lg btn-block" OnClick="btn_volver_Click"/>
                     </div>
 
                     
@@ -135,14 +138,123 @@
                         </asp:GridView>
                     </div>
                 </asp:View>
-                <%-----------------------------------Separador-----------------------------------%>
+
+                 <%-----------------------------------Separador-----------------------------------%>
                 <asp:View ID="View2_addCurso" runat="server">
 
                 </asp:View>
+
                 <%-----------------------------------Separador-----------------------------------%>
-                <asp:View ID="View3_addEncuesta" runat="server">
+                <asp:View ID="View3_addCurso" runat="server">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            <asp:LinkButton ID="Link_BuscarCurso" runat="server">Buscar</asp:LinkButton>
+                            <asp:LinkButton ID="Link_CursoNuevo" runat="server" OnClick="Link_CursoNuevo_Click">Nuevo Curso</asp:LinkButton>
+                            <asp:LinkButton ID="Link_volver" runat="server" OnClick="btn_volver_Click">Volver</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:Button ID="btn_modalcursonuevo" runat="server" Text="Button" CssClass="hidden" />
+                            <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            
+                            <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
+                            <asp:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            <br />
+                            <br />
+
+                            <asp:GridView ID="GridView_cursos" runat="server"></asp:GridView>
+
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <br />
+                    <asp:Panel ID="Panel_CursoNuevo" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirCurso" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <asp:Label ID="lbCurso" runat="server" Text="" Visible="false"></asp:Label>
+                                        <br />
+                                        <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Encargado</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Detalle</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarCurso" runat="server" CssClass="btn btn-success" >Editar</asp:LinkButton>
+
+                                    <asp:LinkButton ID="Link_GuardarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarCurso_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_CancelarCurso" runat="server" CssClass="btn btn-danger" >Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                    <br />
+                    <br />
+                    <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="txt_RutEncargardo" class="col-sm-4 control-label">Rut</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_NombreEncargado" class="col-sm-4 control-label">Nombre</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_ApellidoEncargado" class="col-sm-4 control-label">Apellido</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_CorreoEncargado" class="col-sm-4 control-label">Correo</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_GuardarEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
 
                 </asp:View>
+               
                 <%-----------------------------------Separador-----------------------------------%>
                 <asp:View ID="View4_reportes" runat="server">
 

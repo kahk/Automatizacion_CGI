@@ -6,15 +6,15 @@ using WebApp_AutomatizacionCGI.Modelo;
 
 namespace WebApp_AutomatizacionCGI.Controlador
 {
-    public class ControladorEncargado
+    public class ControladorCurso
     {
         bd_entities contexto = new bd_entities();
 
-        public List<Encargado> listaEncargados()
+        public List<Curso> listaCursos()
         {
             try
             {
-                return contexto.Encargado.ToList();
+                return contexto.Curso.ToList();
             }
             catch (Exception)
             {
@@ -23,11 +23,11 @@ namespace WebApp_AutomatizacionCGI.Controlador
         }
 
 
-        public bool addEncargados(Encargado nuevo)
+        public bool addCursos(Curso nuevo)
         {
             try
             {
-                contexto.Encargado.Add(nuevo);
+                contexto.Curso.Add(nuevo);
                 return contexto.SaveChanges() > 0;
             }
             catch (Exception)

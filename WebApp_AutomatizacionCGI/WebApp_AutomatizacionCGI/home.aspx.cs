@@ -15,11 +15,18 @@ namespace WebApp_AutomatizacionCGI
         {
             if (!IsPostBack)
             {
-                MultiView1.ActiveViewIndex = 1;
+                MultiView1.ActiveViewIndex = 3;
                 MostrarDocentes();
                 Calendar1_Docentes.Visible = false;
-                
+
+
+                MostrarCursos(); //view add cursos
             }
+        }
+
+        protected void btn_volver_Click(object sender, EventArgs e)
+        {
+            //volver a view 0
         }
 
         //--------------------------------------------------------vista docentes--------------------------------------------------------
@@ -54,7 +61,7 @@ namespace WebApp_AutomatizacionCGI
             ControladorDocente control = new ControladorDocente();
 
             String nombre = txt_nombreDocente.Text;
-            String rut = txt_rutDocente.Text +""+ txt_digitoDocente.Text;
+            String rut = txt_rutDocente.Text +"-"+ txt_digitoDocente.Text;
             String apellido = txt_apellidoDocente.Text;
             DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
             String correo = txt_correoDocente.Text;
@@ -125,11 +132,90 @@ namespace WebApp_AutomatizacionCGI
             MostrarDocentes();
         }
 
-        
+        //--------------------------------------------------------vista cursos--------------------------------------------------------
+
+        public void MostrarCursos()
+        {
+            ControladorCurso control = new ControladorCurso();
+            GridView_cursos.DataSource = control.listaCursos();
+            GridView_cursos.DataBind();
+        }
+
+        protected void Link_CursoNuevo_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender1.Show();
+            lbCurso.Visible = false;
+            txt_RutEncargardo_Curso.Text = "";
+            txt_detalleCurso.Text = "";
+        }
+
+        protected void Link_GuardarCurso_Click(object sender, EventArgs e)
+        {
+            ControladorCurso control = new ControladorCurso();
+
+            string rut = txt_RutEncargardo_Curso.Text;
+            string detalle = txt_detalleCurso.Text;
+
+            if (rut == "")
+            {
+                ModalPopupExtender1.Hide();
+                ModalPopupExtender2.Show();
+                lbCurso.Text = "rellene los campos";
+                txt_RutEncargardo_Curso.Text = rut;
+                txt_detalleCurso.Text = detalle;
+                lbCurso.Visible = true;
+               
+            }
+            else
+            {
+                //validar que exista rut de encargado             
+
+                Curso nuevo = new Curso
+                {
+                    Rut_Encargado = rut,
+                    Detalle = detalle,
+                    ID_Estado = 1
+
+                };
+
+                if (control.addCursos(nuevo))
+                {
+                    MostrarCursos();
+                }
 
 
+                lbCurso.Visible = false;
+                txt_RutEncargardo_Curso.Text = "";
+                txt_detalleCurso.Text = "";
+            }
+        }
 
-        //--------------------------------------------------------vista docentes--------------------------------------------------------
+        protected void Link_GuardarEncargado_Click(object sender, EventArgs e)
+        {
+            ControladorEncargado control = new ControladorEncargado();
 
+            string rut = txt_RutEncargardo.Text;
+            string nombre = txt_NombreEncargado.Text;
+            string apellido = txt_ApellidoEncargado.Text;
+            string correo = txt_CorreoEncargado.Text;
+            string codigo = rut;
+
+            Encargado nuevo = new Encargado
+            {
+                Rut = rut,
+                Nombre = nombre,
+                Apellido = apellido,
+                Correo = correo,
+                ID_Estado = 1,
+                Codigo = codigo
+
+            };
+
+            if (control.addEncargados(nuevo))
+            {
+                ModalPopupExtender1.Show();
+                txt_RutEncargardo_Curso.Text = rut;
+            }
+        }
     }
 }
