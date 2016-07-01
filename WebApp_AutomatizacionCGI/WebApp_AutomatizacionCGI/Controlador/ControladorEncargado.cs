@@ -35,5 +35,24 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 return false;
             }
         }
+
+        public List<object> listaBuscarEncargados(String buscar)
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado
+                               where e.Rut == buscar
+                               select new { e.Rut};
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
+
     }
 }

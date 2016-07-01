@@ -82,7 +82,7 @@
                     <div class="col-md-8">
                         <h3>Docentes</h3>
                         <br />
-                        <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table table-hover" DataKeyNames="Rut,Nombre,Apellido,Correo,Fecha_Ingreso,ID_Estado,Codigo" OnPageIndexChanging="GridView_docentes_PageIndexChanging" OnRowCancelingEdit="GridView_docentes_RowCancelingEdit" OnRowEditing="GridView_docentes_RowEditing" OnRowUpdating="GridView_docentes_RowUpdating" AllowPaging="True" PageIndex="10">
+                        <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table" DataKeyNames="Rut,Nombre,Apellido,Correo,Fecha_Ingreso,ID_Estado,Codigo" OnPageIndexChanging="GridView_docentes_PageIndexChanging" OnRowCancelingEdit="GridView_docentes_RowCancelingEdit" OnRowEditing="GridView_docentes_RowEditing" OnRowUpdating="GridView_docentes_RowUpdating" AllowPaging="True" PageIndex="10">
                             <Columns>
                                 <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                     <EditItemTemplate>
@@ -149,31 +149,85 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_BuscarCurso" runat="server"></asp:TextBox>
                             <asp:LinkButton ID="Link_BuscarCurso" runat="server">Buscar</asp:LinkButton>
                             <asp:LinkButton ID="Link_CursoNuevo" runat="server" OnClick="Link_CursoNuevo_Click">Nuevo Curso</asp:LinkButton>
                             <asp:LinkButton ID="Link_volver" runat="server" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
                             <asp:Button ID="btn_modalcursonuevo" runat="server" Text="Button" CssClass="hidden" />
-                            <asp:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            <asp:ModalPopupExtender ID="ModalPopupExtender1_cursonuevo" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
                             
                             <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
-                            <asp:ModalPopupExtender ID="ModalPopupExtender2" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            <asp:ModalPopupExtender ID="ModalPopupExtender2_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            
+                            <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
+                            <asp:ModalPopupExtender ID="ModalPopupExtender3_detallecurso" runat="server" TargetControlID="btn_modaldetallecurso" PopupControlID="Panel_DetalleCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            
                             <br />
                             <br />
 
-                            <asp:GridView ID="GridView_cursos" runat="server"></asp:GridView>
-
+                            <asp:GridView ID="GridView_cursos" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_cursos_SelectedIndexChanging">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="ID" SortExpression="ID_Curso">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Curso") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Curso") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Rut Encargado" SortExpression="Rut_Encargado">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Rut_Encargado") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Rut_Encargado") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nombre Encargado" SortExpression="Nombre">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apellido Encargado" SortExpression="Apellido">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Detalle Curso" SortExpression="Detalle">
+                                        <EditItemTemplate>
+                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Detalle") %>'></asp:TextBox>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Información">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_ModalPad" runat="server" CausesValidation="False" CommandName="Select" Text="PAD" OnClick="Link_ModalPad_Click"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>
+                            <asp:Label ID="lb_idcurso" runat="server" Text="" ></asp:Label> <%--//visible = false--%>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-                    <br />
+                    <%--------------------------------------------------------separador Curso nuevo--------------------------------------------------------%>
                     <asp:Panel ID="Panel_CursoNuevo" runat="server">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <asp:LinkButton ID="Link_SalirCurso" runat="server">X</asp:LinkButton>
+                                    <asp:Label ID="Label6" runat="server" Text="Crear Curso"></asp:Label>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -203,13 +257,13 @@
                             </div>
                         </div>
                     </asp:Panel>
-                    <br />
-                    <br />
+                    <%--------------------------------------------------------separador Encargado Nuevo--------------------------------------------------------%>
                     <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
+                                    <asp:Label ID="Label7" runat="server" Text="Agregar Docente"></asp:Label>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -251,7 +305,21 @@
                             </div>
                         </div>
                     </asp:Panel>
+                  <%--------------------------------------------------------separador Detalle CUrso--------------------------------------------------------%>
+                    <asp:Panel ID="Panel_DetalleCurso" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="LinkButton3" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
 
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
 
                 </asp:View>
                

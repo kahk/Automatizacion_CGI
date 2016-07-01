@@ -166,13 +166,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.View View3_addCurso;
         
         /// <summary>
-        /// Control TextBox1.
+        /// Control txt_BuscarCurso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txt_BuscarCurso;
         
         /// <summary>
         /// Control Link_BuscarCurso.
@@ -211,13 +211,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Button btn_modalcursonuevo;
         
         /// <summary>
-        /// Control ModalPopupExtender1.
+        /// Control ModalPopupExtender1_cursonuevo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1_cursonuevo;
         
         /// <summary>
         /// Control btn_modalencargadonuevo.
@@ -229,13 +229,31 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Button btn_modalencargadonuevo;
         
         /// <summary>
-        /// Control ModalPopupExtender2.
+        /// Control ModalPopupExtender2_encargadonuevo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender2;
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender2_encargadonuevo;
+        
+        /// <summary>
+        /// Control btn_modaldetallecurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_modaldetallecurso;
+        
+        /// <summary>
+        /// Control ModalPopupExtender3_detallecurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender3_detallecurso;
         
         /// <summary>
         /// Control GridView_cursos.
@@ -245,6 +263,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_cursos;
+        
+        /// <summary>
+        /// Control lb_idcurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_idcurso;
         
         /// <summary>
         /// Control Panel_CursoNuevo.
@@ -263,6 +290,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_SalirCurso;
+        
+        /// <summary>
+        /// Control Label6.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// Control lbCurso.
@@ -337,6 +373,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_SalirEncargado;
         
         /// <summary>
+        /// Control Label7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label7;
+        
+        /// <summary>
         /// Control txt_RutEncargardo.
         /// </summary>
         /// <remarks>
@@ -389,6 +434,24 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_CancelarEncargado;
+        
+        /// <summary>
+        /// Control Panel_DetalleCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_DetalleCurso;
+        
+        /// <summary>
+        /// Control LinkButton3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
         
         /// <summary>
         /// Control View4_reportes.

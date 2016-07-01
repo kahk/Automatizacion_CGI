@@ -89,8 +89,7 @@ namespace WebApp_AutomatizacionCGI
         protected void GridView_docentes_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridView_docentes.EditIndex = e.NewEditIndex;
-            MostrarDocentes();
-          
+            MostrarDocentes();          
         }
 
         protected void GridView_docentes_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -137,56 +136,64 @@ namespace WebApp_AutomatizacionCGI
         public void MostrarCursos()
         {
             ControladorCurso control = new ControladorCurso();
-            GridView_cursos.DataSource = control.listaCursos();
+            GridView_cursos.DataSource = control.listaCurso_Pad();
             GridView_cursos.DataBind();
         }
 
         protected void Link_CursoNuevo_Click(object sender, EventArgs e)
         {
-            ModalPopupExtender1.Show();
+            ModalPopupExtender1_cursonuevo.Show();
             lbCurso.Visible = false;
             txt_RutEncargardo_Curso.Text = "";
-            txt_detalleCurso.Text = "";
+            txt_detalleCurso.Text = "";            
         }
 
         protected void Link_GuardarCurso_Click(object sender, EventArgs e)
         {
             ControladorCurso control = new ControladorCurso();
 
+            ControladorEncargado controlEnc = new ControladorEncargado();
+
             string rut = txt_RutEncargardo_Curso.Text;
             string detalle = txt_detalleCurso.Text;
 
-            if (rut == "")
-            {
-                ModalPopupExtender1.Hide();
-                ModalPopupExtender2.Show();
+            if (rut == "" || detalle == "")
+            {    
                 lbCurso.Text = "rellene los campos";
                 txt_RutEncargardo_Curso.Text = rut;
                 txt_detalleCurso.Text = detalle;
                 lbCurso.Visible = true;
-               
+                ModalPopupExtender1_cursonuevo.Show();
             }
             else
             {
-                //validar que exista rut de encargado             
+                //validar que exista rut de encargado   
+                int aux = controlEnc.listaBuscarEncargados(rut).Count;                          
 
-                Curso nuevo = new Curso
+                if (aux == 0)
                 {
-                    Rut_Encargado = rut,
-                    Detalle = detalle,
-                    ID_Estado = 1
-
-                };
-
-                if (control.addCursos(nuevo))
-                {
-                    MostrarCursos();
+                    ModalPopupExtender2_encargadonuevo.Show();
                 }
+                else
+                {
+                    Curso nuevo = new Curso
+                    {
+                        Rut_Encargado = rut,
+                        Detalle = detalle,
+                        ID_Estado = 1
+
+                    };
+
+                    if (control.addCursos(nuevo))
+                    {
+                        MostrarCursos();
+                    }
 
 
-                lbCurso.Visible = false;
-                txt_RutEncargardo_Curso.Text = "";
-                txt_detalleCurso.Text = "";
+                    lbCurso.Visible = false;
+                    txt_RutEncargardo_Curso.Text = "";
+                    txt_detalleCurso.Text = "";
+                }               
             }
         }
 
@@ -213,9 +220,20 @@ namespace WebApp_AutomatizacionCGI
 
             if (control.addEncargados(nuevo))
             {
-                ModalPopupExtender1.Show();
+                ModalPopupExtender1_cursonuevo.Show();
                 txt_RutEncargardo_Curso.Text = rut;
             }
+        }
+             
+        protected void GridView_cursos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbcodigoasignar = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label1");
+            lb_idcurso.Text = lbcodigoasignar.Text;
+        }
+
+        protected void Link_ModalPad_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender3_detallecurso.Show();
         }
     }
 }

@@ -164,6 +164,7 @@
     <Compile Include="Controlador\ControladorDocente.cs" />
     <Compile Include="Controlador\ControladorEncargado.cs" />
     <Compile Include="Controlador\ControladorEstado.cs" />
+    <Compile Include="Controlador\ControladorPad.cs" />
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

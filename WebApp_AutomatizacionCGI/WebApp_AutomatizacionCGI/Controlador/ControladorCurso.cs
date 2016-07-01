@@ -35,5 +35,24 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 return false;
             }
         }
+
+
+        public List<object> listaCurso_Pad()
+        {
+            try
+            {
+                var consulta = from c in contexto.Curso                               
+                               join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                               select new { c.ID_Curso, c.Rut_Encargado ,e.Nombre, e.Apellido, c.Detalle  };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
     }
 }
