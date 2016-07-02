@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" Culture="auto" UICulture="auto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -22,7 +22,7 @@
                             <label for="txt_rutDocente" class="col-sm-3 control-label">Rut</label>
                             <div class="col-md-6">
                                 <asp:TextBox ID="txt_rutDocente" runat="server" CssClass="form-control" placeholder="11.111.111"></asp:TextBox>
-                            </div>                            
+                            </div>
                             <div class="col-md-3">
                                 <asp:TextBox ID="txt_digitoDocente" runat="server" CssClass="form-control" placeholder="k"></asp:TextBox>
                             </div>
@@ -56,26 +56,17 @@
                         <div class="form-group">
                             <label for="txt_fechaingresoDocente" class="col-sm-3 control-label">Fecha</label>
                             <div class="col-sm-7">
-                                <asp:TextBox ID="txt_fechaingresoDocente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox> 
-                                <asp:Calendar ID="Calendar1_Docentes" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" OnSelectionChanged="Calendar1_Docentes_SelectionChanged">
-                                    <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
-                                    <NextPrevStyle VerticalAlign="Bottom" />
-                                    <OtherMonthDayStyle ForeColor="#808080" />
-                                    <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
-                                    <SelectorStyle BackColor="#CCCCCC" />
-                                    <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
-                                    <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
-                                    <WeekendDayStyle BackColor="#FFFFCC" />
-                                </asp:Calendar>
+                                <asp:TextBox ID="txt_fechaingresoDocente" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txt_fechaingresoDocente" PopupButtonID="Link_fechadocente" Format="dd/MM/yyyy"></asp:CalendarExtender>
                             </div>
                             <div class="col-sm-2">
-                                <asp:LinkButton ID="LinkButto_abrircalendario" runat="server" OnClick="LinkButto_abrircalendario_Click"><i class="fa fa-calendar" aria-hidden="true"></i></asp:LinkButton>
+                                <asp:LinkButton ID="Link_fechadocente" runat="server"><i class="fa fa-calendar" aria-hidden="true"></i></asp:LinkButton>
                             </div>
                         </div>
                         <br />
                         <br />
                         <asp:Button ID="btn_addDocente" runat="server" Text="Añadir" CssClass="btn btn-danger btn-lg btn-block" OnClick="btn_addDocente_Click" />
-                        <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-default btn-lg btn-block" OnClick="btn_volver_Click"/>
+                        <asp:Button ID="btn_volver" runat="server" Text="Volver" CssClass="btn btn-default btn-lg btn-block" OnClick="btn_volver_Click" />
                     </div>
 
                     
@@ -154,16 +145,7 @@
                             <asp:LinkButton ID="Link_CursoNuevo" runat="server" OnClick="Link_CursoNuevo_Click">Nuevo Curso</asp:LinkButton>
                             <asp:LinkButton ID="Link_volver" runat="server" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
-                            <br />
-                            <asp:Button ID="btn_modalcursonuevo" runat="server" Text="Button" CssClass="hidden" />
-                            <asp:ModalPopupExtender ID="ModalPopupExtender1_cursonuevo" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-                            
-                            <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
-                            <asp:ModalPopupExtender ID="ModalPopupExtender2_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-                            
-                            <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
-                            <asp:ModalPopupExtender ID="ModalPopupExtender3_detallecurso" runat="server" TargetControlID="btn_modaldetallecurso" PopupControlID="Panel_DetalleCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-                            
+                            <br /> 
                             <br />
                             <br />
 
@@ -222,6 +204,9 @@
                         <div class="col-md-1"></div>
                     </div>
                     <%--------------------------------------------------------separador Curso nuevo--------------------------------------------------------%>
+                      <asp:Button ID="btn_modalcursonuevo" runat="server" Text="Button" CssClass="hidden" />
+                      <asp:ModalPopupExtender ID="ModalPopupExtender1_cursonuevo" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                   
                     <asp:Panel ID="Panel_CursoNuevo" runat="server">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
@@ -241,23 +226,46 @@
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Detalle</label>
+                                        <label for="txt_detalleCurso" class="col-sm-4 control-label">Detalle</label>
                                         <div class="col-sm-8">
                                             <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
                                 </div>
-                                <div class="modal-footer">
-                                    <asp:LinkButton ID="Link_EditarCurso" runat="server" CssClass="btn btn-success" >Editar</asp:LinkButton>
-
+                                <div class="modal-footer"> 
                                     <asp:LinkButton ID="Link_GuardarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarCurso_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
-                                    <asp:LinkButton ID="Link_CancelarCurso" runat="server" CssClass="btn btn-danger" >Cancelar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_CancelarCurso" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
                     </asp:Panel>
+
+                     <%--------------------------------------------------------separador Confirmar Encargado--------------------------------------------------------%>
+                     <asp:Button ID="btn_modalconfirmarEncargado" runat="server" Text="Button" CssClass="hidden" />
+                     <asp:ModalPopupExtender ID="ModalPopupExtender2_ConfirmarEncargado" runat="server" TargetControlID="btn_modalconfirmarEncargado" PopupControlID="Panel_ConfirmarEncargado" OkControlID="Link_SalirConfirmar" CancelControlID="Link_no" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            
+                    <asp:Panel ID="Panel_ConfirmarEncargado" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirConfirmar" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Label ID="lb_encargadoNoencontrado" runat="server" Text=""></asp:Label>
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_si" runat="server" CssClass="btn btn-success" OnClick="Link_si_Click">Si</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_no" runat="server" CssClass="btn btn-danger">No</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
                     <%--------------------------------------------------------separador Encargado Nuevo--------------------------------------------------------%>
+                    <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                            
                     <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
@@ -305,17 +313,93 @@
                             </div>
                         </div>
                     </asp:Panel>
+
                   <%--------------------------------------------------------separador Detalle CUrso--------------------------------------------------------%>
+                   <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
+                   <asp:ModalPopupExtender ID="ModalPopupExtender4_detallecurso" runat="server" TargetControlID="btn_modaldetallecurso" PopupControlID="Panel_DetalleCurso" OkControlID="Link_salirdetalle" CancelControlID="Link_Salirdetalle1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
                     <asp:Panel ID="Panel_DetalleCurso" runat="server">
-                        <div class="modal-dialog modal-sm">
+                        <div class="modal-dialog ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <asp:LinkButton ID="LinkButton3" runat="server">X</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_salirdetalle" runat="server">X</asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
-
+                                    <asp:GridView ID="GridView_detallePad" runat="server"></asp:GridView>
                                 </div>
                                 <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_NuevoPad" runat="server" CssClass="btn btn-success" OnClick="Link_NuevoPad_Click"><i class="fa fa-plus"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_Salirdetalle1" runat="server" CssClass="btn btn-danger">Salir</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
+                     <%--------------------------------------------------------separador pad CUrso--------------------------------------------------------%>
+                   <asp:Button ID="btn_modalnuevopad" runat="server" Text="Button" CssClass="hidden" />
+                   <asp:ModalPopupExtender ID="ModalPopupExtender5_padnuevo" runat="server" TargetControlID="btn_modalnuevopad" PopupControlID="Panel_nuevopad" OkControlID="Link_salirpad" CancelControlID="Link_Salirpad1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
+                    <asp:Panel ID="Panel_nuevopad" runat="server">
+                        <div class="modal-dialog modal-sm ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_salirpad" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="txt_rutDocente" class="col-sm-4 control-label">Sala</label>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txt_numerosala" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_numerosalacoffe" class="col-sm-4 control-label">Sala Coffe</label>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txt_numerosalacoffe" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_horainicio" class="col-sm-4 control-label">Hora Inicio</label>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txt_horainicio" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txt_minutoinicio" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_horafin" class="col-sm-4 control-label">Hora Fin</label>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txt_horafin" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <asp:TextBox ID="txt_minutofin" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_fechapad" class="col-sm-4 control-label">Fecha</label>
+                                        <div class="col-sm-6">
+                                            <asp:TextBox ID="txt_fechapad" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                            <asp:CalendarExtender ID="ceShippedDate" runat="server" TargetControlID="txt_fechapad" PopupButtonID="Link_fechaPad" Format="dd/MM/yyyy"></asp:CalendarExtender>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <asp:LinkButton ID="Link_fechaPad" runat="server"><i class="fa fa-calendar" aria-hidden="true"></i></asp:LinkButton>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click">Guardar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_Salirpad1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
                         </div>

@@ -16,9 +16,8 @@ namespace WebApp_AutomatizacionCGI
             if (!IsPostBack)
             {
                 MultiView1.ActiveViewIndex = 3;
-                MostrarDocentes();
-                Calendar1_Docentes.Visible = false;
-
+                MostrarDocentes();               
+                
 
                 MostrarCursos(); //view add cursos
             }
@@ -37,24 +36,7 @@ namespace WebApp_AutomatizacionCGI
             GridView_docentes.DataSource = control.listaDocentes();
             GridView_docentes.DataBind();
         }
-
-        protected void LinkButto_abrircalendario_Click(object sender, EventArgs e)
-        {
-            if (Calendar1_Docentes.Visible)
-            {
-                Calendar1_Docentes.Visible = false;
-            }
-            else
-            {
-                Calendar1_Docentes.Visible = true;
-            }
-        }
-
-        protected void Calendar1_Docentes_SelectionChanged(object sender, EventArgs e)
-        {
-            txt_fechaingresoDocente.Text = Calendar1_Docentes.SelectedDate.ToShortDateString();
-            Calendar1_Docentes.Visible = false;
-        }
+            
 
         protected void btn_addDocente_Click(object sender, EventArgs e)
         {
@@ -172,7 +154,8 @@ namespace WebApp_AutomatizacionCGI
 
                 if (aux == 0)
                 {
-                    ModalPopupExtender2_encargadonuevo.Show();
+                    lb_encargadoNoencontrado.Text = "El encargado que Ingreso no existe <br/> Desea crear uno nuevo?";
+                    ModalPopupExtender2_ConfirmarEncargado.Show();
                 }
                 else
                 {
@@ -195,6 +178,11 @@ namespace WebApp_AutomatizacionCGI
                     txt_detalleCurso.Text = "";
                 }               
             }
+        }
+
+        protected void Link_si_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender3_encargadonuevo.Show();
         }
 
         protected void Link_GuardarEncargado_Click(object sender, EventArgs e)
@@ -229,11 +217,61 @@ namespace WebApp_AutomatizacionCGI
         {
             Label lbcodigoasignar = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label1");
             lb_idcurso.Text = lbcodigoasignar.Text;
+            MostrarPad_Curso();
+        }
+
+        public void MostrarPad_Curso()
+        {
+            int id_curso=0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+            
+            ControladorPad control = new ControladorPad();
+            GridView_detallePad.DataSource = control.listaPad_Cursos(id_curso);
+            GridView_detallePad.DataBind();
         }
 
         protected void Link_ModalPad_Click(object sender, EventArgs e)
-        {
-            ModalPopupExtender3_detallecurso.Show();
+        {            
+            ModalPopupExtender4_detallecurso.Show();
         }
+
+        protected void Link_NuevoPad_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender5_padnuevo.Show();
+        }
+
+        protected void Link_GuardarPad_Click(object sender, EventArgs e)
+        {
+            ControladorPad control = new ControladorPad();
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+            
+            string sala = txt_numerosala.Text;
+            string coffe = txt_numerosalacoffe.Text;
+            string hora_inicio = txt_horainicio.Text+":"+txt_minutoinicio.Text;
+            string hora_fin = txt_horafin.Text+":"+txt_minutofin.Text;
+            DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
+            int id_estado = 1;
+
+            Pad nuevo = new Pad
+            {
+                ID_Curso = id_curso,
+                Sala = sala,
+                Sala_Coffe = coffe,
+                Hora_Inicio = hora_inicio,
+                Hora_Termino = hora_fin,
+                Fecha = fecha,
+                ID_Estado = id_estado
+
+            };
+
+            if (control.addPad(nuevo))
+            {
+                MostrarPad_Curso();
+                ModalPopupExtender4_detallecurso.Show();
+            }
+        }
+
+      
     }
 }
