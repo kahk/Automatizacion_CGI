@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Collections;
 using System.Web.UI.WebControls;
 using WebApp_AutomatizacionCGI.Controlador;
 using WebApp_AutomatizacionCGI.Modelo;
@@ -11,15 +12,18 @@ namespace WebApp_AutomatizacionCGI
 {
     public partial class home : System.Web.UI.Page
     {
+       
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
                 MultiView1.ActiveViewIndex = 3;
-                MostrarDocentes();               
-                
+                MostrarDocentes();
 
+                
                 MostrarCursos(); //view add cursos
+
+                Mostrar_AsignarDocentes(); //mostrar gridview asignar docentes
             }
         }
 
@@ -114,6 +118,11 @@ namespace WebApp_AutomatizacionCGI
         }
 
         //--------------------------------------------------------vista cursos--------------------------------------------------------
+
+        protected void GridView_cursos_PageIndexChanging(object sender, GridViewPageEventArgs e)  //paginacion gridview cursos
+        {
+            GridView_cursos.PageIndex = e.NewPageIndex;
+        }
 
         public void MostrarCursos()
         {
@@ -272,6 +281,31 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-      
+        public void Mostrar_AsignarDocentes()
+        {
+            ControladorDocente control = new ControladorDocente();
+
+            GridView_asignardocentes.DataSource = control.listaAsignar_Docentes();
+            GridView_asignardocentes.DataBind();
+
+        }
+        
+        protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 4;            
+        }
+
+        protected void Link_volverviewcursos_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 3;
+        }
+
+        protected void GridView_asignardocentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {           
+            GridView_asignardocentes.PageIndex = e.NewPageIndex;            
+            Mostrar_AsignarDocentes();
+        }
+
+     
     }
 }
