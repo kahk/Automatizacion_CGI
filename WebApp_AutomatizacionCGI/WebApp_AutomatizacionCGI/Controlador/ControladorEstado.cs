@@ -10,7 +10,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
     {
         bd_entities contexto = new bd_entities();
 
-        public List<Estado> listaEstados()
+        public List<Estado> listaEstado()
         {
             try
             {

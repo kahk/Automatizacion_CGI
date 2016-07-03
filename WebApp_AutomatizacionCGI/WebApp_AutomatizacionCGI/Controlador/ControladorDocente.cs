@@ -43,7 +43,10 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 original = contexto.Docente.Find(nuevo.Rut);
                 original.Nombre = nuevo.Nombre;
                 original.Apellido = nuevo.Apellido;
-                original.Correo = nuevo.Correo;                
+                original.Correo = nuevo.Correo;
+                original.Fecha_Ingreso = nuevo.Fecha_Ingreso;
+                original.ID_Estado = nuevo.ID_Estado;
+                             
                 return contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -59,6 +62,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 var consulta = from d in contexto.Docente                               
                                where d.ID_Estado == 1
                                select new { d.Rut, d.Nombre, d.Apellido };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<object> listaGridView_Docentes()
+        {
+            try
+            {
+                var consulta = from d in contexto.Docente
+                               join e in contexto.Estado on d.ID_Estado equals e.ID_Estado
+                               select new { d.Rut, d.Nombre, d.Apellido, d.Correo, d.Fecha_Ingreso, d.ID_Estado, e.Detalle };
 
                 return consulta.ToList<object>();
             }

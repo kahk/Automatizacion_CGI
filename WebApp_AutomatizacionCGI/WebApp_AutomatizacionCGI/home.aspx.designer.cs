@@ -40,13 +40,130 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.View View0_inicio;
         
         /// <summary>
-        /// Control View1_addDocentes.
+        /// Control Link_VistaDocentes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View1_addDocentes;
+        protected global::System.Web.UI.WebControls.LinkButton Link_VistaDocentes;
+        
+        /// <summary>
+        /// Control Link_VistaEncargados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_VistaEncargados;
+        
+        /// <summary>
+        /// Control Link_VistaCursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_VistaCursos;
+        
+        /// <summary>
+        /// Control View1_Docentes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View1_Docentes;
+        
+        /// <summary>
+        /// Control txt_BuscarDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_BuscarDocente;
+        
+        /// <summary>
+        /// Control Link_BuscarDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_BuscarDocente;
+        
+        /// <summary>
+        /// Control Link_AbrirModalDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_AbrirModalDocente;
+        
+        /// <summary>
+        /// Control Link_Volver1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_Volver1;
+        
+        /// <summary>
+        /// Control GridView_docentes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_docentes;
+        
+        /// <summary>
+        /// Control btn_ModalDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_ModalDocente;
+        
+        /// <summary>
+        /// Control ModalPopupExtender0_ModalDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender0_ModalDocente;
+        
+        /// <summary>
+        /// Control Panel_creardocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_creardocente;
+        
+        /// <summary>
+        /// Control Link_salirmodalcreardocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_salirmodalcreardocente;
+        
+        /// <summary>
+        /// Control lb_RutDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_RutDocente;
         
         /// <summary>
         /// Control txt_rutDocente.
@@ -94,6 +211,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_correoDocente;
         
         /// <summary>
+        /// Control cb_EstadoDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cb_EstadoDocente;
+        
+        /// <summary>
         /// Control txt_fechaingresoDocente.
         /// </summary>
         /// <remarks>
@@ -121,49 +247,94 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_fechadocente;
         
         /// <summary>
-        /// Control btn_addDocente.
+        /// Control Link_EditarDocente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_addDocente;
+        protected global::System.Web.UI.WebControls.LinkButton Link_EditarDocente;
         
         /// <summary>
-        /// Control btn_volver.
+        /// Control Link_addDocente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_volver;
+        protected global::System.Web.UI.WebControls.LinkButton Link_addDocente;
         
         /// <summary>
-        /// Control GridView_docentes.
+        /// Control Link_cancelardocente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_docentes;
+        protected global::System.Web.UI.WebControls.LinkButton Link_cancelardocente;
         
         /// <summary>
-        /// Control View2_addCurso.
+        /// Control View2_Encargados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View2_addCurso;
+        protected global::System.Web.UI.WebControls.View View2_Encargados;
         
         /// <summary>
-        /// Control View3_addCurso.
+        /// Control txt_BuscarEncargado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3_addCurso;
+        protected global::System.Web.UI.WebControls.TextBox txt_BuscarEncargado;
+        
+        /// <summary>
+        /// Control Link_BuscarEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_BuscarEncargado;
+        
+        /// <summary>
+        /// Control Link_AbrirModalEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_AbrirModalEncargado;
+        
+        /// <summary>
+        /// Control Link_VolverEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_VolverEncargado;
+        
+        /// <summary>
+        /// Control GridView_Encargados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_Encargados;
+        
+        /// <summary>
+        /// Control View3_Cursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View3_Cursos;
         
         /// <summary>
         /// Control txt_BuscarCurso.
@@ -184,22 +355,22 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_BuscarCurso;
         
         /// <summary>
-        /// Control Link_CursoNuevo.
+        /// Control Link_AbrirModalCurso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_CursoNuevo;
+        protected global::System.Web.UI.WebControls.LinkButton Link_AbrirModalCurso;
         
         /// <summary>
-        /// Control Link_volver.
+        /// Control Link_VolverCurso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_volver;
+        protected global::System.Web.UI.WebControls.LinkButton Link_VolverCurso;
         
         /// <summary>
         /// Control GridView_cursos.
@@ -670,22 +841,22 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_Salirpad1;
         
         /// <summary>
-        /// Control View4_Docente_Curso.
+        /// Control View3_Docente_Curso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View4_Docente_Curso;
+        protected global::System.Web.UI.WebControls.View View3_Docente_Curso;
         
         /// <summary>
-        /// Control txt_buscardocentes_asignar.
+        /// Control txt_Buscar_Docente_Curso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_buscardocentes_asignar;
+        protected global::System.Web.UI.WebControls.TextBox txt_Buscar_Docente_Curso;
         
         /// <summary>
         /// Control GridView_asignardocentes.
