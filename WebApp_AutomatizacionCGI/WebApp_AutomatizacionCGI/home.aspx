@@ -32,7 +32,7 @@
                                 <h3>INACAP</h3>
                             </div>
 
-                            <div class="col-md-3></div>
+                            <div class="col-md-3"></div>
                         </div>
                 </asp:View>
                 <%-----------------------------------VISTA DOCENTE-----------------------------------%>
@@ -40,8 +40,8 @@
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
                         <asp:TextBox ID="txt_BuscarDocente" runat="server"></asp:TextBox>
-                        <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-warning">Buscar</asp:LinkButton>
-                        <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-success" OnClick="Link_AbrirModalDocente_Click">Nuevo Curso</asp:LinkButton>
+                        <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
+                        <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalDocente_Click">Nuevo Curso</asp:LinkButton>
                         <asp:LinkButton ID="Link_Volver1" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click" >Volver</asp:LinkButton>
                         <br />
                         <br />
@@ -111,7 +111,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Codigo">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="Link_ImprimirCodigoDocente" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default" OnClick="Link_ImprimirCodigoDocente_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="Link_AbrirModalCodigoDocente" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default" ><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
                                     </ItemTemplate>
                                     <HeaderStyle Width="3px" />
                                 </asp:TemplateField>
@@ -206,16 +206,145 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <asp:TextBox ID="txt_BuscarEncargado" runat="server"></asp:TextBox>
-                            <asp:LinkButton ID="Link_BuscarEncargado" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarEncargado_Click">LinkButton</asp:LinkButton>
-                            <asp:LinkButton ID="Link_AbrirModalEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_AbrirModalEncargado_Click">LinkButton</asp:LinkButton>
-                            <asp:LinkButton ID="Link_VolverEncargado" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">LinkButton</asp:LinkButton>
+                            <asp:LinkButton ID="Link_BuscarEncargado" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarEncargado_Click">Buscar Encargado</asp:LinkButton>
+                            <asp:LinkButton ID="Link_AbrirModalEncargado" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalEncargado_Click">Nuevo Encargado</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VolverEncargado" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_Encargados" runat="server"></asp:GridView>
+                            <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Rut") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rut") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apellido" SortExpression="Apellido">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Apellido") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Correo" SortExpression="Correo">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Correo") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Correo") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="ID_Estado" SortExpression="ID_Estado" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("ID_Estado") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("ID_Estado") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Estado" SortExpression="Detalle">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Detalle") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Modificar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_ModificarEncargado" runat="server" CausesValidation="False" CommandName="Select" Text="" OnClick="Link_ModificarEncargado_Click" CssClass="btn btn-danger"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Codigo">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_AbrirModalCodigoEncargado" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                 <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
+  <%-----------------------------MODAL ENCARGADO NUEVO-------------------------%>
+                    <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
+                    <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
+                                    <asp:Label ID="Label7" runat="server" Text="Agregar Docente"></asp:Label>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="txt_RutEncargado" class="col-sm-3 control-label">Rut</label>
+                                        <div class="col-sm-6">
+                                            <asp:Label ID="lb_RutEncargado" runat="server" Text="" Visible="false"></asp:Label>
+                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <asp:TextBox ID="txt_DigitoEncargado" runat="server" CssClass="form-control" placeholder="k"></asp:TextBox>
+                                        </div>
+                                    </div>                                  
+                                    
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_NombreEncargado" class="col-sm-3 control-label">Nombre</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_ApellidoEncargado" class="col-sm-3 control-label">Apellido</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_CorreoEncargado" class="col-sm-3 control-label">Correo</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="cb_EstadoEncargado" class="col-sm-3 control-label">Estado</label>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="cb_EstadoEncargado" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarEncargado" runat="server" Visible="false" CssClass="btn btn-success" OnClick="Link_EditarEncargado_Click">Editar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarEncargado_VistaEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_VistaEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
 
                 </asp:View>
 
@@ -226,7 +355,7 @@
                         <div class="col-md-10">
                             <asp:TextBox ID="txt_BuscarCurso" runat="server"></asp:TextBox>
                             <asp:LinkButton ID="Link_BuscarCurso" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarCurso_Click">Buscar</asp:LinkButton>
-                            <asp:LinkButton ID="Link_AbrirModalCurso" runat="server" CssClass="btn btn-success" OnClick="Link_AbrirModalCurso_Click">Nuevo Curso</asp:LinkButton>
+                            <asp:LinkButton ID="Link_AbrirModalCurso" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalCurso_Click">Nuevo Curso</asp:LinkButton>
                             <asp:LinkButton ID="Link_VolverCurso" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click" >Volver</asp:LinkButton>
                             <br />
                             <br />
@@ -351,57 +480,7 @@
                         </div>
                     </asp:Panel>
 
-                    <%-----------------------------MODAL ENCARGADO NUEVO-------------------------%>
-                    <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
-                    <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-
-                    <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
-                        <div class="modal-dialog modal-sm">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
-                                    <asp:Label ID="Label7" runat="server" Text="Agregar Docente"></asp:Label>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label for="txt_RutEncargardo" class="col-sm-4 control-label">Rut</label>
-                                        <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div class="form-group">
-                                        <label for="txt_NombreEncargado" class="col-sm-4 control-label">Nombre</label>
-                                        <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div class="form-group">
-                                        <label for="txt_ApellidoEncargado" class="col-sm-4 control-label">Apellido</label>
-                                        <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <div class="form-group">
-                                        <label for="txt_CorreoEncargado" class="col-sm-4 control-label">Correo</label>
-                                        <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                    </div>
-                                    <br />
-                                </div>
-                                <div class="modal-footer">
-                                    <asp:LinkButton ID="Link_GuardarEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
-                                    <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
-                                </div>
-                            </div>
-                        </div>
-                    </asp:Panel>
+                  
 
                     <%-----------------------------MODAL DETALLE CURSO-------------------------%>
                     <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
@@ -500,11 +579,19 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <asp:TextBox ID="txt_Buscar_Docente_Curso" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_Buscar_DocenteAsignar" runat="server"></asp:TextBox>
+                            <asp:LinkButton ID="Link_BuscarDocenteAsignar" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
+                             <asp:LinkButton ID="Link_volverviewcursos" runat="server" CssClass="btn btn-default" OnClick="Link_volverviewcursos_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="3">
+                            <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="8" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
                                 <Columns>
+                                    <asp:TemplateField HeaderText="Asignar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_AsignarDocente" runat="server" CausesValidation="False" CommandName="Select" Text="Docente"></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("Rut") %>'></asp:Label>
@@ -534,13 +621,11 @@
                             </asp:GridView>
                             <br />
                             <br />
+                           </div>
 
-                            <asp:LinkButton ID="Link_AsignarDocentes" runat="server" CssClass="btn btn-success"><i class="fa fa-plus"></i></asp:LinkButton>
-
-                            <asp:LinkButton ID="Link_volverviewcursos" runat="server" CssClass="btn btn-default" OnClick="Link_volverviewcursos_Click">Volver</asp:LinkButton>
+                        <div class="col-md-1">
+                            <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text=""></asp:Label>  <%--//visible = false--%>
                         </div>
-
-                        <div class="col-md-1"></div>
                     </div>
                 </asp:View>
 

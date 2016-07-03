@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\ControladorCurso.cs" />
+    <Compile Include="Controlador\ControladorCursoDocente.cs" />
     <Compile Include="Controlador\ControladorDocente.cs" />
     <Compile Include="Controlador\ControladorEncargado.cs" />
     <Compile Include="Controlador\ControladorEstado.cs" />

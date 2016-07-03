@@ -24,7 +24,11 @@ namespace WebApp_AutomatizacionCGI
 
                 Mostrar_AsignarDocentes(); //mostrar gridview asignar docentes
 
-                MostrarEstado_Activo(); //Mostrar cb Estado Panel Docente
+                MostrarEstado_Docentes(); //Mostrar cb Estado Panel Docente
+
+                MostrarEstado_Encargados(); //mostrar cb estado panel encargado
+
+                MostrarEncargados(); //cargar gridview vista encargado
             }
         }
 
@@ -52,7 +56,7 @@ namespace WebApp_AutomatizacionCGI
             MultiView1.ActiveViewIndex = 0;
         }
 
-        public void MostrarEstado_Activo()
+        public void MostrarEstado_Docentes()
         {
             ControladorEstado control = new ControladorEstado();
 
@@ -61,6 +65,17 @@ namespace WebApp_AutomatizacionCGI
             cb_EstadoDocente.DataValueField = "ID_Estado";
             cb_EstadoDocente.DataBind();
             cb_EstadoDocente.SelectedIndex = 0;
+        }
+
+        public void MostrarEstado_Encargados()
+        {
+            ControladorEstado control = new ControladorEstado();
+
+            cb_EstadoEncargado.DataSource = control.listaEstado();
+            cb_EstadoEncargado.DataTextField = "Detalle";
+            cb_EstadoEncargado.DataValueField = "ID_Estado";
+            cb_EstadoEncargado.DataBind();
+            cb_EstadoEncargado.SelectedIndex = 0;
         }
 
 
@@ -76,6 +91,23 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_AbrirModalDocente_Click(object sender, EventArgs e)
         {
             ModalPopupExtender0_ModalDocente.Show();
+
+            
+            txt_rutDocente.Visible = true;
+            txt_digitoDocente.Visible = true;
+            lb_RutDocente.Visible = false;
+            cb_EstadoDocente.Enabled = false;
+            cb_EstadoEncargado.SelectedValue = "1";
+            txt_rutDocente.Text = "";
+            txt_digitoDocente.Text = "";
+            txt_nombreDocente.Text = "";
+            txt_apellidoDocente.Text = "";
+            txt_correoDocente.Text = "";
+            txt_fechaingresoDocente.Text = "";
+
+
+            Link_addDocente.Visible = true;
+            Link_EditarDocente.Visible = false;
         }
 
         protected void Link_addDocente_Click(object sender, EventArgs e)
@@ -109,7 +141,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-        protected void GridView_docentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        protected void GridView_docentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)  //editar controles visibles entre los modal pop up
         {
             Label lbcodigoDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label1");
             Label lbNombreDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label2");            
@@ -184,19 +216,129 @@ namespace WebApp_AutomatizacionCGI
 
         //VISTA ENCARGADOS
 
-        protected void Link_AbrirModalEncargado_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Link_BuscarEncargado_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void Link_GuardarEncargado_Click(object sender, EventArgs e)
+        public void MostrarEncargados()
         {
             ControladorEncargado control = new ControladorEncargado();
+            GridView_Encargados.DataSource = control.listaGridview_Encargados();
+            GridView_Encargados.DataBind();
+        }
+
+        protected void Link_AbrirModalEncargado_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender3_encargadonuevo.Show();
+
+            txt_RutEncargardo.Visible = true;
+            txt_DigitoEncargado.Visible = true;
+            lb_RutEncargado.Visible = false;
+            cb_EstadoEncargado.Enabled = false;
+            cb_EstadoEncargado.SelectedValue = "1";
+            Link_EditarEncargado.Visible = false;
+            Link_GuardarEncargado.Visible = false;
+            Link_GuardarEncargado_VistaEncargado.Visible = true;
+
+            txt_NombreEncargado.Text = "";
+            txt_ApellidoEncargado.Text = "";
+            txt_CorreoEncargado.Text = "";
+
+        }
+
+        protected void GridView_Encargados_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbcodigoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label1");
+            Label lbNombreEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label2");
+            Label lbApellidoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label3");
+            Label lbCorreoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label4");
+           
+            Label lbEstadoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label6");
+
+            
+            String rut = Convert.ToString(lbcodigoEncargado.Text);
+
+            lb_RutEncargado.Text = rut;
+
+            txt_RutEncargardo.Visible = false;
+            txt_DigitoEncargado.Visible = false;
+            lb_RutEncargado.Visible = true;
+            cb_EstadoEncargado.Enabled = true;
+
+            Link_GuardarEncargado_VistaEncargado.Visible = false;
+            Link_GuardarEncargado.Visible = false;
+            Link_EditarEncargado.Visible = true;
+
+            txt_NombreEncargado.Text = lbNombreEncargado.Text;
+            txt_ApellidoEncargado.Text = lbApellidoEncargado.Text;
+            txt_CorreoEncargado.Text = lbCorreoEncargado.Text;
+
+            cb_EstadoEncargado.SelectedValue = lbEstadoEncargado.Text;
+            
+        }
+        protected void Link_ModificarEncargado_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender3_encargadonuevo.Show();
+        }
+
+
+        protected void Link_EditarEncargado_Click(object sender, EventArgs e)
+        {
+            ControladorEncargado control = new ControladorEncargado();
+            int id_estado = 0;
+            int.TryParse(cb_EstadoEncargado.SelectedValue, out id_estado);
+            
+
+            Encargado nuevo = new Encargado
+            {
+                Rut = lb_RutEncargado.Text,
+                Nombre = txt_NombreEncargado.Text,
+                Apellido = txt_ApellidoEncargado.Text,
+                Correo = txt_CorreoEncargado.Text,                
+                ID_Estado = id_estado
+
+            };
+            if (control.ActualizarEncargado(nuevo))
+            {
+                MostrarEncargados();
+            }
+        }
+
+
+        protected void Link_GuardarEncargado_VistaEncargado_Click(object sender, EventArgs e)
+        {
+            ControladorEncargado control = new ControladorEncargado();
+
+            int id_Estado = 0;
+            int.TryParse(cb_EstadoEncargado.SelectedValue, out id_Estado);
+
+            string rut = txt_RutEncargardo.Text;
+            string digito = txt_DigitoEncargado.Text;
+            string nombre = txt_NombreEncargado.Text;
+            string apellido = txt_ApellidoEncargado.Text;
+            string correo = txt_CorreoEncargado.Text;
+            string codigo = rut;
+
+            string rd = rut + "-" + digito;
+            Encargado nuevo = new Encargado
+            {
+                Rut = rd,
+                Nombre = nombre,
+                Apellido = apellido,
+                Correo = correo,
+                ID_Estado = id_Estado,
+                Codigo = codigo
+
+            };
+
+            if (control.addEncargados(nuevo))
+            {
+                MostrarEncargados();
+            }
+        }
+
+        protected void Link_GuardarEncargado_Click(object sender, EventArgs e)  //vista curso
+        {
+            ControladorEncargado control = new ControladorEncargado();
+
+            int id_Estado = 0;
+            int.TryParse(cb_EstadoEncargado.SelectedValue, out id_Estado);
 
             string rut = txt_RutEncargardo.Text;
             string nombre = txt_NombreEncargado.Text;
@@ -210,7 +352,7 @@ namespace WebApp_AutomatizacionCGI
                 Nombre = nombre,
                 Apellido = apellido,
                 Correo = correo,
-                ID_Estado = 1,
+                ID_Estado = id_Estado,
                 Codigo = codigo
 
             };
@@ -220,6 +362,11 @@ namespace WebApp_AutomatizacionCGI
                 ModalPopupExtender1_cursonuevo.Show();
                 txt_RutEncargardo_Curso.Text = rut;
             }
+        }
+
+        protected void Link_BuscarEncargado_Click(object sender, EventArgs e)
+        {
+
         }
 
         //VISA CURSOS
@@ -296,6 +443,8 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_si_Click(object sender, EventArgs e) //modal creacion encargado en caso de no encontrar rut;
         {
+            Link_GuardarEncargado.Visible = true;
+            Link_GuardarEncargado_VistaEncargado.Visible = false;
             ModalPopupExtender3_encargadonuevo.Show();
         }
 
@@ -393,11 +542,46 @@ namespace WebApp_AutomatizacionCGI
             GridView_asignardocentes.PageIndex = e.NewPageIndex;            
             Mostrar_AsignarDocentes();
         }
+        protected void GridView_asignardocentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbcodigoDocente = (Label)GridView_asignardocentes.Rows[e.NewSelectedIndex].FindControl("Label1");
 
-       
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+            string rut = lbcodigoDocente.Text;
 
-       
+            ControladorCursoDocente control = new ControladorCursoDocente();
 
+            int aux = control.listaBuscarCurso_Docente(id_curso, rut).Count;
+
+            if (aux == 0)
+            {
+                Curso_Docente nuevo = new Curso_Docente
+                {
+                    ID_Curso = id_curso,
+                    Rut_Docente = rut
+                };
+
+                if (control.addCursoDocente(nuevo))
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+        }
+        
+        
+
+
+
+
+
+
+
+        //
 
     }
 }

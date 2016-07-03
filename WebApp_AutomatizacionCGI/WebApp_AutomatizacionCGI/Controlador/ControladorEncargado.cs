@@ -22,6 +22,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> listaBuscarEncargados(String buscar)
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado
+                               where e.Rut == buscar
+                               select new { e.Rut };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
         public bool addEncargados(Encargado nuevo)
         {
@@ -36,13 +52,32 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
-        public List<object> listaBuscarEncargados(String buscar)
+        public bool ActualizarEncargado(Encargado nuevo)
         {
             try
             {
-                var consulta = from e in contexto.Encargado
-                               where e.Rut == buscar
-                               select new { e.Rut};
+                Encargado original = new Encargado();
+                original = contexto.Encargado.Find(nuevo.Rut);
+                original.Nombre = nuevo.Nombre;
+                original.Apellido = nuevo.Apellido;
+                original.Correo = nuevo.Correo;                
+                original.ID_Estado = nuevo.ID_Estado;
+
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public List<object> listaGridview_Encargados()
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado                     
+                               join es in contexto.Estado on e.ID_Estado equals es.ID_Estado           
+                               select new { e.Rut, e.Nombre, e.Apellido, e.Correo, e.ID_Estado, es.Detalle };
 
                 return consulta.ToList<object>();
             }
