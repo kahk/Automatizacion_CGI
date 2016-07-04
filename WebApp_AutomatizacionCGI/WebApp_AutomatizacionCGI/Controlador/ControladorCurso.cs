@@ -59,10 +59,10 @@ namespace WebApp_AutomatizacionCGI.Controlador
         {
             try
             {
-                var consulta = from c in contexto.Curso                               
+                var consulta = from c in contexto.Curso
                                join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
                                join est in contexto.Estado on c.ID_Estado equals est.ID_Estado
-                               select new { c.ID_Curso, c.Rut_Encargado ,e.Nombre, e.Apellido, c.Detallecurso, c.ID_Estado, est.Detalle  };
+                               select new { c.ID_Curso, c.Rut_Encargado, e.Nombre, e.Apellido, c.Detallecurso, c.ID_Estado, est.Detalle };
 
                 return consulta.ToList<object>();
             }
@@ -72,7 +72,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
-  
+
 
 
 

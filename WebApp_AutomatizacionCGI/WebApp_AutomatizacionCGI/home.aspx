@@ -12,34 +12,34 @@
         <ContentTemplate>
             <asp:MultiView ID="MultiView1" runat="server">
                 <asp:View ID="View0_inicio" runat="server">
-                     <div class="row">
-                            <div class="col-md-1"></div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
 
-                            <div class="col-md-3">
-                                <br />
-                                <br />
-                                <br />
-                                <br />
-                                <asp:LinkButton ID="Link_VistaDocentes" runat="server" OnClick="Link_VistaDocentes_Click" CssClass="btn btn-default">Docentes</asp:LinkButton>
-                                <br />
-                                <br />
-                                <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-default">Encargados</asp:LinkButton>
-                                <br />
-                                <br />
-                                <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-default">Cursos</asp:LinkButton>
-                                <br />
-                                <br />
-                                <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-default">Cerrar Session</asp:LinkButton>
-                            </div>
-
-                            <div class="col-md-5">
-                                <h3>INACAP</h3>
-                                
-                                
-                            </div>
-
-                            <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_VistaDocentes" runat="server" OnClick="Link_VistaDocentes_Click" CssClass="btn btn-default">Docentes</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-default">Encargados</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-default">Cursos</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-default">Cerrar Session</asp:LinkButton>
                         </div>
+
+                        <div class="col-md-5">
+                            <h3>INACAP</h3>
+
+
+                        </div>
+
+                        <div class="col-md-3"></div>
+                    </div>
                 </asp:View>
                 <%-----------------------------------VISTA DOCENTE-----------------------------------%>
                 <asp:View ID="View1_Docentes" runat="server">
@@ -48,7 +48,7 @@
                         <asp:TextBox ID="txt_BuscarDocente" runat="server"></asp:TextBox>
                         <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
                         <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalDocente_Click">Nuevo Docente</asp:LinkButton>
-                        <asp:LinkButton ID="Link_Volver1" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click" >Volver</asp:LinkButton>
+                        <asp:LinkButton ID="Link_Volver1" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                         <br />
                         <br />
                         <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_docentes_PageIndexChanging" AllowPaging="True" OnSelectedIndexChanging="GridView_docentes_SelectedIndexChanging" PageSize="8">
@@ -117,7 +117,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Codigo">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="Link_AbrirModalCodigoDocente" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default" ><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                        <asp:LinkButton ID="Link_AbrirModalCodigoDocente" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default" OnClick="Link_AbrirModalCodigoDocente_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
                                     </ItemTemplate>
                                     <HeaderStyle Width="3px" />
                                 </asp:TemplateField>
@@ -138,7 +138,7 @@
                                     <asp:LinkButton ID="Link_salirmodalcreardocente" runat="server">X</asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="form-group">                                       
+                                    <div class="form-group">
                                         <label for="txt_rutDocente" class="col-sm-3 control-label">Rut</label>
                                         <div class="col-md-6">
                                             <asp:Label ID="lb_RutDocente" runat="server" Text="" Visible="false"></asp:Label>
@@ -204,8 +204,29 @@
                         </div>
                     </asp:Panel>
 
+                    <asp:Button ID="btn_ModalBarCode" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender_Barcode" runat="server" TargetControlID="btn_ModalBarCode" PopupControlID="Panel_BarCode" OkControlID="Link_salirmodalcreardocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
+                    <asp:Panel ID="Panel_Barcode" runat="server">
+                        <div class="modal-dialog modal-sm ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="LinkButton1" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Image ID="Image_codigo" runat="server" />
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
+
+
+
                 </asp:View>
-                 <%-----------------------------------VISTA ENCARGADOS-----------------------------------%>
+                <%-----------------------------------VISTA ENCARGADOS-----------------------------------%>
 
                 <asp:View ID="View2_Encargados" runat="server">
                     <div class="row">
@@ -280,12 +301,12 @@
                                         <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
                                 </Columns>
-                                 <HeaderStyle CssClass="btn-danger" />
+                                <HeaderStyle CssClass="btn-danger" />
                             </asp:GridView>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
-  <%-----------------------------MODAL ENCARGADO NUEVO-------------------------%>
+                    <%-----------------------------MODAL ENCARGADO NUEVO-------------------------%>
                     <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
@@ -306,8 +327,8 @@
                                         <div class="col-md-3">
                                             <asp:TextBox ID="txt_DigitoEncargado" runat="server" CssClass="form-control" placeholder="k"></asp:TextBox>
                                         </div>
-                                    </div>                                  
-                                    
+                                    </div>
+
                                     <br />
                                     <br />
                                     <div class="form-group">
@@ -354,7 +375,7 @@
 
                 </asp:View>
 
-               <%-----------------------------------VISTA CURSOS-----------------------------------%>
+                <%-----------------------------------VISTA CURSOS-----------------------------------%>
                 <asp:View ID="View3_Cursos" runat="server">
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -362,7 +383,7 @@
                             <asp:TextBox ID="txt_BuscarCurso" runat="server"></asp:TextBox>
                             <asp:LinkButton ID="Link_BuscarCurso" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarCurso_Click">Buscar</asp:LinkButton>
                             <asp:LinkButton ID="Link_AbrirModalCurso" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalCurso_Click">Nuevo Curso</asp:LinkButton>
-                            <asp:LinkButton ID="Link_VolverCurso" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click" >Volver</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VolverCurso" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
                             <asp:GridView ID="GridView_cursos" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_cursos_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_cursos_PageIndexChanging" PageSize="20">
@@ -517,12 +538,12 @@
                         </div>
                     </asp:Panel>
 
-                  
+
 
                     <%-----------------------------MODAL DETALLE CURSO-------------------------%>
                     <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender4_detallecurso" runat="server" TargetControlID="btn_modaldetallecurso" PopupControlID="Panel_DetalleCurso" OkControlID="Link_salirdetalle" CancelControlID="Link_Salirdetalle1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-                    
+
                     <asp:Panel ID="Panel_DetalleCurso" runat="server">
                         <div class="modal-dialog ">
                             <div class="modal-content">
@@ -648,19 +669,19 @@
                                     </div>
                                     <br />
                                     <br />
-                                    <div class="form-group"> 
+                                    <div class="form-group">
                                         <label for="txt_horainicioPad" class="col-sm-4 control-label">Hora Inicio</label>
                                         <div class="col-md-8">
                                             <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <br />
                                     <br />
-                                    <div class="form-group">                                        
+                                    <div class="form-group">
                                         <label for="txt_horafinPad" class="col-sm-4 control-label">Hora Fin</label>
                                         <div class="col-md-8">
                                             <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <br />
                                     <br />
@@ -691,7 +712,7 @@
                                 </div>
                             </div>
                         </div>
-                    </asp:Panel>           
+                    </asp:Panel>
                 </asp:View>
                 <%-----------------------------VISTA CURSO_DOCENTE-------------------------%>
                 <asp:View ID="View3_5_Docente_Curso" runat="server">
@@ -701,7 +722,7 @@
                         <div class="col-md-10">
                             <asp:TextBox ID="txt_Buscar_DocenteAsignar" runat="server"></asp:TextBox>
                             <asp:LinkButton ID="Link_BuscarDocenteAsignar" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
-                             <asp:LinkButton ID="Link_volverviewcursos" runat="server" CssClass="btn btn-default" OnClick="Link_volverviewcursos_Click">Volver</asp:LinkButton>
+                            <asp:LinkButton ID="Link_volverviewcursos" runat="server" CssClass="btn btn-default" OnClick="Link_volverviewcursos_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
                             <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="8" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
@@ -741,10 +762,11 @@
                             </asp:GridView>
                             <br />
                             <br />
-                           </div>
+                        </div>
 
                         <div class="col-md-1">
-                            <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text=""></asp:Label>  <%--//visible = false--%>
+                            <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text=""></asp:Label>
+                            <%--//visible = false--%>
                         </div>
                     </div>
                 </asp:View>
@@ -754,9 +776,9 @@
                     <asp:GridView ID="GridView1" runat="server"></asp:GridView>
                 </asp:View>
 
-                
+
             </asp:MultiView>
         </ContentTemplate>
     </asp:UpdatePanel>
-    
+
 </asp:Content>

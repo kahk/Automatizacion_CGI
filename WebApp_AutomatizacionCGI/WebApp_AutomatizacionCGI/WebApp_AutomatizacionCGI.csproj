@@ -80,6 +80,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="barcodes\bc.png" />
     <Content Include="css\estilos.css" />
     <Content Include="curso.aspx" />
     <Content Include="encuesta.aspx" />
@@ -166,14 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\BarcodeGenerator.cs" />
-    <Compile Include="Controlador\ControladorCategoria.cs" />
     <Compile Include="Controlador\ControladorCurso.cs" />
     <Compile Include="Controlador\ControladorCursoDocente.cs" />
     <Compile Include="Controlador\ControladorDocente.cs" />
     <Compile Include="Controlador\ControladorEncargado.cs" />
     <Compile Include="Controlador\ControladorEstado.cs" />
     <Compile Include="Controlador\ControladorPad.cs" />
-    <Compile Include="Controlador\ControladorPreguntas.cs" />
     <Compile Include="Controlador\ControladorUsuario.cs" />
     <Compile Include="curso.aspx.cs">
       <DependentUpon>curso.aspx</DependentUpon>
@@ -272,9 +271,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="barcodes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

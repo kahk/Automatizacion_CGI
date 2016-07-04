@@ -19,7 +19,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
             {
                 return null;
             }
-        }  
+        }
 
 
         public bool addDocentes(Docente nuevo)
@@ -46,7 +46,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 original.Correo = nuevo.Correo;
                 original.Fecha_Ingreso = nuevo.Fecha_Ingreso;
                 original.ID_Estado = nuevo.ID_Estado;
-                             
+
                 return contexto.SaveChanges() > 0;
             }
             catch (Exception)
@@ -59,7 +59,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
         {
             try
             {
-                var consulta = from d in contexto.Docente                               
+                var consulta = from d in contexto.Docente
                                where d.ID_Estado == 1
                                select new { d.Rut, d.Nombre, d.Apellido };
 

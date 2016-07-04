@@ -31,7 +31,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 }
                 return valido;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }

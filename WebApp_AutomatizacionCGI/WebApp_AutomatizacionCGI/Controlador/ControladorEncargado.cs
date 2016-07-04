@@ -88,7 +88,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 original = contexto.Encargado.Find(nuevo.Rut);
                 original.Nombre = nuevo.Nombre;
                 original.Apellido = nuevo.Apellido;
-                original.Correo = nuevo.Correo;                
+                original.Correo = nuevo.Correo;
                 original.ID_Estado = nuevo.ID_Estado;
 
                 return contexto.SaveChanges() > 0;
@@ -103,8 +103,8 @@ namespace WebApp_AutomatizacionCGI.Controlador
         {
             try
             {
-                var consulta = from e in contexto.Encargado                     
-                               join es in contexto.Estado on e.ID_Estado equals es.ID_Estado           
+                var consulta = from e in contexto.Encargado
+                               join es in contexto.Estado on e.ID_Estado equals es.ID_Estado
                                select new { e.Rut, e.Nombre, e.Apellido, e.Correo, e.ID_Estado, es.Detalle };
 
                 return consulta.ToList<object>();

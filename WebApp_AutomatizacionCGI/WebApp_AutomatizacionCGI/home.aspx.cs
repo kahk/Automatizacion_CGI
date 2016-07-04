@@ -8,21 +8,23 @@ using System.Web.UI.WebControls;
 using WebApp_AutomatizacionCGI.Controlador;
 using WebApp_AutomatizacionCGI.Modelo;
 using System.Web.Security;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace WebApp_AutomatizacionCGI
 {
     public partial class home : System.Web.UI.Page
     {
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
             {
-                
+
 
                 MultiView1.ActiveViewIndex = 0;
                 MostrarDocentes();
-                                
+
                 MostrarCursos(); //view add cursos
 
                 Mostrar_AsignarDocentes(); //mostrar gridview asignar docentes
@@ -41,7 +43,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-      //MENU DE NAVEGACION
+        //MENU DE NAVEGACION
 
         protected void Link_VistaDocentes_Click(object sender, EventArgs e)
         {
@@ -123,7 +125,7 @@ namespace WebApp_AutomatizacionCGI
         {
             ModalPopupExtender0_ModalDocente.Show();
 
-            
+
             txt_rutDocente.Visible = true;
             txt_digitoDocente.Visible = true;
             lb_RutDocente.Visible = false;
@@ -151,7 +153,7 @@ namespace WebApp_AutomatizacionCGI
             DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
             String correo = txt_correoDocente.Text;
             String codigo = rut;
-            int id_Estado = 0;            
+            int id_Estado = 0;
             int.TryParse(cb_EstadoDocente.SelectedValue, out id_Estado);
 
             Docente nuevo = new Docente
@@ -175,7 +177,7 @@ namespace WebApp_AutomatizacionCGI
         protected void GridView_docentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)  //editar controles visibles entre los modal pop up
         {
             Label lbcodigoDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label1");
-            Label lbNombreDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label2");            
+            Label lbNombreDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label2");
             Label lbApellidoDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label3");
             Label lbCorreoDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label4");
             Label lbFechaIngresoDocente = (Label)GridView_docentes.Rows[e.NewSelectedIndex].FindControl("Label5");
@@ -183,7 +185,7 @@ namespace WebApp_AutomatizacionCGI
 
             String fecha = Convert.ToString(lbFechaIngresoDocente.Text);
             String rut = Convert.ToString(lbcodigoDocente.Text);
-            
+
             lb_RutDocente.Text = rut;
             txt_rutDocente.Visible = false;
             txt_digitoDocente.Visible = false;
@@ -198,12 +200,22 @@ namespace WebApp_AutomatizacionCGI
             txt_correoDocente.Text = lbCorreoDocente.Text;
             cb_EstadoDocente.SelectedValue = lbEstadoDocente.Text;
             txt_fechaingresoDocente.Text = fecha.Substring(0, 10);
-            
+
+            //generar barcode
+          
+                LabelKit.BarcodeGenerator code = new LabelKit.BarcodeGenerator();
+                System.Drawing.Graphics g = Graphics.FromImage(new Bitmap(1, 1));
+                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
+
+                g = Graphics.FromImage(bmp);
+                code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
+                Image_codigo.ImageUrl = "./barcodes/" + rut + ".png";
+                    
             
         }
 
         protected void Link_ModificarDocente_Click(object sender, EventArgs e)
-        {          
+        {
             ModalPopupExtender0_ModalDocente.Show();
         }
 
@@ -219,7 +231,7 @@ namespace WebApp_AutomatizacionCGI
                 Rut = lb_RutDocente.Text,
                 Nombre = txt_nombreDocente.Text,
                 Apellido = txt_apellidoDocente.Text,
-                Correo = txt_correoDocente.Text,                
+                Correo = txt_correoDocente.Text,
                 Fecha_Ingreso = fecha,
                 ID_Estado = id_estado
 
@@ -231,13 +243,14 @@ namespace WebApp_AutomatizacionCGI
         }
 
 
-        protected void Link_ImprimirCodigoDocente_Click(object sender, EventArgs e)
-        {
 
+        protected void Link_AbrirModalCodigoDocente_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender_Barcode.Show();
         }
 
-        
-        
+
+
         protected void GridView_docentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView_docentes.PageIndex = e.NewPageIndex;
@@ -279,10 +292,10 @@ namespace WebApp_AutomatizacionCGI
             Label lbNombreEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label2");
             Label lbApellidoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label3");
             Label lbCorreoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label4");
-           
+
             Label lbEstadoEncargado = (Label)GridView_Encargados.Rows[e.NewSelectedIndex].FindControl("Label6");
 
-            
+
             String rut = Convert.ToString(lbcodigoEncargado.Text);
 
             lb_RutEncargado.Text = rut;
@@ -301,7 +314,8 @@ namespace WebApp_AutomatizacionCGI
             txt_CorreoEncargado.Text = lbCorreoEncargado.Text;
 
             cb_EstadoEncargado.SelectedValue = lbEstadoEncargado.Text;
-            
+
+
         }
         protected void Link_ModificarEncargado_Click(object sender, EventArgs e)
         {
@@ -314,14 +328,14 @@ namespace WebApp_AutomatizacionCGI
             ControladorEncargado control = new ControladorEncargado();
             int id_estado = 0;
             int.TryParse(cb_EstadoEncargado.SelectedValue, out id_estado);
-            
+
 
             Encargado nuevo = new Encargado
             {
                 Rut = lb_RutEncargado.Text,
                 Nombre = txt_NombreEncargado.Text,
                 Apellido = txt_ApellidoEncargado.Text,
-                Correo = txt_CorreoEncargado.Text,                
+                Correo = txt_CorreoEncargado.Text,
                 ID_Estado = id_estado
 
             };
@@ -431,16 +445,16 @@ namespace WebApp_AutomatizacionCGI
             Label lbDetalleCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label5");
             Label lbEstadoCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label6");
 
-            
+
             Link_GuardarCurso.Visible = false;
             Link_EditarCurso.Visible = true;
             txt_RutEncargardo_Curso.Text = lbRutEncargado.Text;
             txt_detalleCurso.Text = lbDetalleCurso.Text;
             cb_EstadoCurso.SelectedValue = lbEstadoCurso.Text;
-            
+
         }
 
-       
+
 
         protected void Link_BuscarCurso_Click(object sender, EventArgs e)
         {
@@ -468,7 +482,7 @@ namespace WebApp_AutomatizacionCGI
             {
                 ID_Curso = id_curso,
                 Rut_Encargado = txt_RutEncargardo_Curso.Text,
-                Detallecurso = txt_detalleCurso.Text, 
+                Detallecurso = txt_detalleCurso.Text,
                 ID_Estado = id_estado
 
             };
@@ -489,7 +503,7 @@ namespace WebApp_AutomatizacionCGI
             string detalle = txt_detalleCurso.Text;
 
             if (rut == "" || detalle == "")
-            {    
+            {
                 lbCurso.Text = "rellene los campos";
                 txt_RutEncargardo_Curso.Text = rut;
                 txt_detalleCurso.Text = detalle;
@@ -499,7 +513,7 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 //validar que exista rut de encargado   
-                int aux = controlEnc.listaBuscarEncargados(rut).Count;                          
+                int aux = controlEnc.listaBuscarEncargados(rut).Count;
 
                 if (aux == 0)
                 {
@@ -525,7 +539,7 @@ namespace WebApp_AutomatizacionCGI
                     lbCurso.Visible = false;
                     txt_RutEncargardo_Curso.Text = "";
                     txt_detalleCurso.Text = "";
-                }               
+                }
             }
         }
 
@@ -542,22 +556,22 @@ namespace WebApp_AutomatizacionCGI
         {
             GridView_cursos.PageIndex = e.NewPageIndex;
         }
-        
+
 
         //PAD
 
         public void MostrarPad_Curso()
         {
-            int id_curso=0;
+            int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
-            
+
             ControladorPad control = new ControladorPad();
             GridView_detallePad.DataSource = control.listaPad_Cursos(id_curso);
             GridView_detallePad.DataBind();
         }
 
         protected void Link_ModalPad_Click(object sender, EventArgs e)
-        {            
+        {
             ModalPopupExtender4_detallecurso.Show();
         }
 
@@ -587,7 +601,7 @@ namespace WebApp_AutomatizacionCGI
             Label lbHoraTerminoPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label6");
             Label lbFechaPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label7");
             Label lbEstadoPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label8");
-                        
+
             String fecha = Convert.ToString(lbFechaPad.Text);
 
             txt_rutDocente.Visible = false;
@@ -631,7 +645,7 @@ namespace WebApp_AutomatizacionCGI
                 Hora_Inicio = txt_horainicioPad.Text,
                 Hora_Termino = txt_horafinPad.Text,
                 Fecha = fecha,
-                
+
                 ID_Estado = id_estado
 
             };
@@ -642,14 +656,13 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-       
-
+        
         protected void Link_GuardarPad_Click(object sender, EventArgs e)
         {
             ControladorPad control = new ControladorPad();
             int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
-            
+
             string sala = txt_SalaPad.Text;
             string coffe = txt_SalaCoffe.Text;
 
@@ -678,7 +691,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-       
+
         //ASIGNAR DOCENTES
 
         public void Mostrar_AsignarDocentes()
@@ -688,11 +701,11 @@ namespace WebApp_AutomatizacionCGI
             GridView_asignardocentes.DataSource = control.listaAsignar_Docentes();
             GridView_asignardocentes.DataBind();
         }
-        
+
 
         protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 4;            
+            MultiView1.ActiveViewIndex = 4;
         }
 
         protected void Link_volverviewcursos_Click(object sender, EventArgs e)
@@ -701,8 +714,8 @@ namespace WebApp_AutomatizacionCGI
         }
 
         protected void GridView_asignardocentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {           
-            GridView_asignardocentes.PageIndex = e.NewPageIndex;            
+        {
+            GridView_asignardocentes.PageIndex = e.NewPageIndex;
             Mostrar_AsignarDocentes();
         }
         protected void GridView_asignardocentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -741,24 +754,6 @@ namespace WebApp_AutomatizacionCGI
             FormsAuthentication.SignOut();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //
 
     }
 }
