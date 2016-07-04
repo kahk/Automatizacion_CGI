@@ -62,5 +62,27 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> BuscarPad_DeCurso(string rut, DateTime fecha)
+        {
+            try
+            {
+                
+
+                var consulta = from p in contexto.Pad                               
+                               join est in contexto.Estado on p.ID_Estado equals est.ID_Estado
+                               join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                               join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                               where c.Rut_Encargado == rut && p.Fecha == fecha                               
+                               select new { c.Pad };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
     }
 }

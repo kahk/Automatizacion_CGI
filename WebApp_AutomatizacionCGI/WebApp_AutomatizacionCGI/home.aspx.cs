@@ -7,6 +7,7 @@ using System.Collections;
 using System.Web.UI.WebControls;
 using WebApp_AutomatizacionCGI.Controlador;
 using WebApp_AutomatizacionCGI.Modelo;
+using System.Web.Security;
 
 namespace WebApp_AutomatizacionCGI
 {
@@ -17,6 +18,8 @@ namespace WebApp_AutomatizacionCGI
         {
             if (!Page.IsPostBack)
             {
+                
+
                 MultiView1.ActiveViewIndex = 0;
                 MostrarDocentes();
                                 
@@ -733,7 +736,12 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-       
+        protected void Link_CerrarSession_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+        }
+
+
 
 
 

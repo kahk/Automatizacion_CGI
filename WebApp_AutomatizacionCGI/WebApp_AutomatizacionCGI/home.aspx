@@ -27,6 +27,9 @@
                                 <br />
                                 <br />
                                 <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-default">Cursos</asp:LinkButton>
+                                <br />
+                                <br />
+                                <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-default">Cerrar Session</asp:LinkButton>
                             </div>
 
                             <div class="col-md-5">
@@ -691,7 +694,7 @@
                     </asp:Panel>           
                 </asp:View>
                 <%-----------------------------VISTA CURSO_DOCENTE-------------------------%>
-                <asp:View ID="View3_Docente_Curso" runat="server">
+                <asp:View ID="View3_5_Docente_Curso" runat="server">
 
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -747,7 +750,9 @@
                 </asp:View>
 
                 <%-----------------------------------VISTA REPORTES-----------------------------------%>
-               
+                <asp:View ID="View4_Encuestas" runat="server">
+                    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                </asp:View>
 
                 
             </asp:MultiView>

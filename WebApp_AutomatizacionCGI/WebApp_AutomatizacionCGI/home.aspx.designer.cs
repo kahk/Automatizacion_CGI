@@ -67,6 +67,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_VistaCursos;
         
         /// <summary>
+        /// Control Link_CerrarSession.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_CerrarSession;
+        
+        /// <summary>
         /// Control View1_Docentes.
         /// </summary>
         /// <remarks>
@@ -913,13 +922,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_Salirpad1;
         
         /// <summary>
-        /// Control View3_Docente_Curso.
+        /// Control View3_5_Docente_Curso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3_Docente_Curso;
+        protected global::System.Web.UI.WebControls.View View3_5_Docente_Curso;
         
         /// <summary>
         /// Control txt_Buscar_DocenteAsignar.
@@ -965,5 +974,23 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_codigoDocente_Asignar;
+        
+        /// <summary>
+        /// Control View4_Encuestas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View4_Encuestas;
+        
+        /// <summary>
+        /// Control GridView1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }

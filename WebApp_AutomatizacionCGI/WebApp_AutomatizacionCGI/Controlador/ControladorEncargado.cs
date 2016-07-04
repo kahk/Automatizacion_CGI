@@ -22,6 +22,34 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public bool validarEncargado(String Rut, String Codigo)
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado
+                               where e.Rut.Equals(Rut) && e.Codigo.Equals(Codigo)
+                               select e;
+                bool valido = consulta.Count() == 1;
+                if (valido == true)
+                {
+                    int estado_encargado = consulta.First().ID_Estado;
+                    if (estado_encargado == 1)
+                    {
+
+                    }
+                    else
+                    {
+                        valido = false;
+                    }
+                }
+                return valido;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public List<object> listaBuscarEncargados(String buscar)
         {
             try
