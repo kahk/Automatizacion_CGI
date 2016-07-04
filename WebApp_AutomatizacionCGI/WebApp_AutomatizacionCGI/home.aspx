@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" Culture="auto" UICulture="auto" %>
 
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -30,6 +31,8 @@
 
                             <div class="col-md-5">
                                 <h3>INACAP</h3>
+                                
+                                
                             </div>
 
                             <div class="col-md-3"></div>
@@ -41,7 +44,7 @@
                     <div class="col-md-10">
                         <asp:TextBox ID="txt_BuscarDocente" runat="server"></asp:TextBox>
                         <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
-                        <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalDocente_Click">Nuevo Curso</asp:LinkButton>
+                        <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalDocente_Click">Nuevo Docente</asp:LinkButton>
                         <asp:LinkButton ID="Link_Volver1" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click" >Volver</asp:LinkButton>
                         <br />
                         <br />
@@ -379,7 +382,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Nombre Encargado" SortExpression="Nombre">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("Nombre") %>'></asp:TextBox>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
@@ -387,7 +390,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Apellido Encargado" SortExpression="Apellido">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox2" runat="server" Text='<%# Bind("Apellido") %>'></asp:TextBox>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Apellido") %>'></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
                                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
@@ -395,10 +398,26 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Detalle Curso" SortExpression="Detalle">
                                         <EditItemTemplate>
-                                            <asp:TextBox ID="TextBox3" runat="server" Text='<%# Bind("Detalle") %>'></asp:TextBox>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Detallecurso") %>'></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Detallecurso") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="ID_Estado" SortExpression="ID_Estado" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("ID_Estado") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("ID_Estado") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Estado" SortExpression="Detalle">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("Detalle") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Información">
@@ -410,6 +429,12 @@
                                         <ItemTemplate>
                                             <asp:LinkButton ID="Link_viewAsignarDocentes_Curso" runat="server" CausesValidation="False" CommandName="Select" Text="Docentes" OnClick="Link_viewAsignarDocentes_Curso_Click"></asp:LinkButton>
                                         </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Modificar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_ModificarCurso" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-danger" OnClick="Link_ModificarCurso_Click"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="btn-danger" />
@@ -436,22 +461,31 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbCurso" runat="server" Text="" Visible="false"></asp:Label>
                                         <br />
-                                        <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Encargado</label>
-                                        <div class="col-sm-8">
+                                        <label for="txt_RutEncargardo_Curso" class="col-sm-3 control-label">Encargado</label>
+                                        <div class="col-sm-9">
                                             <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_detalleCurso" class="col-sm-4 control-label">Detalle</label>
-                                        <div class="col-sm-8">
+                                        <label for="txt_detalleCurso" class="col-sm-3 control-label">Detalle</label>
+                                        <div class="col-sm-9">
                                             <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="cb_EstadoCurso" class="col-sm-3 control-label">Estado</label>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="cb_EstadoCurso" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                                         </div>
                                     </div>
                                     <br />
                                 </div>
                                 <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_EditarCurso_Click">Editar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_GuardarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarCurso_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_CancelarCurso" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
@@ -485,7 +519,7 @@
                     <%-----------------------------MODAL DETALLE CURSO-------------------------%>
                     <asp:Button ID="btn_modaldetallecurso" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender4_detallecurso" runat="server" TargetControlID="btn_modaldetallecurso" PopupControlID="Panel_DetalleCurso" OkControlID="Link_salirdetalle" CancelControlID="Link_Salirdetalle1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
-
+                    
                     <asp:Panel ID="Panel_DetalleCurso" runat="server">
                         <div class="modal-dialog ">
                             <div class="modal-content">
@@ -493,7 +527,88 @@
                                     <asp:LinkButton ID="Link_salirdetalle" runat="server">X</asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
-                                    <asp:GridView ID="GridView_detallePad" runat="server"></asp:GridView>
+                                    <asp:GridView ID="GridView_detallePad" runat="server" CssClass="table" AutoGenerateColumns="False" OnSelectedIndexChanging="GridView_detallePad_SelectedIndexChanging">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="Pad" SortExpression="ID_Pad">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Pad") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Pad") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="ID_Curso" SortExpression="ID_Curso" Visible="False">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Eval("ID_Curso") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label2" runat="server" Text='<%# Bind("ID_Curso") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Sala" SortExpression="Sala">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Eval("Sala") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label3" runat="server" Text='<%# Bind("Sala") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Sala Coffe" SortExpression="Sala_Coffe">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Eval("Sala_Coffe") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label4" runat="server" Text='<%# Bind("Sala_Coffe") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Hora Inicio" SortExpression="Hora_Inicio">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label5" runat="server" Text='<%# Eval("Hora_Inicio") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label5" runat="server" Text='<%# Bind("Hora_Inicio") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Hora Termino" SortExpression="Hora_Termino">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Eval("Hora_Termino") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label6" runat="server" Text='<%# Bind("Hora_Termino") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Fecha" SortExpression="Fecha">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label7" runat="server" Text='<%# Eval("Fecha") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label7" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="ID_Estado" SortExpression="ID_Estado" Visible="False">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Eval("ID_Estado") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label8" runat="server" Text='<%# Bind("ID_Estado") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Estado" SortExpression="Detalle">
+                                                <EditItemTemplate>
+                                                    <asp:Label ID="Label9" runat="server" Text='<%# Eval("Detalle") %>'></asp:Label>
+                                                </EditItemTemplate>
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label9" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Modificar">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="Link_ModificarPad" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar" OnClick="Link_ModificarPad_Click"></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                        <HeaderStyle CssClass="btn-danger" />
+                                    </asp:GridView>
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_NuevoPad" runat="server" CssClass="btn btn-success" OnClick="Link_NuevoPad_Click"><i class="fa fa-plus"></i></asp:LinkButton>
@@ -502,7 +617,7 @@
                             </div>
                         </div>
                     </asp:Panel>
-
+                    <asp:Label ID="lb_codigoPad" runat="server" Text=""></asp:Label>
                     <%-----------------------------MODAL PAD CURSO-------------------------%>
                     <asp:Button ID="btn_modalnuevopad" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender5_padnuevo" runat="server" TargetControlID="btn_modalnuevopad" PopupControlID="Panel_nuevopad" OkControlID="Link_salirpad" CancelControlID="Link_Salirpad1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
@@ -515,40 +630,34 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <label for="txt_rutDocente" class="col-sm-4 control-label">Sala</label>
+                                        <label for="txt_SalaPad" class="col-sm-4 control-label">Sala</label>
                                         <div class="col-md-8">
-                                            <asp:TextBox ID="txt_numerosala" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_SalaPad" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_numerosalacoffe" class="col-sm-4 control-label">Sala Coffe</label>
+                                        <label for="txt_SalaCoffe" class="col-sm-4 control-label">Sala Coffe</label>
                                         <div class="col-md-8">
-                                            <asp:TextBox ID="txt_numerosalacoffe" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_SalaCoffe" runat="server" CssClass="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
-                                    <div class="form-group">
-                                        <label for="txt_horainicio" class="col-sm-4 control-label">Hora Inicio</label>
-                                        <div class="col-md-4">
-                                            <asp:TextBox ID="txt_horainicio" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <asp:TextBox ID="txt_minutoinicio" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
+                                    <div class="form-group"> 
+                                        <label for="txt_horainicioPad" class="col-sm-4 control-label">Hora Inicio</label>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>                                        
                                     </div>
                                     <br />
                                     <br />
-                                    <div class="form-group">
-                                        <label for="txt_horafin" class="col-sm-4 control-label">Hora Fin</label>
-                                        <div class="col-md-4">
-                                            <asp:TextBox ID="txt_horafin" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <asp:TextBox ID="txt_minutofin" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
+                                    <div class="form-group">                                        
+                                        <label for="txt_horafinPad" class="col-sm-4 control-label">Hora Fin</label>
+                                        <div class="col-md-8">
+                                            <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                        </div>                                        
                                     </div>
                                     <br />
                                     <br />
@@ -564,14 +673,22 @@
                                     </div>
                                     <br />
                                     <br />
+                                    <div class="form-group">
+                                        <label for="cb_EstadoPad" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
+                                            <asp:DropDownList ID="cb_EstadoPad" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
                                 </div>
                                 <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarPad" runat="server" CssClass="btn btn-success" OnClick="Link_EditarPad_Click">Editar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_Salirpad1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
-                    </asp:Panel>
+                    </asp:Panel>           
                 </asp:View>
                 <%-----------------------------VISTA CURSO_DOCENTE-------------------------%>
                 <asp:View ID="View3_Docente_Curso" runat="server">
@@ -636,5 +753,5 @@
             </asp:MultiView>
         </ContentTemplate>
     </asp:UpdatePanel>
-
+    
 </asp:Content>

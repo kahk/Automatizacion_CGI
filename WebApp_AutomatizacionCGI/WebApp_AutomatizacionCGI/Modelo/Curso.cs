@@ -23,7 +23,7 @@ namespace WebApp_AutomatizacionCGI.Modelo
     
         public int ID_Curso { get; set; }
         public string Rut_Encargado { get; set; }
-        public string Detalle { get; set; }
+        public string Detallecurso { get; set; }
         public int ID_Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

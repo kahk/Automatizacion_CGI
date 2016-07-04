@@ -16,8 +16,9 @@ namespace WebApp_AutomatizacionCGI.Controlador
             {
                 var consulta = from p in contexto.Pad
                                join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                               join est in contexto.Estado on p.ID_Estado equals est.ID_Estado
                                where p.ID_Curso == id_curso
-                               select new { p.ID_Curso, p.Sala, p.Sala_Coffe, p.Hora_Inicio, p.Hora_Termino, p.Fecha };
+                               select new { p.ID_Pad, p.ID_Curso, p.Sala, p.Sala_Coffe, p.Hora_Inicio, p.Hora_Termino, p.Fecha, p.ID_Estado, est.Detalle };
 
                 return consulta.ToList<object>();
             }
@@ -32,6 +33,27 @@ namespace WebApp_AutomatizacionCGI.Controlador
             try
             {
                 contexto.Pad.Add(nuevo);
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool ActualizarPad(Pad nuevo)
+        {
+            try
+            {
+                Pad original = new Pad();
+                original = contexto.Pad.Find(nuevo.ID_Pad);
+                original.Sala = nuevo.Sala;
+                original.Sala_Coffe = nuevo.Sala_Coffe;
+                original.Hora_Inicio = nuevo.Hora_Inicio;
+                original.Hora_Termino = nuevo.Hora_Termino;
+                original.Fecha = nuevo.Fecha;
+                original.ID_Estado = nuevo.ID_Estado;
+
                 return contexto.SaveChanges() > 0;
             }
             catch (Exception)

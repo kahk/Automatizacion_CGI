@@ -36,6 +36,24 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public bool ActualizarCurso(Curso nuevo)
+        {
+            try
+            {
+                Curso original = new Curso();
+                original = contexto.Curso.Find(nuevo.ID_Curso);
+                original.Rut_Encargado = nuevo.Rut_Encargado;
+                original.Detallecurso = nuevo.Detallecurso;
+                original.ID_Estado = nuevo.ID_Estado;
+
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
 
         public List<object> listaCurso_Pad()
         {
@@ -43,7 +61,8 @@ namespace WebApp_AutomatizacionCGI.Controlador
             {
                 var consulta = from c in contexto.Curso                               
                                join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
-                               select new { c.ID_Curso, c.Rut_Encargado ,e.Nombre, e.Apellido, c.Detalle  };
+                               join est in contexto.Estado on c.ID_Estado equals est.ID_Estado
+                               select new { c.ID_Curso, c.Rut_Encargado ,e.Nombre, e.Apellido, c.Detallecurso, c.ID_Estado, est.Detalle  };
 
                 return consulta.ToList<object>();
             }

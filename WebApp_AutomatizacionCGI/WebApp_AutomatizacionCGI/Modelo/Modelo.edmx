@@ -469,7 +469,7 @@
           </Key>
           <Property Name="ID_Curso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Rut_Encargado" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Detallecurso" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Curso_Docente" Relationship="Self.FK_Curso_Docente_Curso" FromRole="Curso" ToRole="Curso_Docente" />
           <NavigationProperty Name="Encargado" Relationship="Self.FK_Curso_Encargado" FromRole="Curso" ToRole="Encargado" />
@@ -930,7 +930,7 @@
               <MappingFragment StoreEntitySet="Curso">
                 <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
                 <ScalarProperty Name="Rut_Encargado" ColumnName="Rut_Encargado" />
-                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+                <ScalarProperty Name="Detallecurso" ColumnName="Detalle" />
                 <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
               </MappingFragment>
             </EntityTypeMapping>

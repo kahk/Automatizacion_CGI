@@ -607,6 +607,24 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_detalleCurso;
         
         /// <summary>
+        /// Control cb_EstadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cb_EstadoCurso;
+        
+        /// <summary>
+        /// Control Link_EditarCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_EditarCurso;
+        
+        /// <summary>
         /// Control Link_GuardarCurso.
         /// </summary>
         /// <remarks>
@@ -751,6 +769,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_Salirdetalle1;
         
         /// <summary>
+        /// Control lb_codigoPad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_codigoPad;
+        
+        /// <summary>
         /// Control btn_modalnuevopad.
         /// </summary>
         /// <remarks>
@@ -787,58 +814,40 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_salirpad;
         
         /// <summary>
-        /// Control txt_numerosala.
+        /// Control txt_SalaPad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_numerosala;
+        protected global::System.Web.UI.WebControls.TextBox txt_SalaPad;
         
         /// <summary>
-        /// Control txt_numerosalacoffe.
+        /// Control txt_SalaCoffe.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_numerosalacoffe;
+        protected global::System.Web.UI.WebControls.TextBox txt_SalaCoffe;
         
         /// <summary>
-        /// Control txt_horainicio.
+        /// Control txt_horainicioPad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_horainicio;
+        protected global::System.Web.UI.WebControls.TextBox txt_horainicioPad;
         
         /// <summary>
-        /// Control txt_minutoinicio.
+        /// Control txt_horafinPad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_minutoinicio;
-        
-        /// <summary>
-        /// Control txt_horafin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_horafin;
-        
-        /// <summary>
-        /// Control txt_minutofin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_minutofin;
+        protected global::System.Web.UI.WebControls.TextBox txt_horafinPad;
         
         /// <summary>
         /// Control txt_fechapad.
@@ -866,6 +875,24 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_fechaPad;
+        
+        /// <summary>
+        /// Control cb_EstadoPad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cb_EstadoPad;
+        
+        /// <summary>
+        /// Control Link_EditarPad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_EditarPad;
         
         /// <summary>
         /// Control Link_GuardarPad.

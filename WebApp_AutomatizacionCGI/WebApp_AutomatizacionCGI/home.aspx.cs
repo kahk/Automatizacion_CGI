@@ -29,6 +29,12 @@ namespace WebApp_AutomatizacionCGI
                 MostrarEstado_Encargados(); //mostrar cb estado panel encargado
 
                 MostrarEncargados(); //cargar gridview vista encargado
+
+                MostrarEstado_Cursos();
+
+                MostrarEstado_Pad();
+
+
             }
         }
 
@@ -78,6 +84,28 @@ namespace WebApp_AutomatizacionCGI
             cb_EstadoEncargado.SelectedIndex = 0;
         }
 
+        public void MostrarEstado_Cursos()
+        {
+            ControladorEstado control = new ControladorEstado();
+
+            cb_EstadoCurso.DataSource = control.listaEstado();
+            cb_EstadoCurso.DataTextField = "Detalle";
+            cb_EstadoCurso.DataValueField = "ID_Estado";
+            cb_EstadoCurso.DataBind();
+            cb_EstadoCurso.SelectedIndex = 0;
+        }
+
+        public void MostrarEstado_Pad()
+        {
+            ControladorEstado control = new ControladorEstado();
+
+            cb_EstadoPad.DataSource = control.listaEstado();
+            cb_EstadoPad.DataTextField = "Detalle";
+            cb_EstadoPad.DataValueField = "ID_Estado";
+            cb_EstadoPad.DataBind();
+            cb_EstadoPad.SelectedIndex = 0;
+        }
+
 
         //VISTA DOCENTES
 
@@ -97,7 +125,7 @@ namespace WebApp_AutomatizacionCGI
             txt_digitoDocente.Visible = true;
             lb_RutDocente.Visible = false;
             cb_EstadoDocente.Enabled = false;
-            cb_EstadoEncargado.SelectedValue = "1";
+            cb_EstadoDocente.SelectedValue = "1";
             txt_rutDocente.Text = "";
             txt_digitoDocente.Text = "";
             txt_nombreDocente.Text = "";
@@ -381,15 +409,72 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_AbrirModalCurso_Click(object sender, EventArgs e)
         {
             ModalPopupExtender1_cursonuevo.Show();
+            Link_GuardarCurso.Visible = true;
+            Link_EditarCurso.Visible = false;
             lbCurso.Visible = false;
+            cb_EstadoCurso.Enabled = false;
+            cb_EstadoCurso.SelectedValue = "1";
             txt_RutEncargardo_Curso.Text = "";
             txt_detalleCurso.Text = "";
         }
+
+        protected void GridView_cursos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbCodigoCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label1");
+            lb_idcurso.Text = lbCodigoCurso.Text;
+            MostrarPad_Curso();
+
+            Label lbRutEncargado = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label2");
+            Label lbDetalleCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label5");
+            Label lbEstadoCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label6");
+
+            
+            Link_GuardarCurso.Visible = false;
+            Link_EditarCurso.Visible = true;
+            txt_RutEncargardo_Curso.Text = lbRutEncargado.Text;
+            txt_detalleCurso.Text = lbDetalleCurso.Text;
+            cb_EstadoCurso.SelectedValue = lbEstadoCurso.Text;
+            
+        }
+
+       
 
         protected void Link_BuscarCurso_Click(object sender, EventArgs e)
         {
 
         }
+
+        protected void Link_ModificarCurso_Click(object sender, EventArgs e)
+        {
+            Link_GuardarCurso.Visible = false;
+            Link_EditarCurso.Visible = true;
+            cb_EstadoCurso.Enabled = true;
+            ModalPopupExtender1_cursonuevo.Show();
+        }
+
+        protected void Link_EditarCurso_Click(object sender, EventArgs e)
+        {
+            ControladorCurso control = new ControladorCurso();
+            int id_estado = 0;
+            int.TryParse(cb_EstadoCurso.SelectedValue, out id_estado);
+
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+
+            Curso nuevo = new Curso
+            {
+                ID_Curso = id_curso,
+                Rut_Encargado = txt_RutEncargardo_Curso.Text,
+                Detallecurso = txt_detalleCurso.Text, 
+                ID_Estado = id_estado
+
+            };
+            if (control.ActualizarCurso(nuevo))
+            {
+                MostrarCursos();
+            }
+        }
+
 
         protected void Link_GuardarCurso_Click(object sender, EventArgs e)
         {
@@ -423,7 +508,7 @@ namespace WebApp_AutomatizacionCGI
                     Curso nuevo = new Curso
                     {
                         Rut_Encargado = rut,
-                        Detalle = detalle,
+                        Detallecurso = detalle,
                         ID_Estado = 1
 
                     };
@@ -441,6 +526,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
+
         protected void Link_si_Click(object sender, EventArgs e) //modal creacion encargado en caso de no encontrar rut;
         {
             Link_GuardarEncargado.Visible = true;
@@ -448,21 +534,12 @@ namespace WebApp_AutomatizacionCGI
             ModalPopupExtender3_encargadonuevo.Show();
         }
 
-       
-
-       
-
-        protected void GridView_cursos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-        {
-            Label lbcodigoasignar = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label1");
-            lb_idcurso.Text = lbcodigoasignar.Text;
-            MostrarPad_Curso();
-        }
 
         protected void GridView_cursos_PageIndexChanging(object sender, GridViewPageEventArgs e)  //paginacion gridview cursos
         {
             GridView_cursos.PageIndex = e.NewPageIndex;
         }
+        
 
         //PAD
 
@@ -484,7 +561,85 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_NuevoPad_Click(object sender, EventArgs e)
         {
             ModalPopupExtender5_padnuevo.Show();
+            Link_EditarPad.Visible = false;
+            Link_GuardarPad.Visible = true;
+            cb_EstadoPad.Enabled = false;
+            cb_EstadoPad.SelectedValue = "1";
+
+
+            txt_SalaPad.Text = "";
+            txt_SalaCoffe.Text = "";
+            txt_horainicioPad.Text = "";
+            txt_horafinPad.Text = "";
+            txt_fechapad.Text = "";
+
         }
+
+        protected void GridView_detallePad_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbCodigoPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label1");
+            Label lbSalaPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label3");
+            Label lbSalaCoffePad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label4");
+            Label lbHoraInicioPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label5");
+            Label lbHoraTerminoPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label6");
+            Label lbFechaPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label7");
+            Label lbEstadoPad = (Label)GridView_detallePad.Rows[e.NewSelectedIndex].FindControl("Label8");
+                        
+            String fecha = Convert.ToString(lbFechaPad.Text);
+
+            txt_rutDocente.Visible = false;
+            txt_digitoDocente.Visible = false;
+            lb_RutDocente.Visible = true;
+            cb_EstadoDocente.Enabled = true;
+            Link_GuardarPad.Visible = false;
+            Link_EditarPad.Visible = true;
+            Link_addDocente.Visible = false;
+
+            Link_EditarDocente.Visible = true;
+
+            txt_SalaPad.Text = lbSalaPad.Text;
+            txt_SalaCoffe.Text = lbSalaCoffePad.Text;
+            txt_horainicioPad.Text = lbHoraInicioPad.Text;
+            txt_horafinPad.Text = lbHoraTerminoPad.Text;
+            txt_fechapad.Text = fecha.Substring(0, 10);
+            cb_EstadoPad.SelectedValue = lbEstadoPad.Text;
+            lb_codigoPad.Text = lbCodigoPad.Text;
+        }
+        protected void Link_ModificarPad_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender5_padnuevo.Show();
+            cb_EstadoPad.Enabled = true;
+        }
+
+        protected void Link_EditarPad_Click(object sender, EventArgs e)
+        {
+            ControladorPad control = new ControladorPad();
+            int id_estado = 0;
+            int.TryParse(cb_EstadoPad.SelectedValue, out id_estado);
+
+            int id_pad = 0;
+            int.TryParse(lb_codigoPad.Text, out id_pad);
+            DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
+            Pad nuevo = new Pad
+            {
+                ID_Pad = id_pad,
+                Sala = txt_SalaPad.Text,
+                Sala_Coffe = txt_SalaCoffe.Text,
+                Hora_Inicio = txt_horainicioPad.Text,
+                Hora_Termino = txt_horafinPad.Text,
+                Fecha = fecha,
+                
+                ID_Estado = id_estado
+
+            };
+            if (control.ActualizarPad(nuevo))
+            {
+                MostrarPad_Curso();
+                ModalPopupExtender4_detallecurso.Show();
+            }
+        }
+
+       
 
         protected void Link_GuardarPad_Click(object sender, EventArgs e)
         {
@@ -492,10 +647,12 @@ namespace WebApp_AutomatizacionCGI
             int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
             
-            string sala = txt_numerosala.Text;
-            string coffe = txt_numerosalacoffe.Text;
-            string hora_inicio = txt_horainicio.Text+":"+txt_minutoinicio.Text;
-            string hora_fin = txt_horafin.Text+":"+txt_minutofin.Text;
+            string sala = txt_SalaPad.Text;
+            string coffe = txt_SalaCoffe.Text;
+
+            string hora_inicio = txt_horainicioPad.Text;
+            string hora_fin = txt_horafinPad.Text;
+
             DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
             int id_estado = 1;
 
@@ -518,15 +675,18 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
+       
+        //ASIGNAR DOCENTES
+
         public void Mostrar_AsignarDocentes()
         {
             ControladorDocente control = new ControladorDocente();
 
             GridView_asignardocentes.DataSource = control.listaAsignar_Docentes();
             GridView_asignardocentes.DataBind();
-
         }
         
+
         protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 4;            
@@ -572,8 +732,17 @@ namespace WebApp_AutomatizacionCGI
 
             }
         }
-        
-        
+
+       
+
+
+
+
+
+
+
+
+
 
 
 
