@@ -296,7 +296,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Codigo">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="Link_AbrirModalCodigoEncargado" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
+                                            <asp:LinkButton ID="Link_AbrirModalCodigoEncargado" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-default" OnClick="Link_AbrirModalCodigoEncargado_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
                                         </ItemTemplate>
                                         <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
@@ -368,6 +368,24 @@
                                     <asp:LinkButton ID="Link_GuardarEncargado_VistaEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_VistaEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_GuardarEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+
+                    <asp:Button ID="btn_modalcodigodocente" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender_BadCodeEncargado" runat="server" TargetControlID="btn_modalcodigodocente" PopupControlID="Panel_BarCodeEncargado" OkControlID="Link_salirmodalcrearEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
+                    <asp:Panel ID="Panel_BarCodeEncargado" runat="server">
+                        <div class="modal-dialog modal-sm ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_salirmodalcrearEncargado" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <asp:Image ID="Image_BarcodeEncargado" runat="server" />
+                                </div>
+                                <div class="modal-footer">
                                 </div>
                             </div>
                         </div>

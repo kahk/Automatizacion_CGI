@@ -83,8 +83,8 @@
     <Content Include="barcodes\bc.png" />
     <Content Include="css\estilos.css" />
     <Content Include="curso.aspx" />
-    <Content Include="encuesta.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="img\logo-inacap.png" />
     <Content Include="index.aspx" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="packages.config" />
@@ -180,13 +180,6 @@
     </Compile>
     <Compile Include="curso.aspx.designer.cs">
       <DependentUpon>curso.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="encuesta.aspx.cs">
-      <DependentUpon>encuesta.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="encuesta.aspx.designer.cs">
-      <DependentUpon>encuesta.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

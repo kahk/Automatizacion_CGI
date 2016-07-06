@@ -315,8 +315,22 @@ namespace WebApp_AutomatizacionCGI
 
             cb_EstadoEncargado.SelectedValue = lbEstadoEncargado.Text;
 
+            LabelKit.BarcodeGenerator code = new LabelKit.BarcodeGenerator();
+            System.Drawing.Graphics g = Graphics.FromImage(new Bitmap(1, 1));
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
+
+            g = Graphics.FromImage(bmp);
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_BarcodeEncargado.ImageUrl = "./barcodes/" + rut + ".png";
+
 
         }
+
+        protected void Link_AbrirModalCodigoEncargado_Click(object sender, EventArgs e)
+        {
+            ModalPopupExtender_BadCodeEncargado.Show();
+        }
+
         protected void Link_ModificarEncargado_Click(object sender, EventArgs e)
         {
             ModalPopupExtender3_encargadonuevo.Show();
@@ -754,6 +768,6 @@ namespace WebApp_AutomatizacionCGI
             FormsAuthentication.SignOut();
         }
 
-
+      
     }
 }

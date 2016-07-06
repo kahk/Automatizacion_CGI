@@ -84,14 +84,27 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-        protected void Link_Administrador_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 2;
-        }
+
 
         protected void Link_Encargado_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 1;
         }
+        protected void Link_Administrador_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 2;
+        }
+
+        protected void Link_VistaEncuestas_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 3;
+        }
+
+        protected void Link_CargarEncuesta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

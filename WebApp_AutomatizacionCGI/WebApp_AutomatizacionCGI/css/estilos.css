@@ -4,3 +4,10 @@
         filter: alpha(opacity=90);
         opacity: 0.8;
     }
+
+#logo {
+    margin-top:1%;
+    margin-bottom: 1%;
+    width: 15%;
+    height: 20%;
+}

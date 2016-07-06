@@ -14,7 +14,7 @@ namespace WebApp_AutomatizacionCGI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack) { }
         }
 
         protected void Link_CerrarCurso_Click(object sender, EventArgs e)
@@ -32,8 +32,13 @@ namespace WebApp_AutomatizacionCGI
 
             
             //control.BuscarPad_DeCurso(rut, fecha);
+        }
 
-
+        protected void Link_RegistrarAsistencia_Click(object sender, EventArgs e)
+        {
+            lb_Bienvenida.Text = "Bienvenido " + txt_CodigoDocente.Text;
+            txt_CodigoDocente.Text = "";
+            txt_CodigoDocente.Focus();
         }
     }
 }
