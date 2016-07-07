@@ -18,7 +18,6 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public Pad()
         {
             this.Asistencia = new HashSet<Asistencia>();
-            this.Encuesta = new HashSet<Encuesta>();
         }
     
         public int ID_Pad { get; set; }
@@ -33,8 +32,6 @@ namespace WebApp_AutomatizacionCGI.Modelo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         public virtual Curso Curso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Encuesta> Encuesta { get; set; }
         public virtual Estado Estado { get; set; }
     }
 }

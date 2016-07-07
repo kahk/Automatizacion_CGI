@@ -21,6 +21,7 @@ namespace WebApp_AutomatizacionCGI.Modelo
             this.Docente = new HashSet<Docente>();
             this.Encargado = new HashSet<Encargado>();
             this.Pad = new HashSet<Pad>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int ID_Estado { get; set; }
@@ -34,5 +35,7 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public virtual ICollection<Encargado> Encargado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pad> Pad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }
