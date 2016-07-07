@@ -18,23 +18,20 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public Pad()
         {
             this.Asistencia = new HashSet<Asistencia>();
-            this.Encuesta = new HashSet<Encuesta>();
         }
     
         public int ID_Pad { get; set; }
         public int ID_Curso { get; set; }
         public string Sala { get; set; }
         public string Sala_Coffe { get; set; }
-        public string Hora_Inicio { get; set; }
-        public string Hora_Termino { get; set; }
+        public System.TimeSpan Hora_Inicio { get; set; }
+        public System.TimeSpan Hora_Termino { get; set; }
         public System.DateTime Fecha { get; set; }
         public int ID_Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asistencia> Asistencia { get; set; }
         public virtual Curso Curso { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Encuesta> Encuesta { get; set; }
         public virtual Estado Estado { get; set; }
     }
 }

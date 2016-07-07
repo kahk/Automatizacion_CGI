@@ -651,13 +651,20 @@ namespace WebApp_AutomatizacionCGI
             int id_pad = 0;
             int.TryParse(lb_codigoPad.Text, out id_pad);
             DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
+
+            TimeSpan hinicio;
+            TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
+
+            TimeSpan htermino;
+            TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
+
             Pad nuevo = new Pad
             {
                 ID_Pad = id_pad,
                 Sala = txt_SalaPad.Text,
                 Sala_Coffe = txt_SalaCoffe.Text,
-                Hora_Inicio = txt_horainicioPad.Text,
-                Hora_Termino = txt_horafinPad.Text,
+                Hora_Inicio = hinicio,
+                Hora_Termino = htermino,
                 Fecha = fecha,
 
                 ID_Estado = id_estado
@@ -686,13 +693,19 @@ namespace WebApp_AutomatizacionCGI
             DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
             int id_estado = 1;
 
+            TimeSpan hinicio;
+            TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
+
+            TimeSpan htermino;
+            TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
+
             Pad nuevo = new Pad
             {
                 ID_Curso = id_curso,
                 Sala = sala,
                 Sala_Coffe = coffe,
-                Hora_Inicio = hora_inicio,
-                Hora_Termino = hora_fin,
+                Hora_Inicio = hinicio,
+                Hora_Termino = htermino,
                 Fecha = fecha,
                 ID_Estado = id_estado
 
