@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="BD_ProyectoModel.Encargado" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_ProyectoModel.Estado" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BD_ProyectoModel.Pad" Width="1.5" PointX="7.5" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="BD_ProyectoModel.Usuario" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BD_ProyectoModel.Usuario" Width="1.5" PointX="1" PointY="4.875" IsExpanded="true" />
         <AssociationConnector Association="BD_ProyectoModel.FK_Asistencia_Docente" ManuallyRouted="false" />
         <AssociationConnector Association="BD_ProyectoModel.FK_Asistencia_Pad" ManuallyRouted="false" />
         <AssociationConnector Association="BD_ProyectoModel.FK_Curso_Docente_Curso" ManuallyRouted="false" />
