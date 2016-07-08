@@ -29,6 +29,9 @@
                             <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-danger btn-block">Cursos</asp:LinkButton>
                             <br />
                             <br />
+                            <asp:LinkButton ID="Link_VistaUsuarios" runat="server" OnClick="Link_VistaUsuarios_Click" CssClass="btn btn-danger btn-block">Usuarios</asp:LinkButton>
+                            <br />
+                            <br />
                             <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-danger btn-block">Cerrar Session</asp:LinkButton>
                         </div>
                         <div class="col-md-1"></div>
@@ -130,15 +133,17 @@
                     <asp:ModalPopupExtender ID="ModalPopupExtender0_ModalDocente" runat="server" TargetControlID="btn_ModalDocente" PopupControlID="Panel_creardocente" OkControlID="Link_salirmodalcreardocente" CancelControlID="Link_cancelardocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
                     <asp:Panel ID="Panel_creardocente" runat="server">
-                        <div class="modal-dialog modal-sm ">
+                        
+                        <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <asp:LinkButton ID="Link_salirmodalcreardocente" runat="server">X</asp:LinkButton>
+                                    <h4 class="modal-title fa-align-right" id="myModalLabel">Modal title</h4>
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="txt_rutDocente" class="col-sm-3 control-label">Rut</label>
-                                        <div class="col-md-9">                                            
+                                        <div class="col-sm-9">                                            
                                             <asp:TextBox ID="txt_rutDocente" runat="server" CssClass="form-control" placeholder="11.111.111" MaxLength="12"></asp:TextBox>
                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutdocente" TargetControlID="txt_rutDocente" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>                                       
@@ -203,18 +208,19 @@
                     </asp:Panel>
 
                     <asp:Button ID="btn_ModalBarCode" runat="server" Text="Button" CssClass="hidden" />
-                    <asp:ModalPopupExtender ID="ModalPopupExtender_Barcode" runat="server" TargetControlID="btn_ModalBarCode" PopupControlID="Panel_BarCode" OkControlID="Link_salirmodalcreardocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                    <asp:ModalPopupExtender ID="ModalPopupExtender_Barcode" runat="server" TargetControlID="btn_ModalBarCode" PopupControlID="Panel_BarCode" OkControlID="Link_salirCodigoDocente1" CancelControlID="Link_salirCodigoDocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
                     <asp:Panel ID="Panel_Barcode" runat="server">
                         <div class="modal-dialog modal-sm ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <asp:LinkButton ID="LinkButton1" runat="server">X</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_salirCodigoDocente" runat="server">X</asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
                                     <asp:Image ID="Image_codigo" runat="server" />
                                 </div>
                                 <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_salirCodigoDocente1" runat="server" CssClass="btn btn-danger" OnClick="btn_volver_Click">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
@@ -372,18 +378,19 @@
                     </asp:Panel>
 
                     <asp:Button ID="btn_modalcodigodocente" runat="server" Text="Button" CssClass="hidden" />
-                    <asp:ModalPopupExtender ID="ModalPopupExtender_BadCodeEncargado" runat="server" TargetControlID="btn_modalcodigodocente" PopupControlID="Panel_BarCodeEncargado" OkControlID="Link_salirmodalcrearEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+                    <asp:ModalPopupExtender ID="ModalPopupExtender_BadCodeEncargado" runat="server" TargetControlID="btn_modalcodigodocente" PopupControlID="Panel_BarCodeEncargado" CancelControlID="Link_salirCodigoEncargado1" OkControlID="Link_salirCodigoEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
                     <asp:Panel ID="Panel_BarCodeEncargado" runat="server">
                         <div class="modal-dialog modal-sm ">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <asp:LinkButton ID="Link_salirmodalcrearEncargado" runat="server">X</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_salirCodigoEncargado" runat="server">X</asp:LinkButton>
                                 </div>
                                 <div class="modal-body">
                                     <asp:Image ID="Image_BarcodeEncargado" runat="server" />
                                 </div>
                                 <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_salirCodigoEncargado1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
                         </div>
@@ -675,25 +682,25 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="txt_SalaPad" class="col-sm-4 control-label">Sala</label>
-                                        <div class="col-md-8">
+                                        <div class="col-sm-8">
                                             <asp:TextBox ID="txt_SalaPad" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
-                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salapad" TargetControlID="txt_SalaPad" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salapad" TargetControlID="txt_SalaPad" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
                                         <label for="txt_SalaCoffe" class="col-sm-4 control-label">Sala Coffe</label>
-                                        <div class="col-md-8">
+                                        <div class="col-sm-8">
                                             <asp:TextBox ID="txt_SalaCoffe" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
-                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salacoffe" TargetControlID="txt_SalaCoffe" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salacoffe" TargetControlID="txt_SalaCoffe" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
                                         <label for="txt_horainicioPad" class="col-sm-4 control-label">Hora Inicio</label>
-                                        <div class="col-md-8">
+                                        <div class="col-sm-8">
                                             <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control"></asp:TextBox>
                                             <asp:MaskedEditExtender ID="MaskedEditExtender1" TargetControlID="txt_horainicioPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
@@ -702,7 +709,7 @@
                                     <br />
                                     <div class="form-group">
                                         <label for="txt_horafinPad" class="col-sm-4 control-label">Hora Fin</label>
-                                        <div class="col-md-8">
+                                        <div class="col-sm-8">
                                             <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control"></asp:TextBox>
                                              <asp:MaskedEditExtender ID="MaskedEditExtender2" TargetControlID="txt_horafinPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
@@ -739,7 +746,7 @@
                     </asp:Panel>
                 </asp:View>
                 <%-----------------------------VISTA CURSO_DOCENTE-------------------------%>
-                <asp:View ID="View3_5_Docente_Curso" runat="server">
+                <asp:View ID="View4_Docente_Curso" runat="server">
 
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -795,9 +802,208 @@
                     </div>
                 </asp:View>
 
-                <%-----------------------------------VISTA REPORTES-----------------------------------%>
-                <asp:View ID="View4_Encuestas" runat="server">
-                    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+                <%-----------------------------------VISTA Usuarios-----------------------------------%>
+                <asp:View ID="View5_Usuarios" runat="server">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3>Ingreso Administrador</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..."></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" Display="Dynamic" ControlToValidate="txt_nickname" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                        <br />
+                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..."></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" Display="Dynamic" ControlToValidate="txt_password" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="tonto culiao"></asp:RequiredFieldValidator>  
+                                        <br />
+                                        <asp:Label ID="lb_accesonopermitido" runat="server" CssClass="label label-danger" Text=""></asp:Label>                                      
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                        <asp:LinkButton ID="Link_IngresarUsuario" runat="server" OnClick="Link_IngresarUsuario_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <asp:LinkButton ID="Link_Volver" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-danger">Volver</asp:LinkButton>
+                        </div>
+                    </div>
+                </asp:View>
+
+                <asp:View ID="view6_root" runat="server">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                             <asp:TextBox ID="txt_BuscarUsuario" runat="server"></asp:TextBox>
+                            <asp:LinkButton ID="Link_BuscarUsuario" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarUsuario_Click">Buscar</asp:LinkButton>
+                            <asp:LinkButton ID="Link_AbrirModalUsuario" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalUsuario_Click">Nuevo Usuario</asp:LinkButton>
+                            <asp:LinkButton ID="Link_Volver_usuario" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:GridView ID="GridView_Usuarios" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_Usuarios_PageIndexChanging" OnSelectedIndexChanging="GridView_Usuarios_SelectedIndexChanging" PageSize="8">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("Rut") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("Rut") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apellido" SortExpression="Apellido">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Apellido") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nickname" SortExpression="Nickname">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Nickname") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Nickname") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Password" SortExpression="Password">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("Password") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("Password") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Tipo" SortExpression="Tipo">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Tipo") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Tipo") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="ID_Estado" SortExpression="ID_Estado" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("ID_Estado") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("ID_Estado") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Detalle" SortExpression="Detalle">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("Detalle") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Modificar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_AbrirModalModificarUsuario" runat="server" CausesValidation="False" CommandName="Select" Text="" OnClick="Link_AbrirModalModificarUsuario_Click"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+
+                     <asp:Button ID="btn_ModalUsuario" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender_Usuario" runat="server" TargetControlID="btn_ModalUsuario" PopupControlID="Panel_Usuario" OkControlID="Link_SalirUsuario" CancelControlID="Link_SalirUsuario1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
+                    <asp:Panel ID="Panel_Usuario" runat="server">
+                        <div class="modal-dialog modal-sm ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirUsuario" runat="server">X</asp:LinkButton>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="txt_RutUsuario" class="col-sm-4 control-label">Rut</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_RutUsuario" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
+                                            <asp:MaskedEditExtender ID="MaskedEditExtender3" TargetControlID="txt_RutUsuario" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_NombreUsuario" class="col-sm-4 control-label">Nombre</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_NombreUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" TargetControlID="txt_NombreUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_ApellidoUsuario" class="col-sm-4 control-label">Apellido</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_ApellidoUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" TargetControlID="txt_ApellidoUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_NicknameUsuario" class="col-sm-4 control-label">Nickname</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_NicknameUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" TargetControlID="txt_NicknameUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_PasswordUsuario" class="col-sm-4 control-label">Password</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" TargetControlID="txt_PasswordUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="cb_TipoUsuario" class="col-sm-4 control-label">Tipo</label>
+                                        <div class="col-sm-8">
+                                            <asp:DropDownList ID="cb_TipoUsuario" runat="server" CssClass="form-control"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="cb_EstadoUsuario" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
+                                            <asp:DropDownList ID="cb_EstadoUsuario" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_EditarUsuario_Click">Editar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarUsuario_Click">Guardar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_SalirUsuario1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                    
+
                 </asp:View>
 
 

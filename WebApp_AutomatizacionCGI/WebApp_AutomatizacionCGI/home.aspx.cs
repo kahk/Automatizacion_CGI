@@ -30,14 +30,17 @@ namespace WebApp_AutomatizacionCGI
                 Mostrar_AsignarDocentes(); //mostrar gridview asignar docentes
 
                 MostrarEstado_Docentes(); //Mostrar cb Estado Panel Docente
-
+                //VIstaEncargaos
                 MostrarEstado_Encargados(); //mostrar cb estado panel encargado
-
                 MostrarEncargados(); //cargar gridview vista encargado
 
                 MostrarEstado_Cursos();
 
                 MostrarEstado_Pad();
+                //VistaUsuario
+                MostrarUsuarios();
+                MostrarTipoUsuario();
+                MostrarEstadoUsuario();
 
 
             }
@@ -58,6 +61,11 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_VistaCursos_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 3;
+        }
+
+        protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 5;
         }
 
         //METODOS GENERALES
@@ -111,6 +119,30 @@ namespace WebApp_AutomatizacionCGI
             cb_EstadoPad.SelectedIndex = 0;
         }
 
+        public void MostrarEstadoUsuario()
+        {
+            ControladorEstado control = new ControladorEstado();
+                        
+            cb_EstadoUsuario.DataSource = control.listaEstado();
+            cb_EstadoUsuario.DataTextField = "Detalle";
+            cb_EstadoUsuario.DataValueField = "ID_Estado";
+            cb_EstadoUsuario.DataBind();
+            cb_EstadoUsuario.SelectedIndex = 0;
+        }
+
+        public void MostrarTipoUsuario()
+        {
+            ControladorEstado control = new ControladorEstado();
+
+            List < String > tipo = new List<String>();
+
+            tipo.Add("root");
+            tipo.Add("normal");
+
+            cb_TipoUsuario.DataSource = tipo;            
+            cb_TipoUsuario.DataBind();            
+        }
+
 
         //VISTA DOCENTES
 
@@ -148,12 +180,18 @@ namespace WebApp_AutomatizacionCGI
             ControladorDocente control = new ControladorDocente();
 
             String nombre = txt_nombreDocente.Text;
-            String rut = txt_rutDocente.Text;
-            rut = rut.Replace(",", "-");
+            String rut = txt_rutDocente.Text;            
             String apellido = txt_apellidoDocente.Text;
             
             String correo = txt_correoDocente.Text;
-            String codigo = rut;
+
+            string codigo = rut = rut.ToUpper();
+            codigo = rut.Replace(".", "");
+            codigo = rut.Replace("-", "");
+            codigo = rut.Replace("_", "");
+
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
             int id_Estado = 0;
             int.TryParse(cb_EstadoDocente.SelectedValue, out id_Estado);
 
@@ -168,8 +206,7 @@ namespace WebApp_AutomatizacionCGI
 
                 if (Validar.validarEmail(correo))
                 {
-                    rut = rut.ToUpper();
-                    rut = rut.Replace("_", "");
+                   
                    
                     Docente nuevo = new Docente
                     {
@@ -272,11 +309,7 @@ namespace WebApp_AutomatizacionCGI
                     {
                         MostrarDocentes();
                     }
-
-                    if (control.addDocentes(nuevo))
-                    {
-                        MostrarDocentes();
-                    }
+                    
                 }
                 else
                 {
@@ -387,20 +420,33 @@ namespace WebApp_AutomatizacionCGI
             ControladorEncargado control = new ControladorEncargado();
             int id_estado = 0;
             int.TryParse(cb_EstadoEncargado.SelectedValue, out id_estado);
-
-
-            Encargado nuevo = new Encargado
+            string correo = txt_CorreoEncargado.Text;
+            if (txt_NombreEncargado.Text == "" || txt_ApellidoEncargado.Text == "" || txt_CorreoEncargado.Text == "")
             {
-                Rut = txt_RutEncargardo.Text,
-                Nombre = txt_NombreEncargado.Text,
-                Apellido = txt_ApellidoEncargado.Text,
-                Correo = txt_CorreoEncargado.Text,
-                ID_Estado = id_estado
-
-            };
-            if (control.ActualizarEncargado(nuevo))
+                ModalPopupExtender3_encargadonuevo.Show();
+            }
+            else
             {
-                MostrarEncargados();
+                if (Validar.validarEmail(correo))
+                {
+                    Encargado nuevo = new Encargado
+                    {
+                        Rut = txt_RutEncargardo.Text,
+                        Nombre = txt_NombreEncargado.Text,
+                        Apellido = txt_ApellidoEncargado.Text,
+                        Correo = correo,
+                        ID_Estado = id_estado
+
+                    };
+                    if (control.ActualizarEncargado(nuevo))
+                    {
+                        MostrarEncargados();
+                    }
+                }
+                else
+                {
+                    ModalPopupExtender3_encargadonuevo.Show();
+                }
             }
         }
 
@@ -416,10 +462,13 @@ namespace WebApp_AutomatizacionCGI
             string nombre = txt_NombreEncargado.Text;
             string apellido = txt_ApellidoEncargado.Text;
             string correo = txt_CorreoEncargado.Text;
-                        
-            string codigo = nombre; //cambiar
 
-            rut = rut.Replace(",", "-");
+            string codigo = rut = rut.ToUpper();
+            codigo = rut.Replace(".", "");
+            codigo = rut.Replace("-", "");
+            codigo = rut.Replace("_", "");
+
+            rut = rut.Replace("_", "");
 
             if (txt_RutEncargardo.Text == "" || txt_NombreEncargado.Text == "" || txt_ApellidoEncargado.Text == "" ||
                 txt_CorreoEncargado.Text == "")
@@ -473,7 +522,13 @@ namespace WebApp_AutomatizacionCGI
             string nombre = txt_NombreEncargado.Text;
             string apellido = txt_ApellidoEncargado.Text;
             string correo = txt_CorreoEncargado.Text;
-            string codigo = rut;
+            string codigo = rut = rut.ToUpper();
+            codigo = rut.Replace(".", "");
+            codigo = rut.Replace("-", "");
+            codigo = rut.Replace("_", "");
+
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
 
             if (txt_RutEncargardo.Text == "" || txt_NombreEncargado.Text == "" || txt_ApellidoEncargado.Text == "" ||
                txt_CorreoEncargado.Text == "")
@@ -486,8 +541,7 @@ namespace WebApp_AutomatizacionCGI
                 {
                     if (Validar.validarEmail(correo))
                     {
-                        rut = rut.ToUpper();
-                        rut = rut.Replace("_", "");
+                        
 
                         Encargado nuevo = new Encargado
                         {
@@ -942,36 +996,173 @@ namespace WebApp_AutomatizacionCGI
             FormsAuthentication.RedirectToLoginPage();
         }
 
-       
+        // VISTA USUARIOS
 
-        //public bool validarEmail(String email)
-        //{
-        //    bool validar = false;
-        //    int Analizar = email.IndexOf("@");
-        //    if (Analizar > 0)
-        //    {
-        //        if (email.IndexOf("@",Analizar + 1)> 0)
-        //        {
-        //            return validar;
-        //        }
-        //        int i = email.IndexOf(".", Analizar);
-        //        if (i - 1 > Analizar)
-        //        {
-        //            if (i + 1 < email.Length)
-        //            {
-        //                string r = email.Substring(i + 1, 1);
-        //                if (r != ".")
-        //                {
-        //                    validar = true;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return validar;
+        protected void Link_IngresarUsuario_Click(object sender, EventArgs e)
+        {
+            ControladorUsuario control = new ControladorUsuario();
 
-        //}
+            string nickname = txt_nickname.Text;
+            string password = txt_password.Text;
 
+            if (control.validarUsuario_root(nickname, password))
+            {
+                MultiView1.ActiveViewIndex = 6;
+                lb_accesonopermitido.Text = "";
+            }
+            else
+            {
+                lb_accesonopermitido.Text = "acceso no permitido";
+            }
+        }
 
+        public void MostrarUsuarios()
+        {
+            ControladorUsuario control = new ControladorUsuario();
 
+            GridView_Usuarios.DataSource = control.listaUsuarios();
+            GridView_Usuarios.DataBind();
+        }
+
+        protected void GridView_Usuarios_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView_Usuarios.PageIndex = e.NewPageIndex;
+        }
+
+        protected void GridView_Usuarios_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
+        {
+            Label lbcodigoUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label1");
+            Label lbnombreUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label2");
+            Label lbapellidoUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label3");
+            Label lbnicknameUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label4");
+            Label lbpasswordUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label7");
+            Label lbtipoUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label5");
+            Label lbestadoUsuario = (Label)GridView_Usuarios.Rows[e.NewSelectedIndex].FindControl("Label6");
+
+            txt_RutUsuario.Text = lbcodigoUsuario.Text;
+            txt_NombreUsuario.Text = lbnombreUsuario.Text;
+            txt_ApellidoUsuario.Text = lbapellidoUsuario.Text;
+            txt_NicknameUsuario.Text = lbnicknameUsuario.Text;
+            txt_PasswordUsuario.Text = lbpasswordUsuario.Text;
+            
+            cb_TipoUsuario.SelectedValue = lbtipoUsuario.Text;
+            cb_EstadoUsuario.SelectedValue = lbestadoUsuario.Text;
+        }
+
+        protected void Link_EditarUsuario_Click(object sender, EventArgs e)
+        {
+            ControladorUsuario control = new ControladorUsuario();
+            int id_estado = 0;
+            int.TryParse(cb_EstadoUsuario.SelectedValue, out id_estado);
+            string tipo = cb_TipoUsuario.SelectedValue;
+            if (txt_RutUsuario.Text == "" || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" || txt_NicknameUsuario.Text == "" ||
+                txt_PasswordUsuario.Text == "")
+            {
+
+            }
+            else
+            {
+                Usuario nuevo = new Usuario
+                {
+                    Rut = txt_RutUsuario.Text,
+                    Nombre = txt_NombreUsuario.Text,
+                    Apellido = txt_ApellidoUsuario.Text,
+                    Nickname = txt_NicknameUsuario.Text,
+                    Password = txt_PasswordUsuario.Text,
+                    Tipo = tipo,
+                    ID_Estado = id_estado
+
+                };
+                if (control.ActualizarUsuario(nuevo))
+                {
+                    MostrarEncargados();
+                }
+            }
+        }
+
+        protected void Link_GuardarUsuario_Click(object sender, EventArgs e)
+        {
+            ControladorUsuario control = new ControladorUsuario();
+
+            int id_Estado = 0;
+            int.TryParse(cb_EstadoUsuario.SelectedValue, out id_Estado);
+
+            string rut = txt_RutUsuario.Text;
+            string nombre = txt_NombreUsuario.Text;
+            string apellido = txt_ApellidoUsuario.Text;
+            string nickname = txt_NicknameUsuario.Text;
+            string password = txt_PasswordUsuario.Text;
+            string tipo = cb_TipoUsuario.SelectedValue;
+            
+
+            if (txt_RutUsuario.Text == "" || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" ||
+                txt_NicknameUsuario.Text == "" || txt_PasswordUsuario.Text == "")
+            {
+                ModalPopupExtender_Usuario.Show();
+            }
+            else
+            {
+                rut = rut.ToUpper();
+                rut = rut.Replace("_", "");
+
+                if (Validar.validarRut(rut))
+                {                    
+                        Usuario nuevo = new Usuario
+                        {
+                            Rut = rut,
+                            Nombre = nombre,
+                            Apellido = apellido,
+                            Nickname = nickname,
+                            Password = password,
+                            Tipo = tipo,
+                            ID_Estado = id_Estado                            
+
+                        };
+
+                        if (control.addUsuario(nuevo))
+                        {
+                            MostrarUsuarios();
+                        }
+                   
+                }
+                else
+                {
+                    ModalPopupExtender_Usuario.Show();
+                }
+
+            }
+
+        }
+        protected void Link_AbrirModalUsuario_Click(object sender, EventArgs e)
+        {
+            Link_EditarUsuario.Visible = false;
+            Link_GuardarUsuario.Visible = true;
+            txt_RutUsuario.Enabled = true;
+            cb_EstadoUsuario.Enabled = false;
+
+            txt_RutUsuario.Text = "";
+            txt_NombreUsuario.Text = "";
+            txt_ApellidoUsuario.Text = "";
+            txt_NicknameUsuario.Text = "";
+            txt_PasswordUsuario.Text = "";
+            cb_TipoUsuario.SelectedValue = "normal";
+            cb_EstadoUsuario.SelectedValue = "1";
+
+            ModalPopupExtender_Usuario.Show();            
+        }
+
+        protected void Link_AbrirModalModificarUsuario_Click(object sender, EventArgs e)
+        {
+            Link_EditarUsuario.Visible = true;
+            Link_GuardarUsuario.Visible = false;
+            cb_EstadoUsuario.Enabled = true;
+            txt_RutUsuario.Enabled = false;
+            ModalPopupExtender_Usuario.Show();            
+        }
+
+        protected void Link_BuscarUsuario_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -83,6 +83,7 @@
           <Property Name="Apellido" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nickname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_Estado" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Asistencia_Docente">
@@ -351,8 +352,8 @@
           <Property Name="ID_Curso" Type="Int32" Nullable="false" />
           <Property Name="Sala" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Sala_Coffe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Hora_Inicio" Type="Time" Nullable="false" />
-          <Property Name="Hora_Termino" Type="Time" Nullable="false" />
+          <Property Name="Hora_Inicio" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Hora_Termino" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ID_Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Asistencia" Relationship="Self.FK_Asistencia_Pad" FromRole="Pad" ToRole="Asistencia" />
@@ -370,6 +371,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ID_Estado" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estado" Relationship="BD_ProyectoModel.FK_Usuario_Estado" FromRole="Usuario" ToRole="Estado" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Asistencia_Docente">
           <End Role="Docente" Type="Self.Docente" Multiplicity="1">
@@ -654,6 +656,7 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="BD_ProyectoModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
                 <ScalarProperty Name="Rut" ColumnName="Rut" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Apellido" ColumnName="Apellido" />

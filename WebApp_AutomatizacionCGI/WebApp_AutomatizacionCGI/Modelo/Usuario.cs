@@ -20,6 +20,7 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public string Nickname { get; set; }
         public string Password { get; set; }
         public int ID_Estado { get; set; }
+        public string Tipo { get; set; }
     
         public virtual Estado Estado { get; set; }
     }
