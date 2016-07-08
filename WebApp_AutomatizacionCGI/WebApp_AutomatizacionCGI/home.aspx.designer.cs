@@ -166,15 +166,6 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_salirmodalcreardocente;
         
         /// <summary>
-        /// Control lb_RutDocente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_RutDocente;
-        
-        /// <summary>
         /// Control txt_rutDocente.
         /// </summary>
         /// <remarks>
@@ -184,13 +175,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_rutDocente;
         
         /// <summary>
-        /// Control txt_digitoDocente.
+        /// Control MaskedEditExtender_rutdocente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_digitoDocente;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutdocente;
         
         /// <summary>
         /// Control txt_nombreDocente.
@@ -202,6 +193,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_nombreDocente;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_nombreDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_nombreDocente;
+        
+        /// <summary>
         /// Control txt_apellidoDocente.
         /// </summary>
         /// <remarks>
@@ -211,6 +211,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_apellidoDocente;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_apellidoDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_apellidoDocente;
+        
+        /// <summary>
         /// Control txt_correoDocente.
         /// </summary>
         /// <remarks>
@@ -218,6 +227,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_correoDocente;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_correodocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_correodocente;
         
         /// <summary>
         /// Control cb_EstadoDocente.
@@ -427,15 +445,6 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
-        /// Control lb_RutEncargado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_RutEncargado;
-        
-        /// <summary>
         /// Control txt_RutEncargardo.
         /// </summary>
         /// <remarks>
@@ -445,13 +454,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_RutEncargardo;
         
         /// <summary>
-        /// Control txt_DigitoEncargado.
+        /// Control MaskedEditExtender_rutencargado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_DigitoEncargado;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargado;
         
         /// <summary>
         /// Control txt_NombreEncargado.
@@ -463,6 +472,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_NombreEncargado;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_nombreEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_nombreEncargado;
+        
+        /// <summary>
         /// Control txt_ApellidoEncargado.
         /// </summary>
         /// <remarks>
@@ -472,6 +490,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_ApellidoEncargado;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_apellidoencargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_apellidoencargado;
+        
+        /// <summary>
         /// Control txt_CorreoEncargado.
         /// </summary>
         /// <remarks>
@@ -479,6 +506,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_CorreoEncargado;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_correoencargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_correoencargado;
         
         /// <summary>
         /// Control cb_EstadoEncargado.
@@ -697,6 +733,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_RutEncargardo_Curso;
         
         /// <summary>
+        /// Control MaskedEditExtender_rutencargadocurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargadocurso;
+        
+        /// <summary>
         /// Control txt_detalleCurso.
         /// </summary>
         /// <remarks>
@@ -704,6 +749,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_detalleCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_detallecurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_detallecurso;
         
         /// <summary>
         /// Control cb_EstadoCurso.
@@ -922,6 +976,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_SalaPad;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_salapad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_salapad;
+        
+        /// <summary>
         /// Control txt_SalaCoffe.
         /// </summary>
         /// <remarks>
@@ -929,6 +992,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_SalaCoffe;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_salacoffe.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_salacoffe;
         
         /// <summary>
         /// Control txt_horainicioPad.
@@ -940,6 +1012,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_horainicioPad;
         
         /// <summary>
+        /// Control MaskedEditExtender1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
+        
+        /// <summary>
         /// Control txt_horafinPad.
         /// </summary>
         /// <remarks>
@@ -947,6 +1028,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txt_horafinPad;
+        
+        /// <summary>
+        /// Control MaskedEditExtender2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender2;
         
         /// <summary>
         /// Control txt_fechapad.

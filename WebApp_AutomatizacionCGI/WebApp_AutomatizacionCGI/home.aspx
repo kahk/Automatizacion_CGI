@@ -15,30 +15,28 @@
                     <div class="row">
                         <div class="col-md-1"></div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <br />
                             <br />
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_VistaDocentes" runat="server" OnClick="Link_VistaDocentes_Click" CssClass="btn btn-default">Docentes</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VistaDocentes" runat="server" OnClick="Link_VistaDocentes_Click" CssClass="btn btn-danger btn-block">Docentes</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-default">Encargados</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-danger btn-block">Encargados</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-default">Cursos</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-danger btn-block">Cursos</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-default">Cerrar Session</asp:LinkButton>
+                            <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-danger btn-block">Cerrar Session</asp:LinkButton>
                         </div>
-
-                        <div class="col-md-5">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
                             <h3>INACAP</h3>
-
-
                         </div>
 
-                        <div class="col-md-3"></div>
+                        
                     </div>
                 </asp:View>
                 <%-----------------------------------VISTA DOCENTE-----------------------------------%>
@@ -140,20 +138,18 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="txt_rutDocente" class="col-sm-3 control-label">Rut</label>
-                                        <div class="col-md-6">
-                                            <asp:Label ID="lb_RutDocente" runat="server" Text="" Visible="false"></asp:Label>
-                                            <asp:TextBox ID="txt_rutDocente" runat="server" CssClass="form-control" placeholder="11.111.111"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txt_digitoDocente" runat="server" CssClass="form-control" placeholder="k"></asp:TextBox>
-                                        </div>
+                                        <div class="col-md-9">                                            
+                                            <asp:TextBox ID="txt_rutDocente" runat="server" CssClass="form-control" placeholder="11.111.111" MaxLength="12"></asp:TextBox>
+                                            <asp:MaskedEditExtender ID="MaskedEditExtender_rutdocente" TargetControlID="txt_rutDocente" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                        </div>                                       
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
                                         <label for="txt_nombreDocente" class="col-sm-3 control-label">Nombre</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_nombreDocente" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_nombreDocente" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nombreDocente" TargetControlID="txt_nombreDocente" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -161,7 +157,8 @@
                                     <div class="form-group">
                                         <label for="txt_apellidoDocente" class="col-sm-3 control-label">Apellido</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_apellidoDocente" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_apellidoDocente" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_apellidoDocente" TargetControlID="txt_apellidoDocente" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -169,7 +166,8 @@
                                     <div class="form-group">
                                         <label for="txt_correoDocente" class="col-sm-3 control-label">Correo</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_correoDocente" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_correoDocente" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_correodocente" TargetControlID="txt_correoDocente" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789_.@" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -238,7 +236,7 @@
                             <asp:LinkButton ID="Link_VolverEncargado" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging">
+                            <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_Encargados_PageIndexChanging" PageSize="8">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
@@ -320,13 +318,10 @@
                                 <div class="modal-body">
                                     <div class="form-group">
                                         <label for="txt_RutEncargado" class="col-sm-3 control-label">Rut</label>
-                                        <div class="col-sm-6">
-                                            <asp:Label ID="lb_RutEncargado" runat="server" Text="" Visible="false"></asp:Label>
-                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control"></asp:TextBox>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <asp:TextBox ID="txt_DigitoEncargado" runat="server" CssClass="form-control" placeholder="k"></asp:TextBox>
-                                        </div>
+                                        <div class="col-sm-9">                                           
+                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
+                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargardo" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                        </div>                                        
                                     </div>
 
                                     <br />
@@ -334,7 +329,8 @@
                                     <div class="form-group">
                                         <label for="txt_NombreEncargado" class="col-sm-3 control-label">Nombre</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nombreEncargado" TargetControlID="txt_NombreEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -342,7 +338,8 @@
                                     <div class="form-group">
                                         <label for="txt_ApellidoEncargado" class="col-sm-3 control-label">Apellido</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_apellidoencargado" TargetControlID="txt_ApellidoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -350,7 +347,8 @@
                                     <div class="form-group">
                                         <label for="txt_CorreoEncargado" class="col-sm-3 control-label">Correo</label>
                                         <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control" MaxLength="60"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_correoencargado" TargetControlID="txt_CorreoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789_.@" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -462,15 +460,17 @@
                                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Información">
+                                    <asp:TemplateField HeaderText="PAD">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="Link_ModalPad" runat="server" CausesValidation="False" CommandName="Select" Text="PAD" OnClick="Link_ModalPad_Click"></asp:LinkButton>
+                                            <asp:LinkButton ID="Link_ModalPad" runat="server" CausesValidation="False" CommandName="Select" Text="PAD" CssClass="btn btn-danger" OnClick="Link_ModalPad_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
                                         </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Asignar">
                                         <ItemTemplate>
-                                            <asp:LinkButton ID="Link_viewAsignarDocentes_Curso" runat="server" CausesValidation="False" CommandName="Select" Text="Docentes" OnClick="Link_viewAsignarDocentes_Curso_Click"></asp:LinkButton>
+                                            <asp:LinkButton ID="Link_viewAsignarDocentes_Curso" runat="server" CausesValidation="False" CommandName="Select" CssClass="btn btn-primary" Text="Docentes" OnClick="Link_viewAsignarDocentes_Curso_Click"></asp:LinkButton>
                                         </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Modificar">
                                         <ItemTemplate>
@@ -503,24 +503,26 @@
                                     <div class="form-group">
                                         <asp:Label ID="lbCurso" runat="server" Text="" Visible="false"></asp:Label>
                                         <br />
-                                        <label for="txt_RutEncargardo_Curso" class="col-sm-3 control-label">Encargado</label>
-                                        <div class="col-sm-9">
+                                        <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Encargado</label>
+                                        <div class="col-sm-8">
                                             <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control"></asp:TextBox>
+                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargadocurso" TargetControlID="txt_RutEncargardo_Curso" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_detalleCurso" class="col-sm-3 control-label">Detalle</label>
-                                        <div class="col-sm-9">
-                                            <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <label for="txt_detalleCurso" class="col-sm-4 control-label">Detalle</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_detallecurso" TargetControlID="txt_apellidoDocente" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="cb_EstadoCurso" class="col-sm-3 control-label">Estado</label>
-                                        <div class="col-sm-9">
+                                        <label for="cb_EstadoCurso" class="col-sm-4 control-label">Estado</label>
+                                        <div class="col-sm-8">
                                             <asp:DropDownList ID="cb_EstadoCurso" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
                                         </div>
                                     </div>
@@ -645,7 +647,7 @@
                                             </asp:TemplateField>
                                             <asp:TemplateField HeaderText="Modificar">
                                                 <ItemTemplate>
-                                                    <asp:LinkButton ID="Link_ModificarPad" runat="server" CausesValidation="False" CommandName="Select" Text="Seleccionar" OnClick="Link_ModificarPad_Click"></asp:LinkButton>
+                                                    <asp:LinkButton ID="Link_ModificarPad" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-danger" OnClick="Link_ModificarPad_Click"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></asp:LinkButton>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
@@ -674,7 +676,8 @@
                                     <div class="form-group">
                                         <label for="txt_SalaPad" class="col-sm-4 control-label">Sala</label>
                                         <div class="col-md-8">
-                                            <asp:TextBox ID="txt_SalaPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_SalaPad" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salapad" TargetControlID="txt_SalaPad" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -682,7 +685,8 @@
                                     <div class="form-group">
                                         <label for="txt_SalaCoffe" class="col-sm-4 control-label">Sala Coffe</label>
                                         <div class="col-md-8">
-                                            <asp:TextBox ID="txt_SalaCoffe" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_SalaCoffe" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_salacoffe" TargetControlID="txt_SalaCoffe" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -691,6 +695,7 @@
                                         <label for="txt_horainicioPad" class="col-sm-4 control-label">Hora Inicio</label>
                                         <div class="col-md-8">
                                             <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:MaskedEditExtender ID="MaskedEditExtender1" TargetControlID="txt_horainicioPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -699,6 +704,7 @@
                                         <label for="txt_horafinPad" class="col-sm-4 control-label">Hora Fin</label>
                                         <div class="col-md-8">
                                             <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                             <asp:MaskedEditExtender ID="MaskedEditExtender2" TargetControlID="txt_horafinPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -745,12 +751,6 @@
                             <br />
                             <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="8" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Asignar">
-                                        <ItemTemplate>
-                                            <asp:LinkButton ID="Link_AsignarDocente" runat="server" CausesValidation="False" CommandName="Select" Text="Docente"></asp:LinkButton>
-                                        </ItemTemplate>
-                                        <HeaderStyle Width="3px" />
-                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label1" runat="server" Text='<%# Eval("Rut") %>'></asp:Label>
@@ -774,6 +774,12 @@
                                         <ItemTemplate>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
                                         </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Asignar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="Link_AsignarDocente" runat="server" CausesValidation="False" CommandName="Select" Text="" CssClass="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="btn-danger" />

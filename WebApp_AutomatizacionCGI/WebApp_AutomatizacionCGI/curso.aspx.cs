@@ -14,12 +14,18 @@ namespace WebApp_AutomatizacionCGI
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) { }
+            if (!IsPostBack) {
+                
+            }
         }
 
         protected void Link_CerrarCurso_Click(object sender, EventArgs e)
         {
+            Session.Abandon();
+
             FormsAuthentication.SignOut();
+
+            FormsAuthentication.RedirectToLoginPage();
         }
 
         protected void Link_AbrirAsistencia_Click(object sender, EventArgs e)
