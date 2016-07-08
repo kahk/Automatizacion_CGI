@@ -19,7 +19,7 @@
                             <asp:Panel ID="Panel1" runat="server" DefaultButton="Link_RegistrarAsistencia">
                                 <asp:TextBox ID="txt_CodigoDocente" runat="server" CssClass="form-control" placeholder="Codigo..." TextMode="Password"></asp:TextBox>
                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Dynamic" ControlToValidate="txt_CodigoDocente" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
-                                
+
                                 <asp:LinkButton ID="Link_RegistrarAsistencia" runat="server" OnClick="Link_RegistrarAsistencia_Click" CssClass="btn btn-primary hidden">Ingresar</asp:LinkButton>
                             </asp:Panel>
                         </div>
@@ -30,11 +30,11 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <asp:LinkButton ID="Link_CerrarCurso" runat="server" CssClass="btn btn-danger" OnClick="Link_CerrarCurso_Click">CerrarCurso</asp:LinkButton>
+                <asp:LinkButton ID="Link_CerrarCurso" runat="server" CssClass="btn btn-danger" OnClick="Link_CerrarCurso_Click">CerrarCurso</asp:LinkButton>               
             </div>
         </div>
     </div>
     <br />
     <br />
-    
+
 </asp:Content>

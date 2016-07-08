@@ -20,7 +20,7 @@
     <nav class="navbar navbar-inverse navbar-fixed-top"> <%--//css nav-inverse color de fondo default = #222--%>
       <div class="container">
         <div class="navbar-header">          
-          <img id="logo" src="img/logo-inacap.png"/>
+          <img id="logo" src="img/logoINACAP.png"/>
         </div>        
       </div>
     </nav>

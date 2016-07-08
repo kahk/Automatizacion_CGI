@@ -85,6 +85,7 @@
     <Content Include="curso.aspx" />
     <Content Include="Global.asax" />
     <Content Include="img\logo-inacap.png" />
+    <Content Include="img\logoINACAP.png" />
     <Content Include="index.aspx" />
     <Content Include="js\jquery-ui.min.js" />
     <Content Include="packages.config" />

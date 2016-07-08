@@ -14,7 +14,6 @@
                 <asp:View ID="View0_inicio" runat="server">
                     <div class="row">
                         <div class="col-md-1"></div>
-
                         <div class="col-md-2">
                             <br />
                             <br />
@@ -42,7 +41,8 @@
                         
                     </div>
                 </asp:View>
-                <%-----------------------------------VISTA DOCENTE-----------------------------------%>
+
+                <%--++++++++++++++++++++++++++++++++++++++++++++++++++++ VISTA DOCENTE ++++++++++++++++++++++++++++++++++++++++++++++++++++--%>
                 <asp:View ID="View1_Docentes" runat="server">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
@@ -128,7 +128,7 @@
                     </div>
                     <div class="col-md-1"></div>
 
-                    <%-- ----------------------------MODAL DOCENTE------------------------------%>
+                    <%-- ----------------------------MODAL (CREAR MODIFICAR) DOCENTE------------------------------%>
                     <asp:Button ID="btn_ModalDocente" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender0_ModalDocente" runat="server" TargetControlID="btn_ModalDocente" PopupControlID="Panel_creardocente" OkControlID="Link_salirmodalcreardocente" CancelControlID="Link_cancelardocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
@@ -207,6 +207,7 @@
                         </div>
                     </asp:Panel>
 
+                    <%-- ----------------------------MODAL BARCODE DOCENTE------------------------------%>
                     <asp:Button ID="btn_ModalBarCode" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender_Barcode" runat="server" TargetControlID="btn_ModalBarCode" PopupControlID="Panel_BarCode" OkControlID="Link_salirCodigoDocente1" CancelControlID="Link_salirCodigoDocente" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
@@ -226,11 +227,9 @@
                         </div>
                     </asp:Panel>
 
-
-
-
                 </asp:View>
-                <%-----------------------------------VISTA ENCARGADOS-----------------------------------%>
+
+               <%--++++++++++++++++++++++++++++++++++++++++++++++++ VISTA ENCARGADOS ++++++++++++++++++++++++++++++++++++++++++++++++--%>
 
                 <asp:View ID="View2_Encargados" runat="server">
                     <div class="row">
@@ -311,6 +310,7 @@
                         <div class="col-md-1"></div>
                     </div>
                     <%-----------------------------MODAL ENCARGADO NUEVO-------------------------%>
+
                     <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
 
@@ -329,14 +329,13 @@
                                               <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargardo" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>                                        
                                     </div>
-
                                     <br />
                                     <br />
                                     <div class="form-group">
                                         <label for="txt_NombreEncargado" class="col-sm-3 control-label">Nombre</label>
                                         <div class="col-sm-9">
                                             <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
-                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nombreEncargado" TargetControlID="txt_NombreEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nombreEncargado" TargetControlID="txt_NombreEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -345,7 +344,7 @@
                                         <label for="txt_ApellidoEncargado" class="col-sm-3 control-label">Apellido</label>
                                         <div class="col-sm-9">
                                             <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
-                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_apellidoencargado" TargetControlID="txt_ApellidoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_apellidoencargado" TargetControlID="txt_ApellidoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -398,7 +397,7 @@
 
                 </asp:View>
 
-                <%-----------------------------------VISTA CURSOS-----------------------------------%>
+                <%--++++++++++++++++++++++++++++++++++++++++++++++++VISTA CURSOS++++++++++++++++++++++++++++++++++++++++++++++++--%>
                 <asp:View ID="View3_Cursos" runat="server">
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -495,6 +494,74 @@
                         </div>
                         <div class="col-md-1"></div>
                     </div>
+
+
+                   <%-- <asp:Button ID="btn_modalencargadonuevo" runat="server" Text="Button" CssClass="hidden" />
+                    <asp:ModalPopupExtender ID="ModalPopupExtender3_encargadonuevo" runat="server" TargetControlID="btn_modalencargadonuevo" PopupControlID="Panel_EncargadoNuevo" OkControlID="Link_SalirEncargado" CancelControlID="Link_CancelarEncargado" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
+
+                    <asp:Panel ID="Panel_EncargadoNuevo" runat="server">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
+                                    <asp:Label ID="Label7" runat="server" Text="Agregar Docente"></asp:Label>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="txt_RutEncargado" class="col-sm-3 control-label">Rut</label>
+                                        <div class="col-sm-9">                                           
+                                            <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
+                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargardo" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                        </div>                                        
+                                    </div>
+
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_NombreEncargado" class="col-sm-3 control-label">Nombre</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_NombreEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nombreEncargado" TargetControlID="txt_NombreEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_ApellidoEncargado" class="col-sm-3 control-label">Apellido</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_ApellidoEncargado" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
+                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_apellidoencargado" TargetControlID="txt_ApellidoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="txt_CorreoEncargado" class="col-sm-3 control-label">Correo</label>
+                                        <div class="col-sm-9">
+                                            <asp:TextBox ID="txt_CorreoEncargado" runat="server" CssClass="form-control" MaxLength="60"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_correoencargado" TargetControlID="txt_CorreoEncargado" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789_.@" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="form-group">
+                                        <label for="cb_EstadoEncargado" class="col-sm-3 control-label">Estado</label>
+                                        <div class="col-sm-9">
+                                            <asp:DropDownList ID="cb_EstadoEncargado" runat="server" CssClass="form-control" Enabled="false"></asp:DropDownList>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                                <div class="modal-footer">
+                                    <asp:LinkButton ID="Link_EditarEncargado" runat="server" Visible="false" CssClass="btn btn-success" OnClick="Link_EditarEncargado_Click">Editar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarEncargado_VistaEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_VistaEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
+                                </div>
+                            </div>
+                        </div>
+                    </asp:Panel>--%>
+
                     <%--------------------------MODAL CURSOS------------------------%>
                     <asp:Button ID="btn_modalcursonuevo" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender1_cursonuevo" runat="server" TargetControlID="btn_modalcursonuevo" PopupControlID="Panel_CursoNuevo" OkControlID="Link_SalirCurso" CancelControlID="Link_CancelarCurso" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
@@ -669,6 +736,7 @@
                         </div>
                     </asp:Panel>
                     <asp:Label ID="lb_codigoPad" runat="server" Text=""></asp:Label>
+
                     <%-----------------------------MODAL PAD CURSO-------------------------%>
                     <asp:Button ID="btn_modalnuevopad" runat="server" Text="Button" CssClass="hidden" />
                     <asp:ModalPopupExtender ID="ModalPopupExtender5_padnuevo" runat="server" TargetControlID="btn_modalnuevopad" PopupControlID="Panel_nuevopad" OkControlID="Link_salirpad" CancelControlID="Link_Salirpad1" BackgroundCssClass="modalBackground"></asp:ModalPopupExtender>
@@ -745,7 +813,8 @@
                         </div>
                     </asp:Panel>
                 </asp:View>
-                <%-----------------------------VISTA CURSO_DOCENTE-------------------------%>
+
+                <%--++++++++++++++++++++++++++++++++++++++++++++++++ VISTA CURSO_DOCENTE ++++++++++++++++++++++++++++++++++++++++++++++++--%>
                 <asp:View ID="View4_Docente_Curso" runat="server">
 
                     <div class="row">
@@ -802,7 +871,7 @@
                     </div>
                 </asp:View>
 
-                <%-----------------------------------VISTA Usuarios-----------------------------------%>
+                <%--++++++++++++++++++++++++++++++++++++++++++++++++ VISTA USUARIO ++++++++++++++++++++++++++++++++++++++++++++++++--%>
                 <asp:View ID="View5_Usuarios" runat="server">
                     <div class="row">
                         <div class="col-md-4"></div>
@@ -834,6 +903,7 @@
                     </div>
                 </asp:View>
 
+                 <%--++++++++++++++++++++++++++++++++++++++++++++++++ VISTA USUARIO ROOT ++++++++++++++++++++++++++++++++++++++++++++++++--%>
                 <asp:View ID="view6_root" runat="server">
                     <div class="row">
                         <div class="col-md-1"></div>
@@ -944,7 +1014,7 @@
                                     <div class="form-group">
                                         <label for="txt_NombreUsuario" class="col-sm-4 control-label">Nombre</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_NombreUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:TextBox ID="txt_NombreUsuario" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" TargetControlID="txt_NombreUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -953,7 +1023,7 @@
                                     <div class="form-group">
                                         <label for="txt_ApellidoUsuario" class="col-sm-4 control-label">Apellido</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_ApellidoUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:TextBox ID="txt_ApellidoUsuario" runat="server" CssClass="form-control" MaxLength="50"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" TargetControlID="txt_ApellidoUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -971,7 +1041,7 @@
                                     <div class="form-group">
                                         <label for="txt_PasswordUsuario" class="col-sm-4 control-label">Password</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="20"></asp:TextBox>
+                                            <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" TargetControlID="txt_PasswordUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -1005,6 +1075,7 @@
                     
 
                 </asp:View>
+
 
 
             </asp:MultiView>

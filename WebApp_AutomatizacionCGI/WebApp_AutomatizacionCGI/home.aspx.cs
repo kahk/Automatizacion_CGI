@@ -21,28 +21,23 @@ namespace WebApp_AutomatizacionCGI
             if (!Page.IsPostBack)
             {
 
+                MultiView1.ActiveViewIndex = 0; 
 
-                MultiView1.ActiveViewIndex = 0;
-                MostrarDocentes();
-
-                MostrarCursos(); //view add cursos
-
-                Mostrar_AsignarDocentes(); //mostrar gridview asignar docentes
-
-                MostrarEstado_Docentes(); //Mostrar cb Estado Panel Docente
+                /*MostrarEstado_Docentes();*/ //Mostrar cb Estado Panel Docente
                 //VIstaEncargaos
-                MostrarEstado_Encargados(); //mostrar cb estado panel encargado
-                MostrarEncargados(); //cargar gridview vista encargado
+                 //mostrar cb estado panel encargado
+                //MostrarDocentes();
+                //MostrarEncargados();
 
-                MostrarEstado_Cursos();
+                //MostrarCursos();
+                //MostrarEstado_Pad();
+                //MostrarEstado_Cursos();
 
-                MostrarEstado_Pad();
-                //VistaUsuario
-                MostrarUsuarios();
-                MostrarTipoUsuario();
-                MostrarEstadoUsuario();
+                //MostrarUsuarios();
+                //MostrarTipoUsuario();
+                //MostrarEstadoUsuario();
 
-
+                //Mostrar_AsignarDocentes();
             }
         }
 
@@ -50,23 +45,46 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_VistaDocentes_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 1;
+            MostrarDocentes();
+            MostrarEstado_Docentes();
+            MultiView1.ActiveViewIndex = 1;            
         }
 
         protected void Link_VistaEncargados_Click(object sender, EventArgs e)
         {
+            MostrarEncargados();
+            MostrarEstado_Encargados();
             MultiView1.ActiveViewIndex = 2;
         }
 
         protected void Link_VistaCursos_Click(object sender, EventArgs e)
         {
+            MostrarCursos();
+            MostrarEstado_Pad();
+            MostrarEstado_Cursos();
+            MostrarEstado_Encargados();
             MultiView1.ActiveViewIndex = 3;
         }
 
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
         {
+            MostrarUsuarios();
+            MostrarTipoUsuario();
+            MostrarEstadoUsuario();
             MultiView1.ActiveViewIndex = 5;
         }
+
+        protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
+        {
+            Mostrar_AsignarDocentes();
+            MultiView1.ActiveViewIndex = 4;
+        }
+
+        protected void Link_volverviewcursos_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 3;
+        }
+
 
         //METODOS GENERALES
 
@@ -941,16 +959,7 @@ namespace WebApp_AutomatizacionCGI
         }
 
 
-        protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 4;
-        }
-
-        protected void Link_volverviewcursos_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 3;
-        }
-
+       
         protected void GridView_asignardocentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView_asignardocentes.PageIndex = e.NewPageIndex;

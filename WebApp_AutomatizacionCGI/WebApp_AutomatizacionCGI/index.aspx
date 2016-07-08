@@ -20,9 +20,9 @@
                                 <br />
                                 <br />
                                 <asp:LinkButton ID="Link_VistaEncuestas" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_VistaEncuestas_Click">Encuestas</asp:LinkButton>
-                            </div>
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4"></div>
+                            </div>       
+                                             
+                            <div class="col-md-9"></div>
                 </asp:View>
                 <asp:View ID="View1_Encargado" runat="server">
                          <div class="row">
