@@ -51,7 +51,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 original.Sala_Coffe = nuevo.Sala_Coffe;
                 original.Hora_Inicio = nuevo.Hora_Inicio;
                 original.Hora_Termino = nuevo.Hora_Termino;
-                original.Fecha = nuevo.Fecha;
+                original.Fecha = nuevo.Fecha;                
                 original.ID_Estado = nuevo.ID_Estado;
 
                 return contexto.SaveChanges() > 0;
@@ -81,6 +81,38 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 return -1;
             }
 
+        }
+        
+        public List<object> listaBuscarPadDia(DateTime fecha, int pad)
+        {
+            try
+            {
+                var consulta = from p in contexto.Pad
+                               where p.ID_Pad == pad && p.Fecha == fecha
+                               select new { p.ID_Pad };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<object> listaBuscarPadDia_curso(DateTime fecha, int curso)
+        {
+            try
+            {
+                var consulta = from p in contexto.Pad
+                               where p.ID_Curso == curso && p.Fecha == fecha
+                               select new { p.ID_Pad };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
     }

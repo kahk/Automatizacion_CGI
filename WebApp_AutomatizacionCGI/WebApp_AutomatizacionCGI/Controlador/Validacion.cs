@@ -52,8 +52,10 @@ namespace WebApp_AutomatizacionCGI.Controlador
             rut = rut.Replace("_", "");
 
             int cantidad = rut.Length;
-
-            rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
+            
+                rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
+          
+           
 
 
             dv = char.Parse(rut.Substring(rut.Length - 1, 1));

@@ -283,6 +283,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_fechadocente;
         
         /// <summary>
+        /// Control lb_AvisoDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoDocente;
+        
+        /// <summary>
         /// Control Link_EditarDocente.
         /// </summary>
         /// <remarks>
@@ -544,6 +553,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.DropDownList cb_EstadoEncargado;
         
         /// <summary>
+        /// Control lb_AvisoEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoEncargado;
+        
+        /// <summary>
         /// Control Link_EditarEncargado.
         /// </summary>
         /// <remarks>
@@ -562,15 +580,6 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_GuardarEncargado_VistaEncargado;
         
         /// <summary>
-        /// Control Link_GuardarEncargado.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_GuardarEncargado;
-        
-        /// <summary>
         /// Control Link_CancelarEncargado.
         /// </summary>
         /// <remarks>
@@ -580,13 +589,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_CancelarEncargado;
         
         /// <summary>
-        /// Control btn_modalcodigodocente.
+        /// Control btn_modalcodigoENcargado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_modalcodigodocente;
+        protected global::System.Web.UI.WebControls.Button btn_modalcodigoENcargado;
         
         /// <summary>
         /// Control ModalPopupExtender_BadCodeEncargado.
@@ -697,6 +706,150 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Label lb_idcurso;
         
         /// <summary>
+        /// Control btn_modalencargadonuevoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_modalencargadonuevoCurso;
+        
+        /// <summary>
+        /// Control ModalPopupExtender4_EncargadoVistaCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender4_EncargadoVistaCurso;
+        
+        /// <summary>
+        /// Control Panel_EncargadoNuevoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_EncargadoNuevoCurso;
+        
+        /// <summary>
+        /// Control Link_SalirEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_SalirEncargadoCurso;
+        
+        /// <summary>
+        /// Control txt_RutEncargardoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_RutEncargardoCurso;
+        
+        /// <summary>
+        /// Control MaskedEditExtender_rutencargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargadoCurso;
+        
+        /// <summary>
+        /// Control txt_NombreEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_NombreEncargadoCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_nombreEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_nombreEncargadoCurso;
+        
+        /// <summary>
+        /// Control txt_ApellidoEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_ApellidoEncargadoCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_apellidoencargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_apellidoencargadoCurso;
+        
+        /// <summary>
+        /// Control txt_CorreoEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_CorreoEncargadoCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_correoencargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_correoencargadoCurso;
+        
+        /// <summary>
+        /// Control cb_EstadoEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cb_EstadoEncargadoCurso;
+        
+        /// <summary>
+        /// Control lb_AvisoEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoEncargadoCurso;
+        
+        /// <summary>
+        /// Control Link_GuardarEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_GuardarEncargadoCurso;
+        
+        /// <summary>
+        /// Control Link_CancelarEncargadoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_CancelarEncargadoCurso;
+        
+        /// <summary>
         /// Control btn_modalcursonuevo.
         /// </summary>
         /// <remarks>
@@ -760,13 +913,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_RutEncargardo_Curso;
         
         /// <summary>
-        /// Control MaskedEditExtender_rutencargadocurso.
+        /// Control MaskedEditExtender_rutencargado_Curso.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargadocurso;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargado_Curso;
         
         /// <summary>
         /// Control txt_detalleCurso.
@@ -794,6 +947,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cb_EstadoCurso;
+        
+        /// <summary>
+        /// Control lb_AvisoCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoCurso;
         
         /// <summary>
         /// Control Link_EditarCurso.
@@ -1100,6 +1262,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cb_EstadoPad;
+        
+        /// <summary>
+        /// Control lb_avisoPAD.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_avisoPAD;
         
         /// <summary>
         /// Control Link_EditarPad.
@@ -1451,6 +1622,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cb_EstadoUsuario;
+        
+        /// <summary>
+        /// Control lb_AvisoUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoUsuario;
         
         /// <summary>
         /// Control Link_EditarUsuario.
