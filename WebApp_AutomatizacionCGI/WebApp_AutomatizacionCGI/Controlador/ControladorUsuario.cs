@@ -83,6 +83,23 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> CantidadUsuarios_root()
+        {
+            try
+            {
+                var consulta = from u in contexto.Usuario
+                               join e in contexto.Estado on u.ID_Estado equals e.ID_Estado
+                               where u.Tipo == "root" && u.ID_Estado == 1
+                               select new { u.Rut};
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public bool addUsuario(Usuario nuevo)
         {
             try

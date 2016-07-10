@@ -85,6 +85,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_CerrarSession;
         
         /// <summary>
+        /// Control lb_NombreUsuario_Logeado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_NombreUsuario_Logeado;
+        
+        /// <summary>
         /// Control View1_Docentes.
         /// </summary>
         /// <remarks>
@@ -884,15 +893,6 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_SalirCurso;
-        
-        /// <summary>
-        /// Control Label6.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
         /// Control lbCurso.

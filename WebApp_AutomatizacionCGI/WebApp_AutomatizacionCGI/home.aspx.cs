@@ -60,19 +60,30 @@ namespace WebApp_AutomatizacionCGI
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
-        {      
-            MultiView1.ActiveViewIndex = 5;
+        protected void Link_volverviewcursos_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 3;
         }
 
         protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
         {            
             MultiView1.ActiveViewIndex = 4;
         }
-
-        protected void Link_volverviewcursos_Click(object sender, EventArgs e)
+            
+        protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 3;
+            txt_NicknameUsuario.Text = "";
+            txt_PasswordUsuario.Text = "";
+            MultiView1.ActiveViewIndex = 5;
+        }
+
+        protected void Link_CerrarSession_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+
+            FormsAuthentication.SignOut();
+
+            FormsAuthentication.RedirectToLoginPage();
         }
 
 
@@ -204,13 +215,16 @@ namespace WebApp_AutomatizacionCGI
             
             String correo = txt_correoDocente.Text;
 
-            string codigo = rut = rut.ToUpper();
-            codigo = rut.Replace(".", "");
-            codigo = rut.Replace("-", "");
-            codigo = rut.Replace("_", "");
+            string codigo = "";
+            codigo = rut.ToUpper();
+            codigo = codigo.Replace(".", "");
+            codigo = codigo.Replace("-", "");
+            codigo = codigo.Replace("_", "");
+
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
+            
             int id_Estado = 0;
             int.TryParse(cb_EstadoDocente.SelectedValue, out id_Estado);
 
@@ -224,33 +238,42 @@ namespace WebApp_AutomatizacionCGI
             {
                 lb_AvisoDocente.Text = "";
                 DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
-
-                if (Validar.validarEmail(correo))
+                if (Validar.validarRut(rut))
                 {
                     lb_AvisoDocente.Text = "";
-
-                    Docente nuevo = new Docente
+                    if (Validar.validarEmail(correo))
                     {
-                        Rut = rut,
-                        Nombre = nombre,
-                        Apellido = apellido,
-                        Fecha_Ingreso = fecha,
-                        Correo = correo,
-                        ID_Estado = id_Estado,
-                        Codigo = codigo
+                        lb_AvisoDocente.Text = "";
 
-                    };
+                        Docente nuevo = new Docente
+                        {
+                            Rut = rut,
+                            Nombre = nombre,
+                            Apellido = apellido,
+                            Fecha_Ingreso = fecha,
+                            Correo = correo,
+                            ID_Estado = id_Estado,
+                            Codigo = codigo
 
-                    if (control.addDocentes(nuevo))
+                        };
+
+                        if (control.addDocentes(nuevo))
+                        {
+                            MostrarDocentes();
+                        }
+                    }
+                    else
                     {
-                        MostrarDocentes();
+                        lb_AvisoDocente.Text = "Correo no Valido";
+                        ModalPopupExtender0_ModalDocente.Show();
                     }
                 }
                 else
                 {
-                    lb_AvisoDocente.Text = "Correo no Valido";
+                    lb_AvisoDocente.Text = "Rut no Valido. Ejemplo 11.111.111-1";
                     ModalPopupExtender0_ModalDocente.Show();
                 }
+               
 
             }
 
@@ -690,31 +713,32 @@ namespace WebApp_AutomatizacionCGI
             string rut = txt_RutEncargardo_Curso.Text;
             string detalle = txt_detalleCurso.Text;
 
-            if (rut == "" || detalle == "")
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+
+            if (txt_RutEncargardo_Curso.Text == "..-" || rut.Length < 11 || detalle == "")
             {
                 lb_AvisoCurso.Text = "Complete Todo el Formulario";
-                txt_RutEncargardo_Curso.Text = rut;
-                txt_detalleCurso.Text = detalle;
-                
+
                 ModalPopupExtender1_cursonuevo.Show();
             }
             else
             {
-                rut = rut.ToUpper();
-                rut = rut.Replace("_", "");
-                //validar que exista rut de encargado   
-                int aux = controlEnc.listaBuscarEncargados(rut).Count;
-
-                if (aux == 0)
-                {
-                    lb_encargadoNoencontrado.Text = "El encargado que Ingreso no existe <br/> Desea crear uno nuevo?";
-                    ModalPopupExtender2_ConfirmarEncargado.Show();
-                }
-                else
+                lb_AvisoCurso.Text = "";
+                if (Validar.validarRut(rut))
                 {
                     lb_AvisoCurso.Text = "";
-                    if (Validar.validarRut(rut))
+
+                    int aux = controlEnc.listaBuscarEncargados(rut).Count;
+
+                    if (aux == 0)
                     {
+                        lb_encargadoNoencontrado.Text = "El encargado que Ingreso no existe <br/> Desea crear uno nuevo?";
+                        ModalPopupExtender2_ConfirmarEncargado.Show();
+                    }
+                    else
+                    {
+
                         lb_AvisoCurso.Text = "";
                         Curso nuevo = new Curso
                         {
@@ -733,13 +757,15 @@ namespace WebApp_AutomatizacionCGI
                         lbCurso.Visible = false;
                         txt_RutEncargardo_Curso.Text = "";
                         txt_detalleCurso.Text = "";
-                    }
-                    else
-                    {
-                        lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
+
                     }
                 }
-               
+                else
+                {
+                    lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
+                    ModalPopupExtender1_cursonuevo.Show();
+                }
+
             }
         }
 
@@ -748,6 +774,11 @@ namespace WebApp_AutomatizacionCGI
         {
             txt_RutEncargardoCurso.Text = txt_RutEncargardo_Curso.Text; //pasar el rut no registrador al formulario de registro
             ModalPopupExtender4_EncargadoVistaCurso.Show();
+            txt_NombreEncargadoCurso.Text = "";
+            txt_ApellidoEncargadoCurso.Text = "";
+            txt_CorreoEncargadoCurso.Text = "";
+
+            lb_AvisoEncargadoCurso.Text = "";
         }
 
         protected void Link_GuardarEncargadoCurso_Click(object sender, EventArgs e)
@@ -762,18 +793,18 @@ namespace WebApp_AutomatizacionCGI
             string apellido = txt_ApellidoEncargadoCurso.Text;
             string correo = txt_CorreoEncargadoCurso.Text;
 
-            string codigo = rut = rut.ToUpper();
-            codigo = rut.Replace(".", "");
-            codigo = rut.Replace("-", "");
-            codigo = rut.Replace("_", "");
+            string codigo = "";
+            codigo = rut.ToUpper();
+            codigo = codigo.Replace(".", "");
+            codigo = codigo.Replace("-", "");
+            codigo = codigo.Replace("_", "");
 
             rut = rut.Replace("_", "");
 
-            if (txt_RutEncargardo.Text == "" || txt_NombreEncargado.Text == "" || txt_ApellidoEncargado.Text == "" ||
-                txt_CorreoEncargado.Text == "")
+            if (txt_NombreEncargadoCurso.Text == "" || txt_ApellidoEncargadoCurso.Text == "" || txt_CorreoEncargadoCurso.Text == "")
             {
                 lb_AvisoEncargadoCurso.Text = "Complete Todo el Formulario";
-                ModalPopupExtender3_encargadonuevo.Show();
+                ModalPopupExtender4_EncargadoVistaCurso.Show();
             }
             else
             {
@@ -804,13 +835,13 @@ namespace WebApp_AutomatizacionCGI
                     else
                     {
                         lb_AvisoEncargadoCurso.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
-                        ModalPopupExtender3_encargadonuevo.Show();
+                        ModalPopupExtender4_EncargadoVistaCurso.Show();
                     }
                 }
                 else
                 {
                     lb_AvisoEncargadoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
-                    ModalPopupExtender3_encargadonuevo.Show();
+                    ModalPopupExtender4_EncargadoVistaCurso.Show();
                 }
 
             }
@@ -893,6 +924,7 @@ namespace WebApp_AutomatizacionCGI
             ModalPopupExtender5_padnuevo.Show();
             cb_EstadoPad.Enabled = true;
             Link_fechaPad.Visible = false;
+            lb_avisoPAD.Text = "";
         }
 
         protected void Link_EditarPad_Click(object sender, EventArgs e)
@@ -905,24 +937,27 @@ namespace WebApp_AutomatizacionCGI
             int.TryParse(lb_codigoPad.Text, out id_pad);
 
 
-            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" || txt_fechapad.Text == "" || txt_horainicioPad.Text == "" || txt_horafinPad.Text == "")
+            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" || txt_fechapad.Text == "" || txt_horainicioPad.Text == "::" ||
+                txt_horafinPad.Text == "::")
             {
                 lb_avisoPAD.Text = "Complete Todo el Formulario";
                 ModalPopupExtender5_padnuevo.Show();
-
             }
             else
             {
                 lb_avisoPAD.Text = "";
-                DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
+                if (!(txt_horainicioPad.Text == txt_horafinPad.Text || txt_horainicioPad.Text == "00:00:00" || txt_horafinPad.Text == "00:00:00"))
+                {
+                    lb_avisoPAD.Text = "";
+                    DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
 
-                TimeSpan hinicio;
-                TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
+                    TimeSpan hinicio;
+                    TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
 
-                TimeSpan htermino;
-                TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
+                    TimeSpan htermino;
+                    TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
 
-                
+
                     Pad nuevo = new Pad
                     {
                         ID_Pad = id_pad,
@@ -939,6 +974,13 @@ namespace WebApp_AutomatizacionCGI
                         MostrarPad_Curso();
                         ModalPopupExtender4_detallecurso.Show();
                     }
+                }
+                else
+                {
+                    lb_avisoPAD.Text = "Error, Hora de inicio y termino no pueden ser iguales";
+                    ModalPopupExtender5_padnuevo.Show();
+                }
+                
               
             }
 
@@ -958,51 +1000,61 @@ namespace WebApp_AutomatizacionCGI
             string hora_inicio = txt_horainicioPad.Text;
             string hora_fin = txt_horafinPad.Text;
 
-            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" || txt_fechapad.Text == "" || txt_horainicioPad.Text == "" || txt_horafinPad.Text == "")
+            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" ||  txt_horainicioPad.Text == "::" || txt_horainicioPad.Text == "::" ||
+                txt_fechapad.Text == "")
             {
-                ModalPopupExtender5_padnuevo.Show();
                 lb_avisoPAD.Text = "Complete todo el formulario";
+                ModalPopupExtender5_padnuevo.Show();
+                
             }
             else
             {
                 lb_avisoPAD.Text = "";
-                DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
-                int id_estado = 1;
-
-                TimeSpan hinicio;
-                TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
-
-                TimeSpan htermino;
-                TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
-
-                int aux = control.listaBuscarPadDia_curso(fecha, id_curso).Count;
-                if (aux == 0)
+                if (!(txt_horainicioPad.Text == txt_horafinPad.Text || txt_horainicioPad.Text == "00:00:00" || txt_horafinPad.Text == "00:00:00"))
                 {
                     lb_avisoPAD.Text = "";
-                    Pad nuevo = new Pad
-                    {
-                        ID_Curso = id_curso,
-                        Sala = sala,
-                        Sala_Coffe = coffe,
-                        Hora_Inicio = hinicio,
-                        Hora_Termino = htermino,
-                        Fecha = fecha,
-                        ID_Estado = id_estado
+                    DateTime fecha = Convert.ToDateTime(txt_fechapad.Text);
+                    int id_estado = 1;
 
-                    };
+                    TimeSpan hinicio;
+                    TimeSpan.TryParse(txt_horainicioPad.Text, out hinicio);
 
-                    if (control.addPad(nuevo))
+                    TimeSpan htermino;
+                    TimeSpan.TryParse(txt_horafinPad.Text, out htermino);
+
+                    int aux = control.listaBuscarPadDia_curso(fecha, id_curso).Count;
+                    if (aux == 0)
                     {
-                        MostrarPad_Curso();
-                        ModalPopupExtender4_detallecurso.Show();
+                        lb_avisoPAD.Text = "";
+                        Pad nuevo = new Pad
+                        {
+                            ID_Curso = id_curso,
+                            Sala = sala,
+                            Sala_Coffe = coffe,
+                            Hora_Inicio = hinicio,
+                            Hora_Termino = htermino,
+                            Fecha = fecha,
+                            ID_Estado = id_estado
+
+                        };
+
+                        if (control.addPad(nuevo))
+                        {
+                            MostrarPad_Curso();
+                            ModalPopupExtender4_detallecurso.Show();
+                        }
+                    }
+                    else
+                    {
+                        lb_avisoPAD.Text = "Ya existe pad para el dia " + fecha.ToShortDateString() + " en este curso";
+                        ModalPopupExtender5_padnuevo.Show();
                     }
                 }
                 else
                 {
-                    ModalPopupExtender5_padnuevo.Show();
-                    lb_avisoPAD.Text = "Ya existe pad para el dia "+fecha.ToShortDateString()+ " en este curso";
-                  
-                }
+                    lb_avisoPAD.Text = "Error, Hora de inicio y termino no pueden ser iguales";
+                    ModalPopupExtender5_padnuevo.Show();                   
+                }         
               
             }
         }
@@ -1025,6 +1077,7 @@ namespace WebApp_AutomatizacionCGI
             GridView_asignardocentes.PageIndex = e.NewPageIndex;
             Mostrar_AsignarDocentes();
         }
+
         protected void GridView_asignardocentes_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
         {
             Label lbcodigoDocente = (Label)GridView_asignardocentes.Rows[e.NewSelectedIndex].FindControl("Label1");
@@ -1056,14 +1109,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-        protected void Link_CerrarSession_Click(object sender, EventArgs e)
-        {
-            Session.Abandon();
-
-            FormsAuthentication.SignOut();
-
-            FormsAuthentication.RedirectToLoginPage();
-        }
+      
 
         // VISTA USUARIOS
 
@@ -1117,6 +1163,25 @@ namespace WebApp_AutomatizacionCGI
             
             cb_TipoUsuario.SelectedValue = lbtipoUsuario.Text;
             cb_EstadoUsuario.SelectedValue = lbestadoUsuario.Text;
+
+            if (lbcodigoUsuario.Text == "00.000.000-0")
+            {
+                txt_NombreUsuario.Enabled = false;
+                txt_ApellidoUsuario.Enabled = false;
+                txt_NicknameUsuario.Enabled = false;
+                txt_PasswordUsuario.Enabled = false;
+                cb_TipoUsuario.Enabled = false;
+                cb_EstadoUsuario.Enabled = false;
+            }
+            else
+            {
+                txt_NombreUsuario.Enabled = true;
+                txt_ApellidoUsuario.Enabled = true;
+                txt_NicknameUsuario.Enabled = true;
+                txt_PasswordUsuario.Enabled = true;
+                cb_TipoUsuario.Enabled = true;
+                cb_EstadoUsuario.Enabled = true;
+            }
         }
 
         protected void Link_EditarUsuario_Click(object sender, EventArgs e)
@@ -1125,7 +1190,8 @@ namespace WebApp_AutomatizacionCGI
             int id_estado = 0;
             int.TryParse(cb_EstadoUsuario.SelectedValue, out id_estado);
             string tipo = cb_TipoUsuario.SelectedValue;
-            if (txt_RutUsuario.Text == "" || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" || txt_NicknameUsuario.Text == "" ||
+           
+            if (txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" || txt_NicknameUsuario.Text == "" ||
                 txt_PasswordUsuario.Text == "")
             {
                 lb_AvisoUsuario.Text = "Complete Todo el Formulario";
@@ -1134,21 +1200,25 @@ namespace WebApp_AutomatizacionCGI
             {
                 lb_AvisoUsuario.Text = "";
                
-                Usuario nuevo = new Usuario
-                {
-                    Rut = txt_RutUsuario.Text,
-                    Nombre = txt_NombreUsuario.Text,
-                    Apellido = txt_ApellidoUsuario.Text,
-                    Nickname = txt_NicknameUsuario.Text,
-                    Password = txt_PasswordUsuario.Text,
-                    Tipo = tipo,
-                    ID_Estado = id_estado
+                    lb_AvisoUsuario.Text = "";
 
-                };
-                if (control.ActualizarUsuario(nuevo))
-                {
-                    MostrarEncargados();
-                }
+                    Usuario nuevo = new Usuario
+                    {
+                        Rut = txt_RutUsuario.Text,
+                        Nombre = txt_NombreUsuario.Text,
+                        Apellido = txt_ApellidoUsuario.Text,
+                        Nickname = txt_NicknameUsuario.Text,
+                        Password = txt_PasswordUsuario.Text,
+                        Tipo = tipo,
+                        ID_Estado = id_estado
+
+                    };
+                    if (control.ActualizarUsuario(nuevo))
+                    {
+                        MostrarUsuarios();
+                    }
+              
+               
              }
         }
 
@@ -1165,18 +1235,18 @@ namespace WebApp_AutomatizacionCGI
             string nickname = txt_NicknameUsuario.Text;
             string password = txt_PasswordUsuario.Text;
             string tipo = cb_TipoUsuario.SelectedValue;
-            
 
-            if (txt_RutUsuario.Text == "" || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" ||
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+
+            if (txt_RutUsuario.Text == "" || rut.Length < 11 || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" ||
                 txt_NicknameUsuario.Text == "" || txt_PasswordUsuario.Text == "")
             {
                 lb_AvisoUsuario.Text = "Complete Todo el Formulario";
                 ModalPopupExtender_Usuario.Show();
             }
             else
-            {
-                rut = rut.ToUpper();
-                rut = rut.Replace("_", "");
+            {                
 
                 if (Validar.validarRut(rut))
                 {
@@ -1222,7 +1292,7 @@ namespace WebApp_AutomatizacionCGI
             txt_PasswordUsuario.Text = "";
             cb_TipoUsuario.SelectedValue = "normal";
             cb_EstadoUsuario.SelectedValue = "1";
-
+            lb_AvisoUsuario.Text = "";
             ModalPopupExtender_Usuario.Show();            
         }
 
@@ -1232,7 +1302,9 @@ namespace WebApp_AutomatizacionCGI
             Link_GuardarUsuario.Visible = false;
             cb_EstadoUsuario.Enabled = true;
             txt_RutUsuario.Enabled = false;
-            ModalPopupExtender_Usuario.Show();            
+            lb_AvisoUsuario.Text = "";
+            ModalPopupExtender_Usuario.Show();
+            
         }
 
         protected void Link_BuscarUsuario_Click(object sender, EventArgs e)
@@ -1241,5 +1313,7 @@ namespace WebApp_AutomatizacionCGI
         }
 
        
+
+
     }
 }

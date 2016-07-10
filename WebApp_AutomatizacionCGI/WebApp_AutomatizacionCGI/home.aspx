@@ -34,9 +34,25 @@
                             <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-danger btn-block">Cerrar Session</asp:LinkButton>
                         </div>
                         <div class="col-md-1"></div>
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <h3>INACAP</h3>
                         </div>
+                        <div class="col-md-2">
+                            <br />
+                            <br />
+                              <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3>Bienvenido (a):</h3>                                            
+                                        </div>
+                                        <div class="modal-body">
+                                            <asp:Label ID="lb_NombreUsuario_Logeado" runat="server" Text="Label"></asp:Label>
+                                       </div>
+                                        <div class="modal-footer"> </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-md-2"></div>
 
                         
                     </div>
@@ -580,8 +596,7 @@
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <asp:LinkButton ID="Link_SalirCurso" runat="server">X</asp:LinkButton>
-                                    <asp:Label ID="Label6" runat="server" Text="Crear Curso"></asp:Label>
+                                    <asp:LinkButton ID="Link_SalirCurso" runat="server">X</asp:LinkButton>                                    
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
@@ -612,7 +627,7 @@
                                     </div>
                                     <br />
                                     <br />
-                                    <asp:Label ID="lb_AvisoCurso" runat="server" Text=""></asp:Label>
+                                    <asp:Label ID="lb_AvisoCurso" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_EditarCurso_Click">Editar</asp:LinkButton>
@@ -902,7 +917,7 @@
                                         <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..."></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator4" Display="Dynamic" ControlToValidate="txt_nickname" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                                         <br />
-                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..."></asp:TextBox>
+                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" Display="Dynamic" ControlToValidate="txt_password" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="tonto culiao"></asp:RequiredFieldValidator>  
                                         <br />
                                         <asp:Label ID="lb_accesonopermitido" runat="server" CssClass="label label-danger" Text=""></asp:Label>                                      
@@ -965,7 +980,7 @@
                                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("Nickname") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Password" SortExpression="Password">
+                                    <asp:TemplateField HeaderText="Password" SortExpression="Password" Visible="False">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label7" runat="server" Text='<%# Eval("Password") %>'></asp:Label>
                                         </EditItemTemplate>
