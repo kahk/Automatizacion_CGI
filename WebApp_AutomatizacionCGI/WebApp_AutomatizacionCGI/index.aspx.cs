@@ -150,11 +150,16 @@ namespace WebApp_AutomatizacionCGI
             MultiView1.ActiveViewIndex = 3;
         }
 
-        protected void Link_CargarEncuesta_Click(object sender, EventArgs e)
+       
+
+        protected void Link_Volver1_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void Link_IngresarEncuesta_Click(object sender, EventArgs e)
         {
 
         }
-
-       
     }
 }

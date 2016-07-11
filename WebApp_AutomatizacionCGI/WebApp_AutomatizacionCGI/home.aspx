@@ -1081,7 +1081,7 @@
                                     <div class="form-group">
                                         <label for="txt_PasswordUsuario" class="col-sm-4 control-label">Password</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
+                                            <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="30" TextMode="Password"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" TargetControlID="txt_PasswordUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>

@@ -53,7 +53,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <asp:LinkButton ID="Link_Volver1" runat="server" OnClick="Link_Volver1_Click"  CssClass="btn btn-danger">Volver</asp:LinkButton>
+                            </div>
                         </div>
                     </div>
                 </asp:View>
@@ -83,7 +85,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <asp:LinkButton ID="Link_Volver2" runat="server" OnClick="Link_Volver1_Click" CssClass="btn btn-danger">Volver</asp:LinkButton>
+                            </div>
                         </div>
                     </div>
                 </asp:View>
@@ -109,26 +113,18 @@
                                             <asp:Label ID="lb_IngresoEncuestas" runat="server" Text=""></asp:Label>
                                         </div>
                                         <div class="modal-footer">
-                                            <asp:LinkButton ID="Link_CargarEncuesta" runat="server" OnClick="Link_CargarEncuesta_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
+                                            <asp:LinkButton ID="Link_IngresarEncuesta" runat="server" OnClick="Link_IngresarEncuesta_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <asp:LinkButton ID="Link_Volver3" runat="server" OnClick="Link_Volver1_Click" CssClass="btn btn-danger">Volver</asp:LinkButton>
+                            </div>
                         </div>
                     </div>
                 </asp:View>
 
-                  <asp:View ID="View4_encuestas" runat="server">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-4"></div>
-                             
-                            <div class="col-md-4"></div>
-                        </div>
-                    </div>
-                </asp:View>
             </asp:MultiView>
 
         </ContentTemplate>

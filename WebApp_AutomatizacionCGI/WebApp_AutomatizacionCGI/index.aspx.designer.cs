@@ -130,6 +130,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_IngresarEncargado;
         
         /// <summary>
+        /// Control Link_Volver1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_Volver1;
+        
+        /// <summary>
         /// Control View2_administrador.
         /// </summary>
         /// <remarks>
@@ -193,6 +202,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_Ingresar;
         
         /// <summary>
+        /// Control Link_Volver2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_Volver2;
+        
+        /// <summary>
         /// Control View3_ingreso_encuestas.
         /// </summary>
         /// <remarks>
@@ -247,21 +265,21 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Label lb_IngresoEncuestas;
         
         /// <summary>
-        /// Control Link_CargarEncuesta.
+        /// Control Link_IngresarEncuesta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_CargarEncuesta;
+        protected global::System.Web.UI.WebControls.LinkButton Link_IngresarEncuesta;
         
         /// <summary>
-        /// Control View4_encuestas.
+        /// Control Link_Volver3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View View4_encuestas;
+        protected global::System.Web.UI.WebControls.LinkButton Link_Volver3;
     }
 }

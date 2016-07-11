@@ -156,6 +156,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Buscar_nickname(string nick)
+        {
+            try
+            {
+                var consulta = from u in contexto.Usuario
+                               where u.Nickname == nick
+                               select new { u.Rut };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
     }
 }

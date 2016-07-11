@@ -1283,7 +1283,7 @@ namespace WebApp_AutomatizacionCGI
             string nickname = txt_NicknameUsuario.Text;
             string password = txt_PasswordUsuario.Text;
             string tipo = cb_TipoUsuario.SelectedValue;
-
+            
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
 
@@ -1294,12 +1294,17 @@ namespace WebApp_AutomatizacionCGI
                 ModalPopupExtender_Usuario.Show();
             }
             else
-            {                
-
+            {
+                int aux = control.Buscar_nickname(txt_NicknameUsuario.Text).Count;
+                
                 if (Validar.validarRut(rut))
                 {
                     lb_AvisoUsuario.Text = "";
-                    Usuario nuevo = new Usuario
+                    if (aux == 0)
+                    {
+                        lb_AvisoUsuario.Text = "";
+
+                        Usuario nuevo = new Usuario
                         {
                             Rut = rut,
                             Nombre = nombre,
@@ -1307,7 +1312,7 @@ namespace WebApp_AutomatizacionCGI
                             Nickname = nickname,
                             Password = password,
                             Tipo = tipo,
-                            ID_Estado = id_Estado                            
+                            ID_Estado = id_Estado
 
                         };
 
@@ -1315,6 +1320,14 @@ namespace WebApp_AutomatizacionCGI
                         {
                             MostrarUsuarios();
                         }
+
+                    }
+                    else
+                    {
+                        lb_AvisoUsuario.Text = "Nickname ingresado no se encuetra disponible";
+                        ModalPopupExtender_Usuario.Show();
+                        
+                    }
                    
                 }
                 else
@@ -1341,6 +1354,7 @@ namespace WebApp_AutomatizacionCGI
             cb_TipoUsuario.SelectedValue = "normal";
             cb_EstadoUsuario.SelectedValue = "1";
             lb_AvisoUsuario.Text = "";
+            txt_NicknameUsuario.Enabled = true;
             ModalPopupExtender_Usuario.Show();            
         }
 
@@ -1352,6 +1366,7 @@ namespace WebApp_AutomatizacionCGI
             txt_RutUsuario.Enabled = false;
             lb_AvisoUsuario.Text = "";
             ModalPopupExtender_Usuario.Show();
+            txt_NicknameUsuario.Enabled = false;
             
         }
 
