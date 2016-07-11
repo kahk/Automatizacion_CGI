@@ -149,8 +149,7 @@ namespace WebApp_AutomatizacionCGI
         {
             MultiView1.ActiveViewIndex = 3;
         }
-
-       
+               
 
         protected void Link_Volver1_Click(object sender, EventArgs e)
         {
@@ -159,6 +158,36 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_IngresarEncuesta_Click(object sender, EventArgs e)
         {
+            ControladorCurso control = new ControladorCurso();
+
+            lb_IngresoEncuestas.Text = "";
+            if (IsValid)
+            {
+
+                if (control.validarCurso(txt_usuarioEncuesta.Text, txt_passwordEncuesta.Text))
+                {
+                    lb_IngresoEncuestas.Text = "";
+                    String datoUsuario = txt_RutEncargado.Text;
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
+                                                                                     DateTime.Now.AddSeconds(500), false,
+                                                                                     datoUsuario, FormsAuthentication.FormsCookiePath);
+                    String encTicket = FormsAuthentication.Encrypt(ticket);
+
+                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+
+                    Session["IDUsuario"] = txt_usuarioEncuesta.Text;
+                    Session["PUsuario"] = txt_passwordEncuesta.Text;
+
+                    Response.Redirect("encuesta.aspx");
+
+
+                }
+                else
+                {
+                    lb_IngresoEncuestas.Text = "Datos no validos";
+                }
+            }
 
         }
     }

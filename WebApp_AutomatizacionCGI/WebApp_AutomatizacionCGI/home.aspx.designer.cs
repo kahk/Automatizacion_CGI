@@ -958,6 +958,42 @@ namespace WebApp_AutomatizacionCGI {
         protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_detallecurso;
         
         /// <summary>
+        /// Control txt_UsuarioCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_UsuarioCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_usuariocurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_usuariocurso;
+        
+        /// <summary>
+        /// Control txt_ContraseñaCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_ContraseñaCurso;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_ContraseñaCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_ContraseñaCurso;
+        
+        /// <summary>
         /// Control cb_EstadoCurso.
         /// </summary>
         /// <remarks>

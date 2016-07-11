@@ -19,12 +19,16 @@ namespace WebApp_AutomatizacionCGI.Modelo
         {
             this.Curso_Docente = new HashSet<Curso_Docente>();
             this.Pad = new HashSet<Pad>();
+            this.Encuesta = new HashSet<Encuesta>();
+            this.Respuestas = new HashSet<Respuestas>();
         }
     
         public int ID_Curso { get; set; }
         public string Rut_Encargado { get; set; }
         public string Detallecurso { get; set; }
         public int ID_Estado { get; set; }
+        public string Contraseña { get; set; }
+        public string Usuario { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Curso_Docente> Curso_Docente { get; set; }
@@ -32,5 +36,9 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public virtual Estado Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pad> Pad { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Encuesta> Encuesta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Respuestas> Respuestas { get; set; }
     }
 }

@@ -496,6 +496,22 @@
                                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("Detalle") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Usuario" SortExpression="Usuario">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("Usuario") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Bind("Usuario") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Contraseña" SortExpression="Contraseña">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label9" runat="server" Text='<%# Eval("Contraseña") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label9" runat="server" Text='<%# Bind("Contraseña") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="PAD">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="Link_ModalPad" runat="server" CausesValidation="False" CommandName="Select" Text="PAD" CssClass="btn btn-danger" OnClick="Link_ModalPad_Click"><i class="fa fa-eye" aria-hidden="true"></i></asp:LinkButton>
@@ -621,7 +637,25 @@
                                         <label for="txt_detalleCurso" class="col-sm-4 control-label">Detalle</label>
                                         <div class="col-sm-8">
                                             <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
-                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_detallecurso" TargetControlID="txt_apellidoDocente" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_detallecurso" TargetControlID="txt_detalleCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                     <div class="form-group">
+                                        <label for="txt_UsuarioCurso" class="col-sm-4 control-label">Usuario</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_UsuarioCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuariocurso" TargetControlID="txt_UsuarioCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                     <div class="form-group">
+                                        <label for="txt_ContraseñaCurso" class="col-sm-4 control-label">Contraseña</label>
+                                        <div class="col-sm-8">
+                                            <asp:TextBox ID="txt_ContraseñaCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_ContraseñaCurso" TargetControlID="txt_ContraseñaCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
                                     <br />

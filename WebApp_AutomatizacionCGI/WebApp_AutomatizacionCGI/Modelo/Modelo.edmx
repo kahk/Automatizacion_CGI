@@ -21,6 +21,8 @@
           <Property Name="ID_Curso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Rut_Encargado" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Detalle" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ID_Estado" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Curso_Docente">
@@ -54,6 +56,14 @@
           <Property Name="ID_Estado" Type="int" Nullable="false" />
           <Property Name="Codigo" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Encuesta">
+          <Key>
+            <PropertyRef Name="ID_Encuesta" />
+          </Key>
+          <Property Name="ID_Encuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sugerencia" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ID_Curso" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="ID_Estado" />
@@ -73,6 +83,24 @@
           <Property Name="Hora_Termino" Type="time" Precision="7" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="ID_Estado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID_Pregunta" />
+          </Key>
+          <Property Name="ID_Pregunta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Pregunta" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Respuestas">
+          <Key>
+            <PropertyRef Name="ID_Respuesta" />
+          </Key>
+          <Property Name="ID_Respuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Encuesta" Type="int" Nullable="false" />
+          <Property Name="ID_Pregunta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Respuesta" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_Curso" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -192,6 +220,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Encuesta_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Encuesta">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pad_Estado">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Pad" Type="Self.Pad" Multiplicity="*" />
@@ -201,6 +241,42 @@
             </Principal>
             <Dependent Role="Pad">
               <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Curso">
+          <End Role="Curso" Type="Self.Curso" Multiplicity="1" />
+          <End Role="Respuestas" Type="Self.Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Encuesta">
+          <End Role="Encuesta" Type="Self.Encuesta" Multiplicity="1" />
+          <End Role="Respuestas" Type="Self.Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Respuestas" Type="Self.Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Pregunta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,8 +298,11 @@
           <EntitySet Name="Curso_Docente" EntityType="Self.Curso_Docente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Encargado" EntityType="Self.Encargado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Encuesta" EntityType="Self.Encuesta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pad" EntityType="Self.Pad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Respuestas" EntityType="Self.Respuestas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Asistencia_Docente" Association="Self.FK_Asistencia_Docente">
             <End Role="Docente" EntitySet="Docente" />
@@ -257,9 +336,25 @@
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Encargado" EntitySet="Encargado" />
           </AssociationSet>
+          <AssociationSet Name="FK_Encuesta_Curso" Association="Self.FK_Encuesta_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Encuesta" EntitySet="Encuesta" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pad_Estado" Association="Self.FK_Pad_Estado">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Pad" EntitySet="Pad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Curso" Association="Self.FK_Respuestas_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Encuesta" Association="Self.FK_Respuestas_Encuesta">
+            <End Role="Encuesta" EntitySet="Encuesta" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Pregunta" Association="Self.FK_Respuestas_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Estado" Association="Self.FK_Usuario_Estado">
             <End Role="Estado" EntitySet="Estado" />
@@ -293,6 +388,10 @@
           <NavigationProperty Name="Encargado" Relationship="Self.FK_Curso_Encargado" FromRole="Curso" ToRole="Encargado" />
           <NavigationProperty Name="Estado" Relationship="Self.FK_Curso_Estado" FromRole="Curso" ToRole="Estado" />
           <NavigationProperty Name="Pad" Relationship="Self.FK_Pad_Curso" FromRole="Curso" ToRole="Pad" />
+          <NavigationProperty Name="Encuesta" Relationship="BD_ProyectoModel.FK_Encuesta_Curso" FromRole="Curso" ToRole="Encuesta" />
+          <NavigationProperty Name="Respuestas" Relationship="BD_ProyectoModel.FK_Respuestas_Curso" FromRole="Curso" ToRole="Respuestas" />
+          <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Curso_Docente">
           <Key>
@@ -558,6 +657,25 @@
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
+          <EntitySet Name="Encuesta" EntityType="BD_ProyectoModel.Encuesta" />
+          <EntitySet Name="Pregunta" EntityType="BD_ProyectoModel.Pregunta" />
+          <EntitySet Name="Respuestas" EntityType="BD_ProyectoModel.Respuestas" />
+          <AssociationSet Name="FK_Encuesta_Curso" Association="BD_ProyectoModel.FK_Encuesta_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Encuesta" EntitySet="Encuesta" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Curso" Association="BD_ProyectoModel.FK_Respuestas_Curso">
+            <End Role="Curso" EntitySet="Curso" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Encuesta" Association="BD_ProyectoModel.FK_Respuestas_Encuesta">
+            <End Role="Encuesta" EntitySet="Encuesta" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Respuestas_Pregunta" Association="BD_ProyectoModel.FK_Respuestas_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuestas" EntitySet="Respuestas" />
+          </AssociationSet>
         </EntityContainer>
         <Association Name="FK_Usuario_Estado">
           <End Type="BD_ProyectoModel.Estado" Role="Estado" Multiplicity="1" />
@@ -568,6 +686,86 @@
             </Principal>
             <Dependent Role="Usuario">
               <PropertyRef Name="ID_Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Encuesta">
+          <Key>
+            <PropertyRef Name="ID_Encuesta" />
+          </Key>
+          <Property Name="ID_Encuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sugerencia" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Curso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="BD_ProyectoModel.FK_Encuesta_Curso" FromRole="Encuesta" ToRole="Curso" />
+          <NavigationProperty Name="Respuestas" Relationship="BD_ProyectoModel.FK_Respuestas_Encuesta" FromRole="Encuesta" ToRole="Respuestas" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="ID_Pregunta" />
+          </Key>
+          <Property Name="ID_Pregunta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Pregunta1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Respuestas" Relationship="BD_ProyectoModel.FK_Respuestas_Pregunta" FromRole="Pregunta" ToRole="Respuestas" />
+        </EntityType>
+        <EntityType Name="Respuestas">
+          <Key>
+            <PropertyRef Name="ID_Respuesta" />
+          </Key>
+          <Property Name="ID_Respuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Encuesta" Type="Int32" Nullable="false" />
+          <Property Name="ID_Pregunta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Respuesta" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Curso" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Curso" Relationship="BD_ProyectoModel.FK_Respuestas_Curso" FromRole="Respuestas" ToRole="Curso" />
+          <NavigationProperty Name="Encuesta" Relationship="BD_ProyectoModel.FK_Respuestas_Encuesta" FromRole="Respuestas" ToRole="Encuesta" />
+          <NavigationProperty Name="Pregunta" Relationship="BD_ProyectoModel.FK_Respuestas_Pregunta" FromRole="Respuestas" ToRole="Pregunta" />
+        </EntityType>
+        <Association Name="FK_Encuesta_Curso">
+          <End Type="BD_ProyectoModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="BD_ProyectoModel.Encuesta" Role="Encuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Encuesta">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Curso">
+          <End Type="BD_ProyectoModel.Curso" Role="Curso" Multiplicity="1" />
+          <End Type="BD_ProyectoModel.Respuestas" Role="Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Curso">
+              <PropertyRef Name="ID_Curso" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Curso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Encuesta">
+          <End Type="BD_ProyectoModel.Encuesta" Role="Encuesta" Multiplicity="1" />
+          <End Type="BD_ProyectoModel.Respuestas" Role="Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Encuesta">
+              <PropertyRef Name="ID_Encuesta" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Encuesta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Respuestas_Pregunta">
+          <End Type="BD_ProyectoModel.Pregunta" Role="Pregunta" Multiplicity="1" />
+          <End Type="BD_ProyectoModel.Respuestas" Role="Respuestas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="ID_Pregunta" />
+            </Principal>
+            <Dependent Role="Respuestas">
+              <PropertyRef Name="ID_Pregunta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,6 +788,8 @@
           <EntitySetMapping Name="Curso">
             <EntityTypeMapping TypeName="BD_ProyectoModel.Curso">
               <MappingFragment StoreEntitySet="Curso">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
                 <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
                 <ScalarProperty Name="Rut_Encargado" ColumnName="Rut_Encargado" />
                 <ScalarProperty Name="Detallecurso" ColumnName="Detalle" />
@@ -663,6 +863,35 @@
                 <ScalarProperty Name="Nickname" ColumnName="Nickname" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Encuesta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Encuesta">
+              <MappingFragment StoreEntitySet="Encuesta">
+                <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
+                <ScalarProperty Name="Sugerencia" ColumnName="Sugerencia" />
+                <ScalarProperty Name="ID_Encuesta" ColumnName="ID_Encuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregunta">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Pregunta">
+              <MappingFragment StoreEntitySet="Pregunta">
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Pregunta1" ColumnName="Pregunta" />
+                <ScalarProperty Name="ID_Pregunta" ColumnName="ID_Pregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respuestas">
+            <EntityTypeMapping TypeName="BD_ProyectoModel.Respuestas">
+              <MappingFragment StoreEntitySet="Respuestas">
+                <ScalarProperty Name="ID_Curso" ColumnName="ID_Curso" />
+                <ScalarProperty Name="Respuesta" ColumnName="Respuesta" />
+                <ScalarProperty Name="ID_Pregunta" ColumnName="ID_Pregunta" />
+                <ScalarProperty Name="ID_Encuesta" ColumnName="ID_Encuesta" />
+                <ScalarProperty Name="ID_Respuesta" ColumnName="ID_Respuesta" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

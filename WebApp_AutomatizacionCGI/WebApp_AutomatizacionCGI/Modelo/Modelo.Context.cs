@@ -33,5 +33,8 @@ namespace WebApp_AutomatizacionCGI.Modelo
         public virtual DbSet<Estado> Estado { get; set; }
         public virtual DbSet<Pad> Pad { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
+        public virtual DbSet<Encuesta> Encuesta { get; set; }
+        public virtual DbSet<Pregunta> Pregunta { get; set; }
+        public virtual DbSet<Respuestas> Respuestas { get; set; }
     }
 }

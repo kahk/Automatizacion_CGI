@@ -644,6 +644,8 @@ namespace WebApp_AutomatizacionCGI
             cb_EstadoCurso.SelectedValue = "1";
             txt_RutEncargardo_Curso.Text = "";
             txt_detalleCurso.Text = "";
+            txt_UsuarioCurso.Text = "";
+            txt_ContraseñaCurso.Text = "";
         }
 
         protected void GridView_cursos_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
@@ -655,12 +657,15 @@ namespace WebApp_AutomatizacionCGI
             Label lbRutEncargado = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label2");
             Label lbDetalleCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label5");
             Label lbEstadoCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label6");
-
+            Label lbUsuarioCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label8");
+            Label lbContraseñaCurso = (Label)GridView_cursos.Rows[e.NewSelectedIndex].FindControl("Label9");
 
             Link_GuardarCurso.Visible = false;
             Link_EditarCurso.Visible = true;
             txt_RutEncargardo_Curso.Text = lbRutEncargado.Text;
             txt_detalleCurso.Text = lbDetalleCurso.Text;
+            txt_UsuarioCurso.Text = lbUsuarioCurso.Text;
+            txt_ContraseñaCurso.Text = lbContraseñaCurso.Text;
             cb_EstadoCurso.SelectedValue = lbEstadoCurso.Text;
 
         }
@@ -696,7 +701,7 @@ namespace WebApp_AutomatizacionCGI
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
 
-            if (txt_RutEncargardo_Curso.Text == "" || txt_detalleCurso.Text == "")
+            if (txt_RutEncargardo_Curso.Text == "" || txt_detalleCurso.Text == "" || txt_ContraseñaCurso.Text == "" || txt_UsuarioCurso.Text == "")
             {
                 lb_AvisoCurso.Text = "Complete Todo el Formulario";
                 ModalPopupExtender1_cursonuevo.Show();  // Agregar mensaje
@@ -722,6 +727,8 @@ namespace WebApp_AutomatizacionCGI
                             ID_Curso = id_curso,
                             Rut_Encargado = txt_RutEncargardo_Curso.Text,
                             Detallecurso = txt_detalleCurso.Text,
+                            Usuario = txt_UsuarioCurso.Text,
+                            Contraseña = txt_ContraseñaCurso.Text,
                             ID_Estado = id_estado
 
                         };
@@ -749,11 +756,13 @@ namespace WebApp_AutomatizacionCGI
 
             string rut = txt_RutEncargardo_Curso.Text;
             string detalle = txt_detalleCurso.Text;
+            string usuario = txt_UsuarioCurso.Text;
+            string contraseña = txt_ContraseñaCurso.Text;
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
 
-            if (txt_RutEncargardo_Curso.Text == "..-" || rut.Length < 11 || detalle == "")
+            if (txt_RutEncargardo_Curso.Text == "..-" || rut.Length < 11 || detalle == "" || txt_ContraseñaCurso.Text == "" || txt_UsuarioCurso.Text == "")
             {
                 lb_AvisoCurso.Text = "Complete Todo el Formulario";
 
@@ -781,6 +790,8 @@ namespace WebApp_AutomatizacionCGI
                         {
                             Rut_Encargado = rut,
                             Detallecurso = detalle,
+                            Usuario = usuario,
+                            Contraseña = contraseña,
                             ID_Estado = 1
 
                         };
@@ -794,6 +805,8 @@ namespace WebApp_AutomatizacionCGI
                         lbCurso.Visible = false;
                         txt_RutEncargardo_Curso.Text = "";
                         txt_detalleCurso.Text = "";
+                        txt_UsuarioCurso.Text = "";
+                        txt_ContraseñaCurso.Text = "";
 
                     }
                 }
