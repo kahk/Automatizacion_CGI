@@ -20,7 +20,7 @@
                                 <asp:LinkButton ID="Link_Administrador" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_Administrador_Click">Administrador</asp:LinkButton>
                                 <br />
                                 <br />
-                                <asp:LinkButton ID="Link_Encargado" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_Encargado_Click">Encargado</asp:LinkButton>
+                                <asp:LinkButton ID="Link_Encargado" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_Encargado_Click">Relator</asp:LinkButton>
                                 <br />
                                 <br />
                                 <asp:LinkButton ID="Link_VistaEncuestas" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_VistaEncuestas_Click">Encuestas</asp:LinkButton>
@@ -35,7 +35,7 @@
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3>Ingreso Encargado</h3>                                            
+                                            <h3>Ingreso Relator</h3>                                            
                                         </div>
                                         <div class="modal-body">
                                             <br />

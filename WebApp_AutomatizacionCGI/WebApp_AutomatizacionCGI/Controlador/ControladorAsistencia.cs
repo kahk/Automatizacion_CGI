@@ -23,6 +23,56 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public bool addAsistencia_Curso(int pad)
+        {
+            try
+            {
+                var consulta = from p in contexto.Pad
+                               join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                               join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                               join cd in contexto.Curso_Docente on c.ID_Curso equals cd.ID_Curso
+                               where p.ID_Pad == pad
+                               select cd.Rut_Docente;
+
+                string rut_x = "";
+                for (int i = 0; i < consulta.Count(); i++)
+                {
+                    rut_x = consulta.ToList().ElementAt(i);
+                    
+                        Asistencia nuevo = new Asistencia
+                        {
+                            ID_Pad = pad,
+                            Rut_Docente = rut_x,
+                            Estado = "Sin Asistencia"
+                        };
+
+
+                        contexto.Asistencia.Add(nuevo);                        
+                }
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public List<object> Devolver_CantidadAsistencia_Pad(int pad)
+        {
+            try
+            {
+                var consulta = from a in contexto.Asistencia
+                               where a.ID_Pad == pad
+                               select new { a.ID_Asistencia };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public List<object> BuscarAsistenciaRepetida(string rut, int id_pad)
         {
             try

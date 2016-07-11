@@ -172,6 +172,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Buscar_Rut(string rut)
+        {
+            try
+            {
+                var consulta = from u in contexto.Usuario
+                               where u.Rut == rut
+                               select new { u.Rut };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
     }
 }

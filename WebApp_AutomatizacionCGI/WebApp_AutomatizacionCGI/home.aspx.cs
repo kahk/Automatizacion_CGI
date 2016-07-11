@@ -716,7 +716,7 @@ namespace WebApp_AutomatizacionCGI
 
                     if (aux == 0)
                     {
-                        lb_encargadoNoencontrado.Text = "El encargado que Ingreso no existe <br/> Desea crear uno nuevo?";
+                        lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
                         ModalPopupExtender2_ConfirmarEncargado.Show();                        
                     }
                     else
@@ -779,7 +779,7 @@ namespace WebApp_AutomatizacionCGI
 
                     if (aux == 0)
                     {
-                        lb_encargadoNoencontrado.Text = "El encargado que Ingreso no existe <br/> Desea crear uno nuevo?";
+                        lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
                         ModalPopupExtender2_ConfirmarEncargado.Show();
                     }
                     else
@@ -1170,7 +1170,7 @@ namespace WebApp_AutomatizacionCGI
             }
         }
 
-      
+
 
         // VISTA USUARIOS
 
@@ -1180,15 +1180,22 @@ namespace WebApp_AutomatizacionCGI
 
             string nickname = txt_nickname.Text;
             string password = txt_password.Text;
-
-            if (control.validarUsuario_root(nickname, password))
+            if (txt_nickname.Text == "" || txt_password.Text == "")
             {
-                MultiView1.ActiveViewIndex = 6;
-                lb_accesonopermitido.Text = "";
+                lb_accesonopermitido.Text = "Ingrese sus datos";
             }
             else
             {
-                lb_accesonopermitido.Text = "acceso no permitido";
+                lb_accesonopermitido.Text = "";
+                if (control.validarUsuario_root(nickname, password))
+                {
+                    MultiView1.ActiveViewIndex = 6;
+                    lb_accesonopermitido.Text = "";
+                }
+                else
+                {
+                    lb_accesonopermitido.Text = "acceso no permitido";
+                }
             }
         }
 
@@ -1278,8 +1285,6 @@ namespace WebApp_AutomatizacionCGI
                     {
                         MostrarUsuarios();
                     }
-              
-               
              }
         }
 
@@ -1308,30 +1313,40 @@ namespace WebApp_AutomatizacionCGI
             }
             else
             {
-                int aux = control.Buscar_nickname(txt_NicknameUsuario.Text).Count;
+                int aux_nick = control.Buscar_nickname(txt_NicknameUsuario.Text).Count;
                 
                 if (Validar.validarRut(rut))
                 {
+                    int aux_rut = control.Buscar_Rut(rut).Count;
                     lb_AvisoUsuario.Text = "";
-                    if (aux == 0)
+                    if (aux_nick == 0)
                     {
                         lb_AvisoUsuario.Text = "";
-
-                        Usuario nuevo = new Usuario
+                        if (aux_rut == 0)
                         {
-                            Rut = rut,
-                            Nombre = nombre,
-                            Apellido = apellido,
-                            Nickname = nickname,
-                            Password = password,
-                            Tipo = tipo,
-                            ID_Estado = id_Estado
+                            lb_AvisoUsuario.Text = "";
 
-                        };
+                            Usuario nuevo = new Usuario
+                            {
+                                Rut = rut,
+                                Nombre = nombre,
+                                Apellido = apellido,
+                                Nickname = nickname,
+                                Password = password,
+                                Tipo = tipo,
+                                ID_Estado = id_Estado
 
-                        if (control.addUsuario(nuevo))
+                            };
+
+                            if (control.addUsuario(nuevo))
+                            {
+                                MostrarUsuarios();
+                            }
+                        }
+                        else
                         {
-                            MostrarUsuarios();
+                            lb_AvisoUsuario.Text = "El Rut " + rut + " Ya se encuentra registrado!";
+                            ModalPopupExtender_Usuario.Show();
                         }
 
                     }

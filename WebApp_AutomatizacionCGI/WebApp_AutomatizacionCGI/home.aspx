@@ -22,7 +22,7 @@
                             <asp:LinkButton ID="Link_VistaDocentes" runat="server" OnClick="Link_VistaDocentes_Click" CssClass="btn btn-danger btn-block">Docentes</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-danger btn-block">Encargados</asp:LinkButton>
+                            <asp:LinkButton ID="Link_VistaEncargados" runat="server" OnClick="Link_VistaEncargados_Click" CssClass="btn btn-danger btn-block">Relatores</asp:LinkButton>
                             <br />
                             <br />
                             <asp:LinkButton ID="Link_VistaCursos" runat="server" OnClick="Link_VistaCursos_Click" CssClass="btn btn-danger btn-block">Cursos</asp:LinkButton>
@@ -262,8 +262,8 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
                             <asp:TextBox ID="txt_BuscarEncargado" runat="server"></asp:TextBox>
-                            <asp:LinkButton ID="Link_BuscarEncargado" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarEncargado_Click">Buscar Encargado</asp:LinkButton>
-                            <asp:LinkButton ID="Link_AbrirModalEncargado" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalEncargado_Click">Nuevo Encargado</asp:LinkButton>
+                            <asp:LinkButton ID="Link_BuscarEncargado" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarEncargado_Click">Buscar</asp:LinkButton>
+                            <asp:LinkButton ID="Link_AbrirModalEncargado" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalEncargado_Click">Nuevo Relator</asp:LinkButton>
                             <asp:LinkButton ID="Link_VolverEncargado" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
                             <br />
                             <br />
@@ -448,7 +448,7 @@
                                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Curso") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Rut Encargado" SortExpression="Rut_Encargado">
+                                    <asp:TemplateField HeaderText="Rut Relator" SortExpression="Rut_Encargado">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label2" runat="server" Text='<%# Eval("Rut_Encargado") %>'></asp:Label>
                                         </EditItemTemplate>
@@ -456,7 +456,7 @@
                                             <asp:Label ID="Label2" runat="server" Text='<%# Bind("Rut_Encargado") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Nombre Encargado" SortExpression="Nombre">
+                                    <asp:TemplateField HeaderText="Nombre Relator" SortExpression="Nombre">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label3" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
                                         </EditItemTemplate>
@@ -464,7 +464,7 @@
                                             <asp:Label ID="Label3" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Apellido Encargado" SortExpression="Apellido">
+                                    <asp:TemplateField HeaderText="Apellido Relator" SortExpression="Apellido">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label4" runat="server" Text='<%# Eval("Apellido") %>'></asp:Label>
                                         </EditItemTemplate>

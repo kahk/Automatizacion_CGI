@@ -98,11 +98,11 @@ namespace WebApp_AutomatizacionCGI
                         if (IsValid)
                         {
 
-                            if (control.validarEncargado(txt_RutEncargado.Text, txt_CodigoEncargado.Text))
+                            if (control.validarEncargado(rut, txt_CodigoEncargado.Text))
                             {
                                 lb_IngresoEncargado.Text = "";
-                                String datoUsuario = txt_RutEncargado.Text;
-                                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
+                                String datoUsuario = rut;
+                                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, rut, DateTime.Now,
                                                                                                  DateTime.Now.AddSeconds(500), false,
                                                                                                  datoUsuario, FormsAuthentication.FormsCookiePath);
                                 String encTicket = FormsAuthentication.Encrypt(ticket);
@@ -110,7 +110,7 @@ namespace WebApp_AutomatizacionCGI
                                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
 
 
-                                Session["IDUsuario"] = txt_RutEncargado.Text;
+                                Session["IDUsuario"] = rut;
 
                                 Response.Redirect("curso.aspx");
 
@@ -168,7 +168,7 @@ namespace WebApp_AutomatizacionCGI
                 {
                     lb_IngresoEncuestas.Text = "";
                     String datoUsuario = txt_RutEncargado.Text;
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
+                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_usuarioEncuesta.Text, DateTime.Now,
                                                                                      DateTime.Now.AddSeconds(500), false,
                                                                                      datoUsuario, FormsAuthentication.FormsCookiePath);
                     String encTicket = FormsAuthentication.Encrypt(ticket);

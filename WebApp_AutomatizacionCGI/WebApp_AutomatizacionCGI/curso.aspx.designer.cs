@@ -67,6 +67,24 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Label lb_Bienvenida;
         
         /// <summary>
+        /// Control lb_datosEncuesta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_datosEncuesta;
+        
+        /// <summary>
+        /// Control Link_MostrarEncuesta.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_MostrarEncuesta;
+        
+        /// <summary>
         /// Control lb_numeropad.
         /// </summary>
         /// <remarks>
@@ -83,15 +101,6 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_infoPad;
-        
-        /// <summary>
-        /// Control GridView_DatosCurso.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView_DatosCurso;
         
         /// <summary>
         /// Control Link_CerrarCurso.

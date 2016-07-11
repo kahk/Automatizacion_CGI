@@ -231,5 +231,41 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public String usuarioEncuesta(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                                   join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                                   where p.ID_Pad == pad
+                                   select new { c.Usuario }).First().Usuario.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String passEncuesta(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                                   join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                                   where p.ID_Pad == pad
+                                   select new { c.Contraseña }).First().Contraseña.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
     }
 }
