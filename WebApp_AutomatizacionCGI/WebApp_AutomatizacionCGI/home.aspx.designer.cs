@@ -76,13 +76,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_VistaUsuarios;
         
         /// <summary>
-        /// Control Link_CerrarSession.
+        /// Control Link_VistaReportes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_CerrarSession;
+        protected global::System.Web.UI.WebControls.LinkButton Link_VistaReportes;
         
         /// <summary>
         /// Control lb_NombreUsuario_Logeado.
@@ -92,6 +92,24 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_NombreUsuario_Logeado;
+        
+        /// <summary>
+        /// Control lb_fechadeAcceso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_fechadeAcceso;
+        
+        /// <summary>
+        /// Control Link_CerrarSession.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_CerrarSession;
         
         /// <summary>
         /// Control View1_Docentes.
@@ -1372,13 +1390,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_nickname;
         
         /// <summary>
-        /// Control RequiredFieldValidator4.
+        /// Control FilteredTextBoxExtender_nickname.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_nickname;
         
         /// <summary>
         /// Control txt_password.
@@ -1390,13 +1408,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_password;
         
         /// <summary>
-        /// Control RequiredFieldValidator3.
+        /// Control FilteredTextBoxExtender_password.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_password;
         
         /// <summary>
         /// Control lb_accesonopermitido.

@@ -31,11 +31,13 @@
                             <asp:LinkButton ID="Link_VistaUsuarios" runat="server" OnClick="Link_VistaUsuarios_Click" CssClass="btn btn-danger btn-block">Usuarios</asp:LinkButton>
                             <br />
                             <br />
-                            <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-danger btn-block">Cerrar Session</asp:LinkButton>
+                             <asp:LinkButton ID="Link_VistaReportes" runat="server"  CssClass="btn btn-danger btn-block">Reportes</asp:LinkButton>
+                            
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-4">
-                            <h3>INACAP</h3>
+                           
+                            <h3>Panel de Administración</h3>
                         </div>
                         <div class="col-md-2">
                             <br />
@@ -43,12 +45,17 @@
                               <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3>Bienvenido (a):</h3>                                            
+                                            <h4>Bienvenido (a):</h4>                                            
                                         </div>
                                         <div class="modal-body">
-                                            <asp:Label ID="lb_NombreUsuario_Logeado" runat="server" Text="Label"></asp:Label>
+                                            <asp:Label ID="lb_NombreUsuario_Logeado" runat="server" Text=""></asp:Label>
+                                            <br />
+                                            <br />
+                                            <asp:Label ID="lb_fechadeAcceso" runat="server" Text=""></asp:Label>
                                        </div>
-                                        <div class="modal-footer"> </div>
+                                        <div class="modal-footer">
+                                            <asp:LinkButton ID="Link_CerrarSession" runat="server" OnClick="Link_CerrarSession_Click" CssClass="btn btn-danger btn-block">Cerrar Session</asp:LinkButton>
+                                        </div>
                                     </div>
                                 </div>
                         </div>
@@ -219,7 +226,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarDocente" runat="server" CssClass="btn btn-success" Visible="false" OnClick="Link_EditarDocente_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_addDocente" runat="server" CssClass="btn btn-success" OnClick="Link_addDocente_Click">Guardar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_addDocente" runat="server" CssClass="btn btn-success" OnClick="Link_addDocente_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_cancelardocente" runat="server" CssClass="btn btn-danger" OnClick="btn_volver_Click">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -837,7 +844,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarPad" runat="server" CssClass="btn btn-success" OnClick="Link_EditarPad_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click">Guardar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_Salirpad1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -914,16 +921,15 @@
                                         <h3>Ingreso Administrador</h3>
                                     </div>
                                     <div class="modal-body">
-                                        <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..."></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" Display="Dynamic" ControlToValidate="txt_nickname" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                        <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..."></asp:TextBox>   
+                                         <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nickname" TargetControlID="txt_nickname" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>                                     
                                         <br />
-                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" Display="Dynamic" ControlToValidate="txt_password" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="tonto culiao"></asp:RequiredFieldValidator>  
+                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password"></asp:TextBox>                                        
+                                        <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_password" TargetControlID="txt_password" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>    
                                         <br />
                                         <asp:Label ID="lb_accesonopermitido" runat="server" CssClass="label label-danger" Text=""></asp:Label>                                      
                                     </div>
-                                    <div class="modal-footer">
-                                        
+                                    <div class="modal-footer">                                        
                                         <asp:LinkButton ID="Link_IngresarUsuario" runat="server" OnClick="Link_IngresarUsuario_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
                                     </div>
                                 </div>
@@ -1101,7 +1107,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_EditarUsuario_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarUsuario_Click">Guardar</asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarUsuario_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
                                     <asp:LinkButton ID="Link_SalirUsuario1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>

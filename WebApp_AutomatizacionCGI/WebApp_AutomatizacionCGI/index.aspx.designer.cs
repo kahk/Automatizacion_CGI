@@ -85,13 +85,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_RutEncargado;
         
         /// <summary>
-        /// Control RequiredFieldValidator4.
+        /// Control MaskedEditExtender_rutencargado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender_rutencargado;
         
         /// <summary>
         /// Control txt_CodigoEncargado.
@@ -103,13 +103,22 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_CodigoEncargado;
         
         /// <summary>
-        /// Control RequiredFieldValidator3.
+        /// Control FilteredTextBoxExtender_codigoEncargado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_codigoEncargado;
+        
+        /// <summary>
+        /// Control lb_IngresoEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_IngresoEncargado;
         
         /// <summary>
         /// Control Link_IngresarEncargado.
@@ -139,13 +148,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_Usuario;
         
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control FilteredTextBoxExtender_usuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_usuario;
         
         /// <summary>
         /// Control txt_Clave.
@@ -157,13 +166,22 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_Clave;
         
         /// <summary>
-        /// Control RequiredFieldValidator2.
+        /// Control FilteredTextBoxExtender_clave.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_clave;
+        
+        /// <summary>
+        /// Control lb_IngresoAdministrador.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_IngresoAdministrador;
         
         /// <summary>
         /// Control Link_Ingresar.
@@ -193,13 +211,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_usuarioEncuesta;
         
         /// <summary>
-        /// Control RequiredFieldValidator5.
+        /// Control FilteredTextBoxExtender_usuarioEncuesta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_usuarioEncuesta;
         
         /// <summary>
         /// Control txt_passwordEncuesta.
@@ -211,13 +229,22 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_passwordEncuesta;
         
         /// <summary>
-        /// Control RequiredFieldValidator6.
+        /// Control FilteredTextBoxExtender_passwordencuesta.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_passwordencuesta;
+        
+        /// <summary>
+        /// Control lb_IngresoEncuestas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_IngresoEncuestas;
         
         /// <summary>
         /// Control Link_CargarEncuesta.

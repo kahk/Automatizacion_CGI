@@ -83,21 +83,43 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
-        public List<object> CantidadUsuarios_root()
+     
+        public string DevolverNombreUsuario (string nick) //devolver int
         {
             try
             {
-                var consulta = from u in contexto.Usuario
-                               join e in contexto.Estado on u.ID_Estado equals e.ID_Estado
-                               where u.Tipo == "root" && u.ID_Estado == 1
-                               select new { u.Rut};
 
-                return consulta.ToList<object>();
+
+                string consulta = (from u in contexto.Usuario                                
+                                where u.Nickname == nick
+                                select new { u.Nombre }).First().Nombre.ToString();
+
+                return consulta;
             }
             catch (Exception)
             {
-                return null;
+                return "";
             }
+
+        }
+
+        public string DevolverApellidoUsuario(string nick) //devolver int
+        {
+            try
+            {
+
+
+                string consulta = (from u in contexto.Usuario
+                                   where u.Nickname == nick
+                                   select new { u.Apellido }).First().Apellido.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+
         }
 
         public bool addUsuario(Usuario nuevo)

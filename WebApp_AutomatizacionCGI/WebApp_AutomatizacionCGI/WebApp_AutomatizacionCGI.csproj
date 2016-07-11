@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controlador\BarcodeGenerator.cs" />
+    <Compile Include="Controlador\ControladorAsistencia.cs" />
     <Compile Include="Controlador\ControladorCurso.cs" />
     <Compile Include="Controlador\ControladorCursoDocente.cs" />
     <Compile Include="Controlador\ControladorDocente.cs" />

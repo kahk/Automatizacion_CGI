@@ -102,5 +102,70 @@ namespace WebApp_AutomatizacionCGI.Controlador
                 return null;
             }
         }
+
+        public List<object> BuscarDocentesRepetidos(string rut)
+        {
+            try
+            {
+                var consulta = from d in contexto.Docente
+                               where d.Rut == rut
+                               select new { d.Rut};
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public String devolver_rut(string codigo)
+        {
+            try
+            {
+                String consulta = (from d in contexto.Docente
+                                   where d.Codigo == codigo
+                                   select new { d.Rut }).First().Rut.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String devolver_nombre(string codigo)
+        {
+            try
+            {
+                String consulta = (from d in contexto.Docente
+                                   where d.Codigo == codigo
+                                   select new { d.Nombre }).First().Nombre.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String devolver_apellido(string codigo)
+        {
+            try
+            {
+                String consulta = (from d in contexto.Docente
+                                   where d.Codigo == codigo
+                                   select new { d.Apellido }).First().Apellido.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
     }
 }

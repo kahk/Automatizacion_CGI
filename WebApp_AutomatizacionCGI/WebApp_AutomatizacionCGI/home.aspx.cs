@@ -39,9 +39,22 @@ namespace WebApp_AutomatizacionCGI
                 //VISTA USUARIO
                 MostrarUsuarios();
                 MostrarTipoUsuario();
-                MostrarEstadoUsuario();                
+                MostrarEstadoUsuario();
+
+                MostrarDatosUsuarios();
             }
         }
+
+        public void MostrarDatosUsuarios()
+        {
+            ControladorUsuario control = new ControladorUsuario();
+            try
+            {                
+                lb_NombreUsuario_Logeado.Text = control.DevolverNombreUsuario(Session["IDUsuario"].ToString()) + " " + control.DevolverApellidoUsuario(Session["IDUsuario"].ToString());
+                lb_fechadeAcceso.Text = "<b>Ultimo Acceso:</b> "+DateTime.Today.ToShortDateString();
+            }
+            catch (Exception){ }
+          }
 
         //MENU DE NAVEGACION
 
@@ -72,8 +85,8 @@ namespace WebApp_AutomatizacionCGI
             
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
         {
-            txt_NicknameUsuario.Text = "";
-            txt_PasswordUsuario.Text = "";
+            txt_nickname.Text = "";
+            txt_password.Text = "";
             MultiView1.ActiveViewIndex = 5;
         }
 
@@ -97,7 +110,7 @@ namespace WebApp_AutomatizacionCGI
         public void MostrarEstado_Docentes()
         {
             ControladorEstado control = new ControladorEstado();
-
+            
             cb_EstadoDocente.DataSource = control.listaEstado();
             cb_EstadoDocente.DataTextField = "Detalle";
             cb_EstadoDocente.DataValueField = "ID_Estado";
@@ -239,34 +252,46 @@ namespace WebApp_AutomatizacionCGI
                 lb_AvisoDocente.Text = "";
                 DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
                 if (Validar.validarRut(rut))
-                {
+                {                
                     lb_AvisoDocente.Text = "";
-                    if (Validar.validarEmail(correo))
+
+                    int aux = control.BuscarDocentesRepetidos(rut).Count;
+                    if (aux == 0)
                     {
                         lb_AvisoDocente.Text = "";
-
-                        Docente nuevo = new Docente
+                        if (Validar.validarEmail(correo))
                         {
-                            Rut = rut,
-                            Nombre = nombre,
-                            Apellido = apellido,
-                            Fecha_Ingreso = fecha,
-                            Correo = correo,
-                            ID_Estado = id_Estado,
-                            Codigo = codigo
+                            lb_AvisoDocente.Text = "";
 
-                        };
+                            Docente nuevo = new Docente
+                            {
+                                Rut = rut,
+                                Nombre = nombre,
+                                Apellido = apellido,
+                                Fecha_Ingreso = fecha,
+                                Correo = correo,
+                                ID_Estado = id_Estado,
+                                Codigo = codigo
 
-                        if (control.addDocentes(nuevo))
+                            };
+
+                            if (control.addDocentes(nuevo))
+                            {
+                                MostrarDocentes();
+                            }
+                        }
+                        else
                         {
-                            MostrarDocentes();
+                            lb_AvisoDocente.Text = "Correo no Valido";
+                            ModalPopupExtender0_ModalDocente.Show();
                         }
                     }
                     else
                     {
-                        lb_AvisoDocente.Text = "Correo no Valido";
+                        lb_AvisoDocente.Text = "El Rut " + rut + " Ya se encuentra registrado!";
                         ModalPopupExtender0_ModalDocente.Show();
                     }
+                   
                 }
                 else
                 {
@@ -540,30 +565,42 @@ namespace WebApp_AutomatizacionCGI
                 if (Validar.validarRut(rut))
                 {
                     lb_AvisoEncargado.Text = "";
-                    if (Validar.validarEmail(correo))
+                   int aux = control.BuscarEncargadosRepetidos(rut).Count;
+
+                    if (aux == 0)
                     {
                         lb_AvisoEncargado.Text = "";
-                        Encargado nuevo = new Encargado
+                        if (Validar.validarEmail(correo))
                         {
-                            Rut = rut,
-                            Nombre = nombre,
-                            Apellido = apellido,
-                            Correo = correo,
-                            ID_Estado = id_Estado,
-                            Codigo = codigo
+                            lb_AvisoEncargado.Text = "";
+                            Encargado nuevo = new Encargado
+                            {
+                                Rut = rut,
+                                Nombre = nombre,
+                                Apellido = apellido,
+                                Correo = correo,
+                                ID_Estado = id_Estado,
+                                Codigo = codigo
 
-                        };
+                            };
 
-                        if (control.addEncargados(nuevo))
+                            if (control.addEncargados(nuevo))
+                            {
+                                MostrarEncargados();
+                            }
+                        }
+                        else
                         {
-                            MostrarEncargados();
+                            lb_AvisoEncargado.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                            ModalPopupExtender3_encargadonuevo.Show();
                         }
                     }
                     else
                     {
-                        lb_AvisoEncargado.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                        lb_AvisoEncargado.Text = "El Rut "+rut+ " Ya se encuentra registrado!";
                         ModalPopupExtender3_encargadonuevo.Show();
                     }
+                    
                 }
                 else
                 {
@@ -810,33 +847,44 @@ namespace WebApp_AutomatizacionCGI
             {
                 lb_AvisoEncargadoCurso.Text = "";
                 if (Validar.validarRut(rut))
-                {
+                {                    
                     lb_AvisoEncargadoCurso.Text = "";
-                    if (Validar.validarEmail(correo))
+                    int aux = control.BuscarEncargadosRepetidos(rut).Count;
+                    if (aux == 0)
                     {
                         lb_AvisoEncargadoCurso.Text = "";
-                        Encargado nuevo = new Encargado
+                        if (Validar.validarEmail(correo))
                         {
-                            Rut = rut,
-                            Nombre = nombre,
-                            Apellido = apellido,
-                            Correo = correo,
-                            ID_Estado = id_Estado,
-                            Codigo = codigo
+                            lb_AvisoEncargadoCurso.Text = "";
+                            Encargado nuevo = new Encargado
+                            {
+                                Rut = rut,
+                                Nombre = nombre,
+                                Apellido = apellido,
+                                Correo = correo,
+                                ID_Estado = id_Estado,
+                                Codigo = codigo
 
-                        };
+                            };
 
-                        if (control.addEncargados(nuevo))
+                            if (control.addEncargados(nuevo))
+                            {
+                                ModalPopupExtender1_cursonuevo.Show();
+                                txt_RutEncargardo_Curso.Text = rut;
+                            }
+                        }
+                        else
                         {
-                            ModalPopupExtender1_cursonuevo.Show();
-                            txt_RutEncargardo_Curso.Text = rut;
+                            lb_AvisoEncargadoCurso.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                            ModalPopupExtender4_EncargadoVistaCurso.Show();
                         }
                     }
                     else
                     {
-                        lb_AvisoEncargadoCurso.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                        lb_AvisoEncargadoCurso.Text = "El Rut "+rut+ " Ya se encuentra registrado!";
                         ModalPopupExtender4_EncargadoVistaCurso.Show();
                     }
+                    
                 }
                 else
                 {

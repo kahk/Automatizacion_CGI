@@ -116,6 +116,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
 
         }
 
+        public List<object> BuscarEncargadosRepetidos(string rut)
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado
+                               where e.Rut == rut
+                               select new { e.Rut };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
 
 

@@ -39,5 +39,26 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Buscar_Docente_En_AsistenciaCurso(int id_pad, string codigo)
+        {
+            try
+            {
+                var consulta = from cd in contexto.Curso_Docente
+                               join d in contexto.Docente on cd.Rut_Docente equals d.Rut
+                               join c in contexto.Curso on cd.ID_Curso equals c.ID_Curso
+                               join p in contexto.Pad on c.ID_Curso equals p.ID_Curso
+                               where d.Codigo == codigo && p.ID_Pad == id_pad
+                               select new { cd.ID_Curso_Docente };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+
+
     }
 }

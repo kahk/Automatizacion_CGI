@@ -115,5 +115,121 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> BuscarInfoPad(int pad)
+        {
+            try
+            {
+                var consulta = from p in contexto.Pad
+                               where p.ID_Pad == pad
+                               select new { p.Hora_Inicio, p.Hora_Termino, p.Sala, p.Sala_Coffe };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        //------------------
+        public String hora_inicio(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                               where p.ID_Pad == pad
+                               select new { p.Hora_Inicio}).First().Hora_Inicio.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String hora_fin(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   where p.ID_Pad == pad
+                                   select new { p.Hora_Termino }).First().Hora_Termino.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String sala(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   where p.ID_Pad == pad
+                                   select new { p.Sala }).First().Sala.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+        public String sala_coffe(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   where p.ID_Pad == pad
+                                   select new { p.Sala_Coffe }).First().Sala_Coffe.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String Nombreencargado(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                                   join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                                   where p.ID_Pad == pad
+                                   select new { e.Nombre }).First().Nombre.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
+        public String Apellidoencargado(int pad)
+        {
+            try
+            {
+                String consulta = (from p in contexto.Pad
+                                   join c in contexto.Curso on p.ID_Curso equals c.ID_Curso
+                                   join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                                   where p.ID_Pad == pad
+                                   select new { e.Apellido }).First().Apellido.ToString();
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return "";
+            }
+        }
+
     }
 }

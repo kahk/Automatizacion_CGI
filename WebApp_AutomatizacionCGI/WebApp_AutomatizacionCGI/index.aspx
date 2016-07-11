@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="WebApp_AutomatizacionCGI.index" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,6 +13,8 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                             <div class="col-md-2">
+                                <br />
+                                <br />
                                 <br />
                                 <br />
                                 <asp:LinkButton ID="Link_Administrador" runat="server" CssClass="btn btn-danger btn-lg btn-block" OnClick="Link_Administrador_Click">Administrador</asp:LinkButton>
@@ -34,12 +38,15 @@
                                             <h3>Ingreso Encargado</h3>                                            
                                         </div>
                                         <div class="modal-body">
-                                            <asp:TextBox ID="txt_RutEncargado" runat="server" CssClass="form-control" placeholder="Rut..."></asp:TextBox>
-                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator4"  Display="Dynamic" ControlToValidate="txt_RutEncargado" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
                                             <br />
-                                            <asp:TextBox ID="txt_CodigoEncargado" runat="server" CssClass="form-control" placeholder="Codigo..."></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3"  Display="Dynamic" ControlToValidate="txt_CodigoEncargado" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="tonto culiao"></asp:RequiredFieldValidator>
-                                       </div>
+                                            <asp:TextBox ID="txt_RutEncargado" runat="server" CssClass="form-control" placeholder="Rut..."></asp:TextBox>
+                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargado" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>    
+                                            <br />
+                                            <asp:TextBox ID="txt_CodigoEncargado" runat="server" CssClass="form-control" placeholder="Codigo..." TextMode="Password"></asp:TextBox>
+                                           <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_codigoEncargado" TargetControlID="txt_CodigoEncargado" Enabled="true" ValidChars="kK0123456789" runat="server"></asp:FilteredTextBoxExtender>    
+                                            <br />                                            
+                                            <asp:Label ID="lb_IngresoEncargado" runat="server" CssClass="label label-danger" Text=""></asp:Label>
+                                        </div>
                                         <div class="modal-footer">
                                             <asp:LinkButton ID="Link_IngresarEncargado" runat="server" OnClick="Link_IngresarEncargado_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
                                         </div>
@@ -59,14 +66,16 @@
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3>Ingreso Administrador</h3>                                            
+                                            <h3>Ingreso Administrador</h3>
                                         </div>
                                         <div class="modal-body">
                                             <asp:TextBox ID="txt_Usuario" runat="server" CssClass="form-control" placeholder="Usuario...."></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"  Display="Dynamic" ControlToValidate="txt_Usuario" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuario" TargetControlID="txt_Usuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />
-                                            <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeholder="Password...."></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" Display="Dynamic" SetFocusOnError="true" ControlToValidate="txt_Clave" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                            <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeholder="Password...." TextMode="Password"></asp:TextBox>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_clave" TargetControlID="txt_Clave" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
+                                            <br />                                            
+                                            <asp:Label ID="lb_IngresoAdministrador" CssClass="label label-danger" runat="server" Text=""></asp:Label>
                                         </div>
                                         <div class="modal-footer">
                                             <asp:LinkButton ID="Link_Ingresar" runat="server" OnClick="Link_Ingresar_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>
@@ -87,14 +96,17 @@
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h3>Ingreso a Encuesta</h3>                                            
+                                            <h3>Ingreso a Encuesta</h3>
                                         </div>
                                         <div class="modal-body">
                                             <asp:TextBox ID="txt_usuarioEncuesta" runat="server" CssClass="form-control" placeholder="Usuario..."></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator5"  Display="Dynamic" ControlToValidate="txt_usuarioEncuesta" SetFocusOnError="true" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuarioEncuesta" TargetControlID="txt_usuarioEncuesta" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />
                                             <asp:TextBox ID="txt_passwordEncuesta" runat="server" CssClass="form-control" placeholder="Password..."></asp:TextBox>
-                                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" Display="Dynamic" SetFocusOnError="true" ControlToValidate="txt_passwordEncuesta" CssClass="text-danger" runat="server" ErrorMessage="*"></asp:RequiredFieldValidator>
+                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_passwordencuesta" TargetControlID="txt_passwordEncuesta" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
+                                            <br />
+                                            <br />
+                                            <asp:Label ID="lb_IngresoEncuestas" runat="server" Text=""></asp:Label>
                                         </div>
                                         <div class="modal-footer">
                                             <asp:LinkButton ID="Link_CargarEncuesta" runat="server" OnClick="Link_CargarEncuesta_Click" CssClass="btn btn-primary">Ingresar</asp:LinkButton>

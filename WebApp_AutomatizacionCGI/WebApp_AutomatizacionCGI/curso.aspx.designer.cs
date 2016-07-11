@@ -40,13 +40,13 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_CodigoDocente;
         
         /// <summary>
-        /// Control RequiredFieldValidator1.
+        /// Control FilteredTextBoxExtender_codigoDocente.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_codigoDocente;
         
         /// <summary>
         /// Control Link_RegistrarAsistencia.
@@ -65,6 +65,33 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_Bienvenida;
+        
+        /// <summary>
+        /// Control lb_numeropad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_numeropad;
+        
+        /// <summary>
+        /// Control lb_infoPad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_infoPad;
+        
+        /// <summary>
+        /// Control GridView_DatosCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_DatosCurso;
         
         /// <summary>
         /// Control Link_CerrarCurso.

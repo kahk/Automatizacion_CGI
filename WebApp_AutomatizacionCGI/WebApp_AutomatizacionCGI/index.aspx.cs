@@ -23,31 +23,50 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_Ingresar_Click(object sender, EventArgs e)
         {
             ControladorUsuario control = new ControladorUsuario();
-
-            if (IsValid) {
-
-                if (control.validarUsuario(txt_Usuario.Text, txt_Clave.Text))
+            if (txt_Usuario.Text == "")
+            {
+                lb_IngresoAdministrador.Text = "** Ingrese su nickname";
+                txt_Usuario.Focus();
+            }
+            else
+            {
+                lb_IngresoAdministrador.Text = "";
+                if (txt_Clave.Text == "")
                 {
-
-                    String datoUsuario = txt_Usuario.Text;
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
-                                                                                     DateTime.Now.AddSeconds(500), false,
-                                                                                     datoUsuario, FormsAuthentication.FormsCookiePath);
-                    String encTicket = FormsAuthentication.Encrypt(ticket);
-
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-
-                    Session["IDUsuario"] = txt_Usuario.Text;
-
-
-                    Response.Redirect("home.aspx");
+                    lb_IngresoAdministrador.Text = "** Ingrese su clave";
+                    txt_Clave.Focus();
                 }
                 else
                 {
-                    Link_Ingresar.CssClass = "btn btn-danger";
-                    Link_Ingresar.Text = "Datos Incorrectos";
+                    lb_IngresoAdministrador.Text = "";
+                    if (IsValid)
+                    {
+
+                        if (control.validarUsuario(txt_Usuario.Text, txt_Clave.Text))
+                        {
+                            lb_IngresoAdministrador.Text = "";
+                            String datoUsuario = txt_Usuario.Text;
+                            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
+                                                                                             DateTime.Now.AddSeconds(500), false,
+                                                                                             datoUsuario, FormsAuthentication.FormsCookiePath);
+                            String encTicket = FormsAuthentication.Encrypt(ticket);
+
+                            Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+                            Session["IDUsuario"] = txt_Usuario.Text;
+
+
+                            Response.Redirect("home.aspx");
+                        }
+                        else
+                        {
+                            lb_IngresoAdministrador.Text = "** Datos no validos";
+                        }
+                    }
                 }
             }
+
+         
 
         }
 
@@ -55,33 +74,64 @@ namespace WebApp_AutomatizacionCGI
         {
             ControladorEncargado control = new ControladorEncargado();
             ControladorCurso controlcurso = new ControladorCurso();
-            if (IsValid)
+            String rut = txt_RutEncargado.Text;
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+            if (rut == "..-" || rut.Length < 11)
             {
-
-                if (control.validarEncargado(txt_RutEncargado.Text, txt_CodigoEncargado.Text ))
+                lb_IngresoEncargado.Text = "** Ingrese su rut";
+                txt_RutEncargado.Focus();
+            }
+            else
+            {
+                if (txt_CodigoEncargado.Text == "")
                 {
-                    
-                    String datoUsuario = txt_RutEncargado.Text;
-                    FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
-                                                                                     DateTime.Now.AddSeconds(500), false,
-                                                                                     datoUsuario, FormsAuthentication.FormsCookiePath);
-                    String encTicket = FormsAuthentication.Encrypt(ticket);
-
-                    Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-
-                                       
-                    Session["IDUsuario"] = txt_RutEncargado.Text;  
-
-                    Response.Redirect("curso.aspx");
-                    
-
+                    lb_IngresoEncargado.Text = "** Registre su codigo";
+                    txt_CodigoEncargado.Focus();
                 }
                 else
                 {
-                    Link_Ingresar.CssClass = "btn btn-danger";
-                    Link_Ingresar.Text = "Datos Incorrectos";
+                    lb_IngresoEncargado.Text = "";
+                    if (Validar.validarRut(rut))
+                    {
+                        lb_IngresoEncargado.Text = "";
+                        if (IsValid)
+                        {
+
+                            if (control.validarEncargado(txt_RutEncargado.Text, txt_CodigoEncargado.Text))
+                            {
+                                lb_IngresoEncargado.Text = "";
+                                String datoUsuario = txt_RutEncargado.Text;
+                                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, txt_Usuario.Text, DateTime.Now,
+                                                                                                 DateTime.Now.AddSeconds(500), false,
+                                                                                                 datoUsuario, FormsAuthentication.FormsCookiePath);
+                                String encTicket = FormsAuthentication.Encrypt(ticket);
+
+                                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+
+
+                                Session["IDUsuario"] = txt_RutEncargado.Text;
+
+                                Response.Redirect("curso.aspx");
+
+
+                            }
+                            else
+                            {
+                                lb_IngresoEncargado.Text = "Datos no validos";
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        lb_IngresoEncargado.Text = "Rut no valido";
+                    }         
+
                 }
+
             }
+           
         }
 
 
