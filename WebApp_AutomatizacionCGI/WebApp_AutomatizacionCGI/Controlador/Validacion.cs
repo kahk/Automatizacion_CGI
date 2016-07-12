@@ -50,7 +50,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
             rut = rut.Replace(".", "");
             rut = rut.Replace("-", "");
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", "");
             int cantidad = rut.Length;
             
                 rutAux = int.Parse(rut.Substring(0, rut.Length - 1));

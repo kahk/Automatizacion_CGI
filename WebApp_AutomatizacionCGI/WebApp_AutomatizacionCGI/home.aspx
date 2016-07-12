@@ -31,7 +31,7 @@
                             <asp:LinkButton ID="Link_VistaUsuarios" runat="server" OnClick="Link_VistaUsuarios_Click" CssClass="btn btn-danger btn-block">Usuarios</asp:LinkButton>
                             <br />
                             <br />
-                             <asp:LinkButton ID="Link_VistaReportes" runat="server"  CssClass="btn btn-danger btn-block">Reportes</asp:LinkButton>
+                             <asp:LinkButton ID="Link_VistaReportes" runat="server" OnClick="Link_VistaReportes_Click"  CssClass="btn btn-danger btn-block">Reportes</asp:LinkButton>
                             
                         </div>
                         <div class="col-md-1"></div>
@@ -69,10 +69,12 @@
                 <asp:View ID="View1_Docentes" runat="server">
                     <div class="col-md-1"></div>
                     <div class="col-md-10">
-                        <asp:TextBox ID="txt_BuscarDocente" runat="server"></asp:TextBox>
-                        <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
+                        <asp:TextBox ID="txt_BuscarDocente" runat="server" MaxLength="9" placeholder="111111111"></asp:TextBox>
+                          <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_BuscarDocente" TargetControlID="txt_BuscarDocente" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
+                        <asp:LinkButton ID="Link_BuscarDocente" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarDocente_Click">Buscar</asp:LinkButton>
                         <asp:LinkButton ID="Link_AbrirModalDocente" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalDocente_Click">Nuevo Docente</asp:LinkButton>
                         <asp:LinkButton ID="Link_Volver1" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
+                        <asp:Label ID="lb_AvisoBusqueda_Docente" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                         <br />
                         <br />
                         <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_docentes_PageIndexChanging" AllowPaging="True" OnSelectedIndexChanging="GridView_docentes_SelectedIndexChanging" PageSize="5">
@@ -261,10 +263,12 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <asp:TextBox ID="txt_BuscarEncargado" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_BuscarEncargado" runat="server" MaxLength="9" placeholder="111111111"></asp:TextBox>
+                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_BuscarEncargado" TargetControlID="txt_BuscarEncargado" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
                             <asp:LinkButton ID="Link_BuscarEncargado" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarEncargado_Click">Buscar</asp:LinkButton>
                             <asp:LinkButton ID="Link_AbrirModalEncargado" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalEncargado_Click">Nuevo Relator</asp:LinkButton>
                             <asp:LinkButton ID="Link_VolverEncargado" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
+                            <asp:Label ID="lb_AvisoBusqueda_Encargado" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
                             <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_Encargados_PageIndexChanging" PageSize="5">
@@ -346,8 +350,7 @@
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>
-                                    <asp:Label ID="Label7" runat="server" Text="Agregar Docente"></asp:Label>
+                                    <asp:LinkButton ID="Link_SalirEncargado" runat="server">X</asp:LinkButton>                                    
                                 </div>
                                 <div class="modal-body">
                                     <br />
@@ -432,11 +435,13 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <asp:TextBox ID="txt_BuscarCurso" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_BuscarCurso" runat="server" MaxLength="9"  placeholder="111111111"></asp:TextBox>
+                           <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_BuscarCurso" TargetControlID="txt_BuscarCurso" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
                             <asp:LinkButton ID="Link_BuscarCurso" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarCurso_Click">Buscar</asp:LinkButton>
                             <asp:LinkButton ID="Link_AbrirModalCurso" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalCurso_Click">Nuevo Curso</asp:LinkButton>
                             <asp:LinkButton ID="Link_VolverCurso" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
-                            <br />
+                           <asp:Label ID="lb_AvisoBusqueda_Cursos" runat="server" CssClass="label label-danger" Text=""></asp:Label>
+                             <br />
                             <br />
                             <asp:GridView ID="GridView_cursos" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_cursos_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_cursos_PageIndexChanging" PageSize="5">
                                 <Columns>
@@ -623,11 +628,10 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="form-group">
-                                        <asp:Label ID="lbCurso" runat="server" Text="" Visible="false"></asp:Label>
-                                        <br />
+                                        <asp:Label ID="lbCurso" runat="server" Text="" Visible="false"></asp:Label>                                        
                                         <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Encargado</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado_Curso" TargetControlID="txt_RutEncargardo_Curso" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
@@ -636,7 +640,7 @@
                                     <div class="form-group">
                                         <label for="txt_detalleCurso" class="col-sm-4 control-label">Detalle</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                            <asp:TextBox ID="txt_detalleCurso" runat="server" CssClass="form-control" MaxLength="249" placeholder="Maximo 250 caracteres"></asp:TextBox>
                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_detallecurso" TargetControlID="txt_detalleCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -645,7 +649,7 @@
                                      <div class="form-group">
                                         <label for="txt_UsuarioCurso" class="col-sm-4 control-label">Usuario</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_UsuarioCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                            <asp:TextBox ID="txt_UsuarioCurso" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuariocurso" TargetControlID="txt_UsuarioCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -654,7 +658,7 @@
                                      <div class="form-group">
                                         <label for="txt_ContraseñaCurso" class="col-sm-4 control-label">Contraseña</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_ContraseñaCurso" runat="server" CssClass="form-control" MaxLength="249"></asp:TextBox>
+                                            <asp:TextBox ID="txt_ContraseñaCurso" runat="server" CssClass="form-control" MaxLength="30"></asp:TextBox>
                                              <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_ContraseñaCurso" TargetControlID="txt_ContraseñaCurso" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                         </div>
                                     </div>
@@ -839,16 +843,16 @@
                                     <div class="form-group">
                                         <label for="txt_horainicioPad" class="col-sm-4 control-label">Hora Inicio</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_horainicioPad" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
                                             <asp:MaskedEditExtender ID="MaskedEditExtender1" TargetControlID="txt_horainicioPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_horafinPad" class="col-sm-4 control-label">Hora Fin</label>
+                                        <label for="txt_horafinPad" class="col-sm-4 control-label" >Hora Fin</label>
                                         <div class="col-sm-8">
-                                            <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="txt_horafinPad" runat="server" CssClass="form-control" MaxLength="8"></asp:TextBox>
                                              <asp:MaskedEditExtender ID="MaskedEditExtender2" TargetControlID="txt_horafinPad" Mask="99:99:99" MaskType="Time" ClearMaskOnLostFocus="false" Enabled="true" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
@@ -892,9 +896,11 @@
                     <div class="row">
                         <div class="col-md-1"></div>
                         <div class="col-md-10">
-                            <asp:TextBox ID="txt_Buscar_DocenteAsignar" runat="server"></asp:TextBox>
-                            <asp:LinkButton ID="Link_BuscarDocenteAsignar" runat="server" CssClass="btn btn-primary">Buscar</asp:LinkButton>
+                            <asp:TextBox ID="txt_Buscar_DocenteAsignar" runat="server" MaxLength="9"  placeholder="111111111"></asp:TextBox>
+                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_Buscar_DocenteAsignar" TargetControlID="txt_Buscar_DocenteAsignar" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
+                            <asp:LinkButton ID="Link_BuscarDocenteAsignar" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarDocenteAsignar_Click">Buscar</asp:LinkButton>
                             <asp:LinkButton ID="Link_volverviewcursos" runat="server" CssClass="btn btn-default" OnClick="Link_volverviewcursos_Click">Volver</asp:LinkButton>
+                            <asp:Label ID="lb_AvisoBusqueda_AsignarDocente" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
                             <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="8" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
@@ -935,10 +941,13 @@
                             </asp:GridView>
                             <br />
                             <br />
+                            <asp:Label ID="lb_CantidadUsuariosAsignados" runat="server" CssClass="label label-danger" Text=""></asp:Label>
+                            <br />
+                            <asp:Label ID="lb_UsuariosYaAsignado" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                         </div>
 
                         <div class="col-md-1">
-                            <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text="" Visible="false"></asp:Label>
                             <%--//visible = false--%>
                         </div>
                     </div>
@@ -955,10 +964,10 @@
                                         <h3>Ingreso Administrador</h3>
                                     </div>
                                     <div class="modal-body">
-                                        <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..."></asp:TextBox>   
+                                        <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..." MaxLength="30"></asp:TextBox>   
                                          <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nickname" TargetControlID="txt_nickname" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>                                     
                                         <br />
-                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password"></asp:TextBox>                                        
+                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password" MaxLength="30"></asp:TextBox>                                        
                                         <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_password" TargetControlID="txt_password" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>    
                                         <br />
                                         <asp:Label ID="lb_accesonopermitido" runat="server" CssClass="label label-danger" Text=""></asp:Label>                                      
@@ -979,11 +988,10 @@
                 <asp:View ID="view6_root" runat="server">
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                             <asp:TextBox ID="txt_BuscarUsuario" runat="server"></asp:TextBox>
-                            <asp:LinkButton ID="Link_BuscarUsuario" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarUsuario_Click">Buscar</asp:LinkButton>
+                        <div class="col-md-10">                            
                             <asp:LinkButton ID="Link_AbrirModalUsuario" runat="server" CssClass="btn btn-danger" OnClick="Link_AbrirModalUsuario_Click">Nuevo Usuario</asp:LinkButton>
                             <asp:LinkButton ID="Link_Volver_usuario" runat="server" CssClass="btn btn-default" OnClick="btn_volver_Click">Volver</asp:LinkButton>
+                            <asp:Label ID="lb_AvisoBusqueda_Usuarios" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
                             <asp:GridView ID="GridView_Usuarios" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_Usuarios_PageIndexChanging" OnSelectedIndexChanging="GridView_Usuarios_SelectedIndexChanging" PageSize="8">
@@ -1146,12 +1154,140 @@
                                 </div>
                             </div>
                         </div>
-                    </asp:Panel>
-                    
-
+                    </asp:Panel>                    
                 </asp:View>
 
+                <asp:View ID="view7_reportesAsistencia" runat="server">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_ReportesAsistencia" runat="server" OnClick="Link_VistaReportes_Click" CssClass="btn btn-danger btn-block">Asistencia</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_ReportesEncuestas" runat="server" OnClick="Link_ReportesEncuestas_Click" CssClass="btn btn-danger btn-block">Encuestas</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="Link_ExportarAsistenciaAPDF" runat="server" OnClick="Link_ExportarAsistenciaAPDF_Click" CssClass="btn btn-primary btn-block">Exportar a PDF</asp:LinkButton>
+                            <br />
+                            <br />
+                             <asp:LinkButton ID="Link_ExportarAsistenciaAExcel" runat="server" OnClick="Link_ExportarAsistenciaAExcel_Click" CssClass="btn btn-primary btn-block">Exportar a PDF</asp:LinkButton>
+                            <br />
+                            <br />
+                             <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-default btn-block">Volver</asp:LinkButton>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="txt_FechaBusqueda" class="col-sm-1 control-label">Fecha:</label>
+                                <div class="col-sm-2">
+                                    <asp:TextBox ID="txt_FechaBusqueda" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender_txt_FechaBusqueda" runat="server" TargetControlID="txt_FechaBusqueda" PopupButtonID="Link_FechaBusqueda" Format="dd/MM/yyyy"></asp:CalendarExtender>
+                                </div>
+                                <div class="col-sm-1">
+                                    <asp:LinkButton ID="Link_FechaBusqueda" runat="server"><i class="fa fa-calendar" aria-hidden="true"></i></asp:LinkButton>
+                                </div>
+                                <div class="col-sm-1">
+                                    <asp:LinkButton ID="Link_BuscarAsistenciaXfecha" OnClick="Link_BuscarAsistenciaXfecha_Click" CssClass="btn btn-primary" runat="server">Buscar</asp:LinkButton>
+                                </div>
+                                <div class="col-sm-1"></div>
 
+                                <label for="txt_RutBusqueda" class="col-sm-1 control-label">Rut:</label>
+                                <div class="col-sm-2">
+                                    <asp:TextBox ID="txt_RutBusqueda" runat="server" CssClass="form-control" MaxLength="9" placeholder="11111111"></asp:TextBox>
+                                    <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_RutBusqueda" TargetControlID="txt_RutBusqueda" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
+                                </div>
+                                <div class="col-sm-1">
+                                    <asp:LinkButton ID="Link_BuscarAsistenciaXrut" OnClick="Link_BuscarAsistenciaXrut_Click" CssClass="btn btn-primary" runat="server">Buscar</asp:LinkButton>
+                                </div>
+                            </div>                            
+                            <br />
+                            <asp:Label ID="lb_AvisoBusquedaReporteAsistencia" runat="server" CssClass="label label-danger" Text=""></asp:Label>
+                            <br />
+                            <br />
+                            <asp:GridView ID="GridView_ReporteAsistencia" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Pad" SortExpression="ID_Pad">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Pad") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Pad") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Fecha" SortExpression="Fecha">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Fecha") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Fecha") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Rut" SortExpression="Rut_Docente">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("Rut_Docente") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("Rut_Docente") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Nombre" SortExpression="Nombre">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("Nombre") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("Nombre") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Apellido" SortExpression="Apellido">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("Apellido") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("Apellido") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Estado" SortExpression="Estado">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("Estado") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("Estado") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>                            
+                        </div>
+                    </div>
+                </asp:View>
+
+                <asp:View ID="View8_ReportesEncuestas" runat="server">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="Link_VistaReportes_Click" CssClass="btn btn-danger btn-block">Asistencia</asp:LinkButton>
+                            <br />
+                            <br />
+                            <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Link_ReportesEncuestas_Click" CssClass="btn btn-danger btn-block">Encuestas</asp:LinkButton>
+                            <br />
+                            <br />
+                             <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-default btn-block">Volver</asp:LinkButton>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            encuestas
+                            
+                        </div>
+                    </div>     
+                </asp:View>                
 
             </asp:MultiView>
         </ContentTemplate>

@@ -148,12 +148,15 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_VistaEncuestas_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 3;
+            txt_usuarioEncuesta.Text = "";
+            txt_passwordEncuesta.Text = "";
         }
                
 
         protected void Link_Volver1_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
+            
         }
 
         protected void Link_IngresarEncuesta_Click(object sender, EventArgs e)

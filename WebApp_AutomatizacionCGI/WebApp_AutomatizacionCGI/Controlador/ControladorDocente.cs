@@ -167,5 +167,38 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+
+        public List<object> Lista_Buscar_Docentes(string rut)
+        {
+            try
+            {
+                var consulta = from d in contexto.Docente
+                               join e in contexto.Estado on d.ID_Estado equals e.ID_Estado
+                               where d.Codigo == rut
+                               select new { d.Rut, d.Nombre, d.Apellido, d.Correo, d.Fecha_Ingreso, d.ID_Estado, e.Detalle };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<object> Lista_Buscar_AsignarDocentes(string rut)
+        {
+            try
+            {
+                var consulta = from d in contexto.Docente
+                               where d.ID_Estado == 1 && d.Codigo == rut
+                               select new { d.Rut, d.Nombre, d.Apellido };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }

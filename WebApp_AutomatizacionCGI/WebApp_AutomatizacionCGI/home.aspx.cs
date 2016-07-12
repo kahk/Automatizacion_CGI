@@ -42,6 +42,8 @@ namespace WebApp_AutomatizacionCGI
                 MostrarEstadoUsuario();
 
                 MostrarDatosUsuarios();
+
+                
             }
         }
 
@@ -60,33 +62,43 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_VistaDocentes_Click(object sender, EventArgs e)
         {    
-            MultiView1.ActiveViewIndex = 1;            
+            MultiView1.ActiveViewIndex = 1;
+            MostrarDocentes();
+            txt_BuscarDocente.Text = "";  
         }
 
         protected void Link_VistaEncargados_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 2;
+            MostrarEncargados();
+            txt_BuscarEncargado.Text = "";
         }
 
         protected void Link_VistaCursos_Click(object sender, EventArgs e)
         {   
             MultiView1.ActiveViewIndex = 3;
+            MostrarCursos();
+            txt_BuscarCurso.Text = "";
         }
 
         protected void Link_volverviewcursos_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 3;
+            lb_CantidadUsuariosAsignados.Text = "";
+            lb_UsuariosYaAsignado.Text = "";
         }
 
         protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
         {            
             MultiView1.ActiveViewIndex = 4;
+            Mostrar_AsignarDocentes();
+            txt_Buscar_DocenteAsignar.Text = "";
         }
             
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
         {
             txt_nickname.Text = "";
-            txt_password.Text = "";
+            txt_password.Text = "";                        
             MultiView1.ActiveViewIndex = 5;
         }
 
@@ -237,7 +249,7 @@ namespace WebApp_AutomatizacionCGI
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-            
+            rut = rut.Replace(",", ".");
             int id_Estado = 0;
             int.TryParse(cb_EstadoDocente.SelectedValue, out id_Estado);
 
@@ -250,56 +262,67 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 lb_AvisoDocente.Text = "";
-                DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
-                if (Validar.validarRut(rut))
-                {                
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    
                     lb_AvisoDocente.Text = "";
-
-                    int aux = control.BuscarDocentesRepetidos(rut).Count;
-                    if (aux == 0)
+                    DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
+                    if (Validar.validarRut(rut))
                     {
                         lb_AvisoDocente.Text = "";
-                        if (Validar.validarEmail(correo))
+
+                        int aux = control.BuscarDocentesRepetidos(rut).Count;
+                        if (aux == 0)
                         {
                             lb_AvisoDocente.Text = "";
-
-                            Docente nuevo = new Docente
+                            if (Validar.validarEmail(correo))
                             {
-                                Rut = rut,
-                                Nombre = nombre,
-                                Apellido = apellido,
-                                Fecha_Ingreso = fecha,
-                                Correo = correo,
-                                ID_Estado = id_Estado,
-                                Codigo = codigo
+                                lb_AvisoDocente.Text = "";
 
-                            };
+                                Docente nuevo = new Docente
+                                {
+                                    Rut = rut,
+                                    Nombre = nombre,
+                                    Apellido = apellido,
+                                    Fecha_Ingreso = fecha,
+                                    Correo = correo,
+                                    ID_Estado = id_Estado,
+                                    Codigo = codigo
 
-                            if (control.addDocentes(nuevo))
+                                };
+
+                                if (control.addDocentes(nuevo))
+                                {
+                                    MostrarDocentes();
+                                }
+                            }
+                            else
                             {
-                                MostrarDocentes();
+                                lb_AvisoDocente.Text = "Correo no Valido";
+                                ModalPopupExtender0_ModalDocente.Show();
                             }
                         }
                         else
                         {
-                            lb_AvisoDocente.Text = "Correo no Valido";
+                            lb_AvisoDocente.Text = "El Rut " + rut + " Ya se encuentra registrado!";
                             ModalPopupExtender0_ModalDocente.Show();
                         }
+
                     }
                     else
                     {
-                        lb_AvisoDocente.Text = "El Rut " + rut + " Ya se encuentra registrado!";
+                        lb_AvisoDocente.Text = "Rut no Valido. Ejemplo 11.111.111-1";
                         ModalPopupExtender0_ModalDocente.Show();
                     }
-                   
+
                 }
                 else
                 {
                     lb_AvisoDocente.Text = "Rut no Valido. Ejemplo 11.111.111-1";
                     ModalPopupExtender0_ModalDocente.Show();
                 }
-               
-
             }
 
         }
@@ -551,7 +574,7 @@ namespace WebApp_AutomatizacionCGI
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", ".");
             if (txt_RutEncargardo.Text == "..-" || rut.Length < 11 || txt_NombreEncargado.Text == "" || txt_ApellidoEncargado.Text == "" ||
                 txt_CorreoEncargado.Text == "")
             {
@@ -562,45 +585,56 @@ namespace WebApp_AutomatizacionCGI
             {
 
                 lb_AvisoEncargado.Text = "";
-                if (Validar.validarRut(rut))
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
                 {
                     lb_AvisoEncargado.Text = "";
-                   int aux = control.BuscarEncargadosRepetidos(rut).Count;
-
-                    if (aux == 0)
+                    if (Validar.validarRut(rut))
                     {
                         lb_AvisoEncargado.Text = "";
-                        if (Validar.validarEmail(correo))
+                        int aux = control.BuscarEncargadosRepetidos(rut).Count;
+
+                        if (aux == 0)
                         {
                             lb_AvisoEncargado.Text = "";
-                            Encargado nuevo = new Encargado
+                            if (Validar.validarEmail(correo))
                             {
-                                Rut = rut,
-                                Nombre = nombre,
-                                Apellido = apellido,
-                                Correo = correo,
-                                ID_Estado = id_Estado,
-                                Codigo = codigo
+                                lb_AvisoEncargado.Text = "";
+                                Encargado nuevo = new Encargado
+                                {
+                                    Rut = rut,
+                                    Nombre = nombre,
+                                    Apellido = apellido,
+                                    Correo = correo,
+                                    ID_Estado = id_Estado,
+                                    Codigo = codigo
 
-                            };
+                                };
 
-                            if (control.addEncargados(nuevo))
+                                if (control.addEncargados(nuevo))
+                                {
+                                    MostrarEncargados();
+                                }
+                            }
+                            else
                             {
-                                MostrarEncargados();
+                                lb_AvisoEncargado.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                                ModalPopupExtender3_encargadonuevo.Show();
                             }
                         }
                         else
                         {
-                            lb_AvisoEncargado.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                            lb_AvisoEncargado.Text = "El Rut " + rut + " Ya se encuentra registrado!";
                             ModalPopupExtender3_encargadonuevo.Show();
                         }
+
                     }
                     else
                     {
-                        lb_AvisoEncargado.Text = "El Rut "+rut+ " Ya se encuentra registrado!";
+                        lb_AvisoEncargado.Text = "Rut no valido. Ejemplo 11.111.111-1";
                         ModalPopupExtender3_encargadonuevo.Show();
                     }
-                    
                 }
                 else
                 {
@@ -614,11 +648,7 @@ namespace WebApp_AutomatizacionCGI
 
 
 
-        protected void Link_BuscarEncargado_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         protected void GridView_Encargados_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView_Encargados.PageIndex = e.NewPageIndex;
@@ -672,10 +702,7 @@ namespace WebApp_AutomatizacionCGI
 
 
 
-        protected void Link_BuscarCurso_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void Link_ModificarCurso_Click(object sender, EventArgs e)
         {
@@ -700,7 +727,7 @@ namespace WebApp_AutomatizacionCGI
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", ".");
             if (txt_RutEncargardo_Curso.Text == "" || txt_detalleCurso.Text == "" || txt_ContraseñaCurso.Text == "" || txt_UsuarioCurso.Text == "")
             {
                 lb_AvisoCurso.Text = "Complete Todo el Formulario";
@@ -709,34 +736,46 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 lb_AvisoCurso.Text = "";
-                if (Validar.validarRut(rut))
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
                 {
                     lb_AvisoCurso.Text = "";
-                    int aux = controlEnc.listaBuscarEncargados(rut).Count;
-
-                    if (aux == 0)
+                    if (Validar.validarRut(rut))
                     {
-                        lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
-                        ModalPopupExtender2_ConfirmarEncargado.Show();                        
+                        lb_AvisoCurso.Text = "";
+                        int aux = controlEnc.listaBuscarEncargados(rut).Count;
+
+                        if (aux == 0)
+                        {
+                            lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
+                            ModalPopupExtender2_ConfirmarEncargado.Show();
+                        }
+                        else
+                        {
+                            lb_encargadoNoencontrado.Text = "";
+                            Curso nuevo = new Curso
+                            {
+                                ID_Curso = id_curso,
+                                Rut_Encargado = txt_RutEncargardo_Curso.Text,
+                                Detallecurso = txt_detalleCurso.Text,
+                                Usuario = txt_UsuarioCurso.Text,
+                                Contraseña = txt_ContraseñaCurso.Text,
+                                ID_Estado = id_estado
+
+                            };
+                            if (control.ActualizarCurso(nuevo))
+                            {
+                                MostrarCursos();
+                            }
+                        }
                     }
                     else
                     {
-                        lb_encargadoNoencontrado.Text = "";
-                        Curso nuevo = new Curso
-                        {
-                            ID_Curso = id_curso,
-                            Rut_Encargado = txt_RutEncargardo_Curso.Text,
-                            Detallecurso = txt_detalleCurso.Text,
-                            Usuario = txt_UsuarioCurso.Text,
-                            Contraseña = txt_ContraseñaCurso.Text,
-                            ID_Estado = id_estado
-
-                        };
-                        if (control.ActualizarCurso(nuevo))
-                        {
-                            MostrarCursos();
-                        }
+                        lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
+                        ModalPopupExtender1_cursonuevo.Show();
                     }
+
                 }
                 else
                 {
@@ -761,7 +800,7 @@ namespace WebApp_AutomatizacionCGI
 
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", ".");
             if (txt_RutEncargardo_Curso.Text == "..-" || rut.Length < 11 || detalle == "" || txt_ContraseñaCurso.Text == "" || txt_UsuarioCurso.Text == "")
             {
                 lb_AvisoCurso.Text = "Complete Todo el Formulario";
@@ -771,43 +810,54 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 lb_AvisoCurso.Text = "";
-                if (Validar.validarRut(rut))
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
                 {
                     lb_AvisoCurso.Text = "";
-
-                    int aux = controlEnc.listaBuscarEncargados(rut).Count;
-
-                    if (aux == 0)
+                    if (Validar.validarRut(rut))
                     {
-                        lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
-                        ModalPopupExtender2_ConfirmarEncargado.Show();
+                        lb_AvisoCurso.Text = "";
+
+                        int aux = controlEnc.listaBuscarEncargados(rut).Count;
+
+                        if (aux == 0)
+                        {
+                            lb_encargadoNoencontrado.Text = "El relator que Ingreso no existe <br/> Desea crear uno nuevo?";
+                            ModalPopupExtender2_ConfirmarEncargado.Show();
+                        }
+                        else
+                        {
+
+                            lb_AvisoCurso.Text = "";
+                            Curso nuevo = new Curso
+                            {
+                                Rut_Encargado = rut,
+                                Detallecurso = detalle,
+                                Usuario = usuario,
+                                Contraseña = contraseña,
+                                ID_Estado = 1
+
+                            };
+
+                            if (control.addCursos(nuevo))
+                            {
+                                MostrarCursos();
+                            }
+
+
+                            lbCurso.Visible = false;
+                            txt_RutEncargardo_Curso.Text = "";
+                            txt_detalleCurso.Text = "";
+                            txt_UsuarioCurso.Text = "";
+                            txt_ContraseñaCurso.Text = "";
+
+                        }
                     }
                     else
                     {
-
-                        lb_AvisoCurso.Text = "";
-                        Curso nuevo = new Curso
-                        {
-                            Rut_Encargado = rut,
-                            Detallecurso = detalle,
-                            Usuario = usuario,
-                            Contraseña = contraseña,
-                            ID_Estado = 1
-
-                        };
-
-                        if (control.addCursos(nuevo))
-                        {
-                            MostrarCursos();
-                        }
-
-
-                        lbCurso.Visible = false;
-                        txt_RutEncargardo_Curso.Text = "";
-                        txt_detalleCurso.Text = "";
-                        txt_UsuarioCurso.Text = "";
-                        txt_ContraseñaCurso.Text = "";
-
+                        lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
+                        ModalPopupExtender1_cursonuevo.Show();
                     }
                 }
                 else
@@ -815,7 +865,6 @@ namespace WebApp_AutomatizacionCGI
                     lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
                     ModalPopupExtender1_cursonuevo.Show();
                 }
-
             }
         }
 
@@ -848,9 +897,10 @@ namespace WebApp_AutomatizacionCGI
             codigo = codigo.Replace(".", "");
             codigo = codigo.Replace("-", "");
             codigo = codigo.Replace("_", "");
-
+            
+            rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", ".");
             if (txt_NombreEncargadoCurso.Text == "" || txt_ApellidoEncargadoCurso.Text == "" || txt_CorreoEncargadoCurso.Text == "")
             {
                 lb_AvisoEncargadoCurso.Text = "Complete Todo el Formulario";
@@ -859,45 +909,56 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 lb_AvisoEncargadoCurso.Text = "";
-                if (Validar.validarRut(rut))
-                {                    
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
                     lb_AvisoEncargadoCurso.Text = "";
-                    int aux = control.BuscarEncargadosRepetidos(rut).Count;
-                    if (aux == 0)
+                    if (Validar.validarRut(rut))
                     {
                         lb_AvisoEncargadoCurso.Text = "";
-                        if (Validar.validarEmail(correo))
+                        int aux = control.BuscarEncargadosRepetidos(rut).Count;
+                        if (aux == 0)
                         {
                             lb_AvisoEncargadoCurso.Text = "";
-                            Encargado nuevo = new Encargado
+                            if (Validar.validarEmail(correo))
                             {
-                                Rut = rut,
-                                Nombre = nombre,
-                                Apellido = apellido,
-                                Correo = correo,
-                                ID_Estado = id_Estado,
-                                Codigo = codigo
+                                lb_AvisoEncargadoCurso.Text = "";
+                                Encargado nuevo = new Encargado
+                                {
+                                    Rut = rut,
+                                    Nombre = nombre,
+                                    Apellido = apellido,
+                                    Correo = correo,
+                                    ID_Estado = id_Estado,
+                                    Codigo = codigo
 
-                            };
+                                };
 
-                            if (control.addEncargados(nuevo))
+                                if (control.addEncargados(nuevo))
+                                {
+                                    ModalPopupExtender1_cursonuevo.Show();
+                                    txt_RutEncargardo_Curso.Text = rut;
+                                }
+                            }
+                            else
                             {
-                                ModalPopupExtender1_cursonuevo.Show();
-                                txt_RutEncargardo_Curso.Text = rut;
+                                lb_AvisoEncargadoCurso.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                                ModalPopupExtender4_EncargadoVistaCurso.Show();
                             }
                         }
                         else
                         {
-                            lb_AvisoEncargadoCurso.Text = "Correo no valido. Ejemplo inacap@inacap.cl";
+                            lb_AvisoEncargadoCurso.Text = "El Rut " + rut + " Ya se encuentra registrado!";
                             ModalPopupExtender4_EncargadoVistaCurso.Show();
                         }
+
                     }
                     else
                     {
-                        lb_AvisoEncargadoCurso.Text = "El Rut "+rut+ " Ya se encuentra registrado!";
+                        lb_AvisoEncargadoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
                         ModalPopupExtender4_EncargadoVistaCurso.Show();
                     }
-                    
                 }
                 else
                 {
@@ -1146,13 +1207,16 @@ namespace WebApp_AutomatizacionCGI
             int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
             string rut = lbcodigoDocente.Text;
-
+            int contador = 0;
             ControladorCursoDocente control = new ControladorCursoDocente();
 
             int aux = control.listaBuscarCurso_Docente(id_curso, rut).Count;
 
+            lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
+
             if (aux == 0)
             {
+                lb_UsuariosYaAsignado.Text = "";
                 Curso_Docente nuevo = new Curso_Docente
                 {
                     ID_Curso = id_curso,
@@ -1161,12 +1225,13 @@ namespace WebApp_AutomatizacionCGI
 
                 if (control.addCursoDocente(nuevo))
                 {
-                    // AÑADIR LABEL CON CANTIDAD DE DOCENTES ASIGNADOS
+                    contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
+                    lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
                 }
             }
             else
-            {
-
+            {                
+                lb_UsuariosYaAsignado.Text = "El usuario "+rut+" Ya ha sido asignado a este curso";
             }
         }
 
@@ -1304,7 +1369,7 @@ namespace WebApp_AutomatizacionCGI
             
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
-
+            rut = rut.Replace(",", ".");
             if (txt_RutUsuario.Text == "" || rut.Length < 11 || txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" ||
                 txt_NicknameUsuario.Text == "" || txt_PasswordUsuario.Text == "")
             {
@@ -1313,50 +1378,62 @@ namespace WebApp_AutomatizacionCGI
             }
             else
             {
+                lb_AvisoUsuario.Text = "";
                 int aux_nick = control.Buscar_nickname(txt_NicknameUsuario.Text).Count;
                 
-                if (Validar.validarRut(rut))
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
                 {
-                    int aux_rut = control.Buscar_Rut(rut).Count;
                     lb_AvisoUsuario.Text = "";
-                    if (aux_nick == 0)
+                    if (Validar.validarRut(rut))
                     {
+                        int aux_rut = control.Buscar_Rut(rut).Count;
                         lb_AvisoUsuario.Text = "";
-                        if (aux_rut == 0)
+                        if (aux_nick == 0)
                         {
                             lb_AvisoUsuario.Text = "";
-
-                            Usuario nuevo = new Usuario
+                            if (aux_rut == 0)
                             {
-                                Rut = rut,
-                                Nombre = nombre,
-                                Apellido = apellido,
-                                Nickname = nickname,
-                                Password = password,
-                                Tipo = tipo,
-                                ID_Estado = id_Estado
+                                lb_AvisoUsuario.Text = "";
 
-                            };
+                                Usuario nuevo = new Usuario
+                                {
+                                    Rut = rut,
+                                    Nombre = nombre,
+                                    Apellido = apellido,
+                                    Nickname = nickname,
+                                    Password = password,
+                                    Tipo = tipo,
+                                    ID_Estado = id_Estado
 
-                            if (control.addUsuario(nuevo))
-                            {
-                                MostrarUsuarios();
+                                };
+
+                                if (control.addUsuario(nuevo))
+                                {
+                                    MostrarUsuarios();
+                                }
                             }
+                            else
+                            {
+                                lb_AvisoUsuario.Text = "El Rut " + rut + " Ya se encuentra registrado!";
+                                ModalPopupExtender_Usuario.Show();
+                            }
+
                         }
                         else
                         {
-                            lb_AvisoUsuario.Text = "El Rut " + rut + " Ya se encuentra registrado!";
+                            lb_AvisoUsuario.Text = "Nickname ingresado no se encuetra disponible";
                             ModalPopupExtender_Usuario.Show();
+
                         }
 
                     }
                     else
                     {
-                        lb_AvisoUsuario.Text = "Nickname ingresado no se encuetra disponible";
+                        lb_AvisoUsuario.Text = "Rut no valido. Ejemplo 11.111.111-1";
                         ModalPopupExtender_Usuario.Show();
-                        
                     }
-                   
                 }
                 else
                 {
@@ -1398,13 +1475,335 @@ namespace WebApp_AutomatizacionCGI
             
         }
 
-        protected void Link_BuscarUsuario_Click(object sender, EventArgs e)
+        
+        protected void Link_BuscarDocente_Click(object sender, EventArgs e)
         {
+            ControladorDocente control = new ControladorDocente();
+            string rut = txt_BuscarDocente.Text;
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+            rut = rut.Replace(",", ".");
+            if (txt_BuscarDocente.Text == "" || rut.Length < 8)
+            {
+                lb_AvisoBusqueda_Docente.Text = "";
+                MostrarDocentes();
+            }
+            else
+            {    
+                
+                lb_AvisoBusqueda_Docente.Text = "";
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    lb_AvisoBusqueda_Docente.Text = "";
+                    if (Validar.validarRut(rut))
+                    {
+                        int aux = control.Lista_Buscar_Docentes(rut).Count;
+                        lb_AvisoBusqueda_Docente.Text = "";
+                        if (aux == 0)
+                        {
+                            lb_AvisoBusqueda_Docente.Text = "Docente con Rut " + rut + " No se encuentra registrado";
+                            MostrarDocentes();
+                        }
+                        else
+                        {
+                            txt_BuscarDocente.Text = "";
+                            lb_AvisoBusqueda_Docente.Text = "";
+                            GridView_docentes.DataSource = control.Lista_Buscar_Docentes(rut);
+                            GridView_docentes.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        lb_AvisoBusqueda_Docente.Text = "Rut no valido";
+                    }
+                }
+                else
+                {
+                    lb_AvisoBusqueda_Docente.Text = "Rut no valido";
+                }
+               
+            }
+        }
+
+
+        protected void Link_BuscarEncargado_Click(object sender, EventArgs e)
+        {
+            ControladorEncargado control = new ControladorEncargado();
+            String rut = txt_BuscarEncargado.Text;
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+            rut = rut.Replace(",", ".");
+
+            if (txt_BuscarEncargado.Text == "" || rut.Length < 8)
+            {
+                lb_AvisoBusqueda_Encargado.Text = "";
+                MostrarEncargados();
+            }
+            else
+            {
+
+                lb_AvisoBusqueda_Encargado.Text = "";
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    lb_AvisoBusqueda_Encargado.Text = "";
+                    if (Validar.validarRut(rut))
+                    {
+                        int aux = control.Lista_Buscar_Encargados(rut).Count;
+                        lb_AvisoBusqueda_Encargado.Text = "";
+                        if (aux == 0)
+                        {
+                            lb_AvisoBusqueda_Encargado.Text = "Relator con Rut " + rut + " No se encuentra registrado";
+                            MostrarEncargados();
+                        }
+                        else
+                        {
+                            txt_BuscarEncargado.Text = "";
+                            lb_AvisoBusqueda_Encargado.Text = "";
+                            GridView_Encargados.DataSource = control.Lista_Buscar_Encargados(rut);
+                            GridView_Encargados.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        lb_AvisoBusqueda_Encargado.Text = "Rut no valido";
+                    }
+
+                }
+                else
+                {
+                    lb_AvisoBusqueda_Encargado.Text = "Rut no valido";
+                }
+
+            }
             
+        }
+
+        protected void Link_BuscarCurso_Click(object sender, EventArgs e)
+        {
+            ControladorCurso control = new ControladorCurso();
+            String rut = txt_BuscarCurso.Text;
+            
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+            rut = rut.Replace(",", ".");
+
+            if (txt_BuscarCurso.Text == "" || rut.Length < 8)
+            {
+                lb_AvisoBusqueda_Cursos.Text = "";
+                MostrarCursos();
+            }
+            else
+            {
+
+                lb_AvisoBusqueda_Cursos.Text = "";
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    lb_AvisoBusqueda_Cursos.Text = "";
+                    if (Validar.validarRut(rut))
+                    {
+                        int aux = control.Lista_Buscar_Curso(rut).Count;
+                        lb_AvisoBusqueda_Cursos.Text = "";
+                        if (aux == 0)
+                        {
+                            lb_AvisoBusqueda_Cursos.Text = "Curso con Relator Rut " + rut + " No se encuentra registrado";
+                            MostrarCursos();
+                        }
+                        else
+                        {
+                            txt_BuscarCurso.Text = "";
+                            lb_AvisoBusqueda_Cursos.Text = "";
+                            GridView_cursos.DataSource = control.Lista_Buscar_Curso(rut);
+                            GridView_cursos.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        lb_AvisoBusqueda_Cursos.Text = "Rut no valido";
+                    }
+
+                }
+                else
+                {
+                    lb_AvisoBusqueda_Cursos.Text = "Rut no valido";
+                }
+
+            }
+        }
+
+        protected void Link_BuscarDocenteAsignar_Click(object sender, EventArgs e)
+        {
+            ControladorDocente control = new ControladorDocente();
+            String rut = txt_Buscar_DocenteAsignar.Text;
+
+            rut = rut.ToUpper();
+            rut = rut.Replace("_", "");
+            rut = rut.Replace(",", ".");
+
+            if (txt_Buscar_DocenteAsignar.Text == "" || rut.Length < 8)
+            {
+                lb_AvisoBusqueda_AsignarDocente.Text = "";
+                Mostrar_AsignarDocentes();
+            }
+            else
+            {
+
+                lb_AvisoBusqueda_AsignarDocente.Text = "";
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    lb_AvisoBusqueda_AsignarDocente.Text = "";
+                    if (Validar.validarRut(rut))
+                    {
+
+                        int aux = control.Lista_Buscar_AsignarDocentes(rut).Count;
+                        lb_AvisoBusqueda_AsignarDocente.Text = "";
+                        if (aux == 0)
+                        {
+                            lb_AvisoBusqueda_AsignarDocente.Text = "Docente Rut " + rut + " No se encuentra registrado ó no se encuentra Activo";
+                            Mostrar_AsignarDocentes();
+                        }
+                        else
+                        {
+                            txt_Buscar_DocenteAsignar.Text = "";
+                            lb_AvisoBusqueda_AsignarDocente.Text = "";
+                            GridView_asignardocentes.DataSource = control.Lista_Buscar_AsignarDocentes(rut);
+                            GridView_asignardocentes.DataBind();
+                        }
+                    }
+                    else
+                    {
+                        lb_AvisoBusqueda_AsignarDocente.Text = "Rut no valido";
+                    }
+                }
+                else
+                {
+                    lb_AvisoBusqueda_AsignarDocente.Text = "Rut no valido";
+                }
+
+            }
+        }
+        protected void Link_VistaReportes_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 7;
+            MostrarAsistencia();
+        }
+        
+        protected void Link_ReportesEncuestas_Click(object sender, EventArgs e)
+        {
+            MultiView1.ActiveViewIndex = 8;
         }
 
        
 
+        public void MostrarAsistencia()
+        {
+            ControladorAsistencia control = new ControladorAsistencia();
+            GridView_ReporteAsistencia.DataSource = control.Lista_MostrarAsistencia();
+            GridView_ReporteAsistencia.DataBind();
 
+            txt_FechaBusqueda.Text = "";
+            txt_RutBusqueda.Text = "";
+        }
+
+        protected void Link_ExportarAsistenciaAExcel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Link_ExportarAsistenciaAPDF_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Link_BuscarAsistenciaXfecha_Click(object sender, EventArgs e)
+        {
+            txt_RutBusqueda.Text = "";
+            ControladorAsistencia control = new ControladorAsistencia();
+                        
+            if (txt_FechaBusqueda.Text == "")
+            {
+                MostrarAsistencia();
+                
+            }
+            else
+            {
+                DateTime fecha = Convert.ToDateTime(txt_FechaBusqueda.Text);
+
+                lb_AvisoBusquedaReporteAsistencia.Text = "";
+                    int aux = control.Lista_AsistenciaXFecha(fecha).Count;
+                    if (aux != 0)
+                    {
+                        lb_AvisoBusquedaReporteAsistencia.Text = "";
+                        txt_FechaBusqueda.Text = "";
+                        GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXFecha(fecha);
+                        GridView_ReporteAsistencia.DataBind();
+                    }
+                    else
+                    {
+                        MostrarAsistencia();
+                        lb_AvisoBusquedaReporteAsistencia.Text = "No se realizo ningun curso el dia"+fecha;
+                    }
+
+               
+            }
+        }
+
+        protected void Link_BuscarAsistenciaXrut_Click(object sender, EventArgs e)
+        {
+            txt_FechaBusqueda.Text = "";
+            ControladorAsistencia control = new ControladorAsistencia();
+            string rut = txt_RutBusqueda.Text;
+            rut = rut.ToUpper();
+            if (txt_RutBusqueda.Text == "" || rut.Length < 8)
+            {
+                MostrarAsistencia();
+               
+            }
+            else
+            {
+               
+                
+                string pCodHomolog = rut;
+                int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
+                if (contador <= 1)
+                {
+                    lb_AvisoBusquedaReporteAsistencia.Text = "";
+
+                    if (Validar.validarRut(rut))
+                    {
+                        lb_AvisoBusquedaReporteAsistencia.Text = "";
+                        int aux = control.Lista_AsistenciaXRut(rut).Count;
+                        if (aux != 0)
+                        {
+                            lb_AvisoBusquedaReporteAsistencia.Text = "";
+                            txt_RutBusqueda.Text = "";
+                            GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXRut(rut);
+                            GridView_ReporteAsistencia.DataBind();
+                        }
+                        else
+                        {
+                            MostrarAsistencia();
+                            lb_AvisoBusquedaReporteAsistencia.Text = "Docente no encontrado";
+                        }
+
+                    }
+                    else
+                    {
+                        lb_AvisoBusquedaReporteAsistencia.Text = "Rut no valido";
+                    }
+                }
+                else
+                {
+                    lb_AvisoBusquedaReporteAsistencia.Text = "Rut no valido";
+                }
+            }
+        }
     }
 }

@@ -83,7 +83,9 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
-     
+       
+
+
         public string DevolverNombreUsuario (string nick) //devolver int
         {
             try

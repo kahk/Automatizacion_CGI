@@ -132,6 +132,25 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+       
+        public List<object> Lista_Buscar_Encargados(string rut)
+        {
+            try
+            {
+                var consulta = from e in contexto.Encargado
+                               join es in contexto.Estado on e.ID_Estado equals es.ID_Estado
+                               where e.Codigo == rut
+                               select new { e.Rut, e.Nombre, e.Apellido, e.Correo, e.ID_Estado, es.Detalle };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+
+        }
+
 
 
 

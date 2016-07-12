@@ -76,6 +76,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Devolver_CantidadDocentesAsignados(int curso)
+        {
+            try
+            {
+                var consulta = from cd in contexto.Curso_Docente                               
+                               where cd.ID_Curso == curso
+                               select new { cd.ID_Curso_Docente };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
 
     }

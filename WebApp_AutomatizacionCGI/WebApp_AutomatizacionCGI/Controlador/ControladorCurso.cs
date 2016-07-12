@@ -102,6 +102,24 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Lista_Buscar_Curso(string rut)
+        {
+            try
+            {
+                var consulta = from c in contexto.Curso
+                               join e in contexto.Encargado on c.Rut_Encargado equals e.Rut
+                               join est in contexto.Estado on c.ID_Estado equals est.ID_Estado
+                               where e.Codigo == rut
+                               select new { c.ID_Curso, c.Rut_Encargado, e.Nombre, e.Apellido, c.Detallecurso, c.ID_Estado, est.Detalle, c.Usuario, c.Contraseña };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
 
 
 

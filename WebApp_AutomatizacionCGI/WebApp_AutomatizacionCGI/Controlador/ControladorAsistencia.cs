@@ -122,5 +122,58 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> Lista_AsistenciaXFecha(DateTime fecha)
+        {
+            try
+            {
+                var consulta = from a in contexto.Asistencia
+                               join p in contexto.Pad on a.ID_Pad equals p.ID_Pad
+                               join d in contexto.Docente on a.Rut_Docente equals d.Rut
+                               where p.Fecha == fecha
+                               select new { p.Fecha, p.ID_Pad, a.Rut_Docente, d.Nombre, d.Apellido, a.Estado };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<object> Lista_AsistenciaXRut(string rut)
+        {
+            try
+            {
+                var consulta = from a in contexto.Asistencia
+                               join p in contexto.Pad on a.ID_Pad equals p.ID_Pad
+                               join d in contexto.Docente on a.Rut_Docente equals d.Rut
+                               where d.Codigo == rut
+                               select new { p.Fecha, p.ID_Pad, a.Rut_Docente, d.Nombre, d.Apellido, a.Estado };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public List<object> Lista_MostrarAsistencia()
+        {
+            try
+            {
+                var consulta = from a in contexto.Asistencia
+                               join p in contexto.Pad on a.ID_Pad equals p.ID_Pad
+                               join d in contexto.Docente on a.Rut_Docente equals d.Rut                               
+                               select new { p.Fecha, p.ID_Pad, a.Rut_Docente, d.Nombre, d.Apellido, a.Estado };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
     }
 }

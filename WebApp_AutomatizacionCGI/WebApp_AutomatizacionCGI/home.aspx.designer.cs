@@ -130,6 +130,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_BuscarDocente;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_txt_BuscarDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txt_BuscarDocente;
+        
+        /// <summary>
         /// Control Link_BuscarDocente.
         /// </summary>
         /// <remarks>
@@ -155,6 +164,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_Volver1;
+        
+        /// <summary>
+        /// Control lb_AvisoBusqueda_Docente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusqueda_Docente;
         
         /// <summary>
         /// Control GridView_docentes.
@@ -418,6 +436,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_BuscarEncargado;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_txt_BuscarEncargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txt_BuscarEncargado;
+        
+        /// <summary>
         /// Control Link_BuscarEncargado.
         /// </summary>
         /// <remarks>
@@ -443,6 +470,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_VolverEncargado;
+        
+        /// <summary>
+        /// Control lb_AvisoBusqueda_Encargado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusqueda_Encargado;
         
         /// <summary>
         /// Control GridView_Encargados.
@@ -488,15 +524,6 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_SalirEncargado;
-        
-        /// <summary>
-        /// Control Label7.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
         /// Control txt_RutEncargardo.
@@ -688,6 +715,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_BuscarCurso;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_txt_BuscarCurso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txt_BuscarCurso;
+        
+        /// <summary>
         /// Control Link_BuscarCurso.
         /// </summary>
         /// <remarks>
@@ -713,6 +749,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_VolverCurso;
+        
+        /// <summary>
+        /// Control lb_AvisoBusqueda_Cursos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusqueda_Cursos;
         
         /// <summary>
         /// Control GridView_cursos.
@@ -1372,6 +1417,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.TextBox txt_Buscar_DocenteAsignar;
         
         /// <summary>
+        /// Control FilteredTextBoxExtender_txt_Buscar_DocenteAsignar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txt_Buscar_DocenteAsignar;
+        
+        /// <summary>
         /// Control Link_BuscarDocenteAsignar.
         /// </summary>
         /// <remarks>
@@ -1390,6 +1444,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_volverviewcursos;
         
         /// <summary>
+        /// Control lb_AvisoBusqueda_AsignarDocente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusqueda_AsignarDocente;
+        
+        /// <summary>
         /// Control GridView_asignardocentes.
         /// </summary>
         /// <remarks>
@@ -1397,6 +1460,24 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView_asignardocentes;
+        
+        /// <summary>
+        /// Control lb_CantidadUsuariosAsignados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_CantidadUsuariosAsignados;
+        
+        /// <summary>
+        /// Control lb_UsuariosYaAsignado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_UsuariosYaAsignado;
         
         /// <summary>
         /// Control lb_codigoDocente_Asignar.
@@ -1489,24 +1570,6 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.View view6_root;
         
         /// <summary>
-        /// Control txt_BuscarUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_BuscarUsuario;
-        
-        /// <summary>
-        /// Control Link_BuscarUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton Link_BuscarUsuario;
-        
-        /// <summary>
         /// Control Link_AbrirModalUsuario.
         /// </summary>
         /// <remarks>
@@ -1523,6 +1586,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_Volver_usuario;
+        
+        /// <summary>
+        /// Control lb_AvisoBusqueda_Usuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusqueda_Usuarios;
         
         /// <summary>
         /// Control GridView_Usuarios.
@@ -1712,5 +1784,176 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton Link_SalirUsuario1;
+        
+        /// <summary>
+        /// Control view7_reportesAsistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View view7_reportesAsistencia;
+        
+        /// <summary>
+        /// Control Link_ReportesAsistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_ReportesAsistencia;
+        
+        /// <summary>
+        /// Control Link_ReportesEncuestas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_ReportesEncuestas;
+        
+        /// <summary>
+        /// Control Link_ExportarAsistenciaAPDF.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_ExportarAsistenciaAPDF;
+        
+        /// <summary>
+        /// Control Link_ExportarAsistenciaAExcel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_ExportarAsistenciaAExcel;
+        
+        /// <summary>
+        /// Control LinkButton7.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
+        
+        /// <summary>
+        /// Control txt_FechaBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_FechaBusqueda;
+        
+        /// <summary>
+        /// Control CalendarExtender_txt_FechaBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender_txt_FechaBusqueda;
+        
+        /// <summary>
+        /// Control Link_FechaBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_FechaBusqueda;
+        
+        /// <summary>
+        /// Control Link_BuscarAsistenciaXfecha.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_BuscarAsistenciaXfecha;
+        
+        /// <summary>
+        /// Control txt_RutBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txt_RutBusqueda;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_txt_RutBusqueda.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txt_RutBusqueda;
+        
+        /// <summary>
+        /// Control Link_BuscarAsistenciaXrut.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_BuscarAsistenciaXrut;
+        
+        /// <summary>
+        /// Control lb_AvisoBusquedaReporteAsistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lb_AvisoBusquedaReporteAsistencia;
+        
+        /// <summary>
+        /// Control GridView_ReporteAsistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_ReporteAsistencia;
+        
+        /// <summary>
+        /// Control View8_ReportesEncuestas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View View8_ReportesEncuestas;
+        
+        /// <summary>
+        /// Control LinkButton1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
+        /// Control LinkButton2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        
+        /// <summary>
+        /// Control LinkButton5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton5;
     }
 }
