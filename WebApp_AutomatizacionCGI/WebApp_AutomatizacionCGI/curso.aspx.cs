@@ -117,19 +117,17 @@ namespace WebApp_AutomatizacionCGI
                     {
                         lb_Bienvenida.Text = "Bienvenido "+control_do.devolver_nombre(codigo)+" " + control_do.devolver_apellido(codigo) ;
                         string rut = control_do.devolver_rut(codigo);
+                        int id = control_asist.Devolver_idAsistencia(cod, rut);
                         int aux = control_asist.BuscarAsistenciaRepetida(rut, cod).Count;
                         if (aux == 0)
                         {
                             Asistencia nuevo = new Asistencia
                             {
-                                ID_Pad = cod,
-                                Rut_Docente = rut,
-                                Estado = "Asistente"
-
-
+                                ID_Asistencia = id,                                
+                                Estado = "Asistente"                                                             
                             };
 
-                            if (control_asist.addAsistencia(nuevo))
+                            if (control_asist.ActualizarAsistencia(nuevo))
                             {
                                 txt_CodigoDocente.Text = "";
                                 txt_CodigoDocente.Focus();

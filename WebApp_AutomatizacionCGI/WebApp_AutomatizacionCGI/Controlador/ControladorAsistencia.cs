@@ -23,6 +23,23 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public bool ActualizarAsistencia(Asistencia nuevo)
+        {
+            try
+            {
+                Asistencia original = new Asistencia();
+                original = contexto.Asistencia.Find(nuevo.ID_Asistencia);
+                original.ID_Pad = original.ID_Pad;
+                original.Rut_Docente = original.Rut_Docente;
+                original.Estado = nuevo.Estado;
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         public bool addAsistencia_Curso(int pad)
         {
             try
@@ -57,6 +74,22 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public int Devolver_idAsistencia(int pad, string rut)
+        {
+            try
+            {
+                int consulta = (from a in contexto.Asistencia
+                               where a.ID_Pad == pad && a.Rut_Docente == rut
+                               select new { a.ID_Asistencia }).First().ID_Asistencia;
+
+                return consulta;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
         public List<object> Devolver_CantidadAsistencia_Pad(int pad)
         {
             try
@@ -78,7 +111,7 @@ namespace WebApp_AutomatizacionCGI.Controlador
             try
             {
                 var consulta = from a in contexto.Asistencia
-                               where a.Rut_Docente == rut && a.ID_Pad == id_pad
+                               where a.Rut_Docente == rut && a.ID_Pad == id_pad && a.Estado == "Asistente"
                                select new { a.ID_Asistencia };
 
                 return consulta.ToList<object>();
