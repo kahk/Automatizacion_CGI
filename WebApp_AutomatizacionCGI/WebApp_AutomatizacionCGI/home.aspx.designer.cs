@@ -1966,6 +1966,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.LinkButton Link_ExportarEncuestasaPDF;
         
         /// <summary>
+        /// Control Link_ExportarEncuestasaExcel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton Link_ExportarEncuestasaExcel;
+        
+        /// <summary>
         /// Control LinkButton5.
         /// </summary>
         /// <remarks>

@@ -1285,6 +1285,9 @@
                             <asp:LinkButton ID="Link_ExportarEncuestasaPDF" OnClick="Link_ExportarEncuestasaPDF_Click" CssClass="btn btn-primary btn-block" runat="server">Exportar a PDF</asp:LinkButton>
                             <br />
                             <br />
+                             <asp:LinkButton ID="Link_ExportarEncuestasaExcel" OnClick="Link_ExportarEncuestasaExcel_Click" CssClass="btn btn-primary btn-block" runat="server">Exportar a Excel</asp:LinkButton>
+                            <br />
+                            <br />
                              <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-default btn-block">Volver</asp:LinkButton>
                         </div>
                         <div class="col-md-1"></div>

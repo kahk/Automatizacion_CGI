@@ -55,6 +55,7 @@ namespace WebApp_AutomatizacionCGI
             scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAExcel);
             scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAPDF);
             scriptManager.RegisterPostBackControl(this.Link_ExportarEncuestasaPDF);
+            scriptManager.RegisterPostBackControl(this.Link_ExportarEncuestasaExcel);
             
 
         }
@@ -63,20 +64,20 @@ namespace WebApp_AutomatizacionCGI
         {
             ControladorUsuario control = new ControladorUsuario();
             try
-            {                
+            {
                 lb_NombreUsuario_Logeado.Text = control.DevolverNombreUsuario(Session["IDUsuario"].ToString()) + " " + control.DevolverApellidoUsuario(Session["IDUsuario"].ToString());
-                lb_fechadeAcceso.Text = "<b>Ultimo Acceso:</b> "+DateTime.Today.ToShortDateString();
+                lb_fechadeAcceso.Text = "<b>Ultimo Acceso:</b> " + DateTime.Today.ToShortDateString();
             }
-            catch (Exception){ }
-          }
+            catch (Exception) { }
+        }
 
         //MENU DE NAVEGACION
 
         protected void Link_VistaDocentes_Click(object sender, EventArgs e)
-        {    
+        {
             MultiView1.ActiveViewIndex = 1;
             MostrarDocentes();
-            txt_BuscarDocente.Text = "";  
+            txt_BuscarDocente.Text = "";
         }
 
         protected void Link_VistaEncargados_Click(object sender, EventArgs e)
@@ -87,7 +88,7 @@ namespace WebApp_AutomatizacionCGI
         }
 
         protected void Link_VistaCursos_Click(object sender, EventArgs e)
-        {   
+        {
             MultiView1.ActiveViewIndex = 3;
             MostrarCursos();
             txt_BuscarCurso.Text = "";
@@ -101,7 +102,7 @@ namespace WebApp_AutomatizacionCGI
         }
 
         protected void Link_viewAsignarDocentes_Curso_Click(object sender, EventArgs e)
-        {            
+        {
             MultiView1.ActiveViewIndex = 4;
             Mostrar_AsignarDocentes();
             txt_Buscar_DocenteAsignar.Text = "";
@@ -111,11 +112,11 @@ namespace WebApp_AutomatizacionCGI
             int contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
             lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
         }
-            
+
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
         {
             txt_nickname.Text = "";
-            txt_password.Text = "";                        
+            txt_password.Text = "";
             MultiView1.ActiveViewIndex = 5;
         }
 
@@ -139,7 +140,7 @@ namespace WebApp_AutomatizacionCGI
         public void MostrarEstado_Docentes()
         {
             ControladorEstado control = new ControladorEstado();
-            
+
             cb_EstadoDocente.DataSource = control.listaEstado();
             cb_EstadoDocente.DataTextField = "Detalle";
             cb_EstadoDocente.DataValueField = "ID_Estado";
@@ -194,7 +195,7 @@ namespace WebApp_AutomatizacionCGI
         public void MostrarEstadoUsuario()
         {
             ControladorEstado control = new ControladorEstado();
-                        
+
             cb_EstadoUsuario.DataSource = control.listaEstado();
             cb_EstadoUsuario.DataTextField = "Detalle";
             cb_EstadoUsuario.DataValueField = "ID_Estado";
@@ -206,13 +207,13 @@ namespace WebApp_AutomatizacionCGI
         {
             ControladorEstado control = new ControladorEstado();
 
-            List < String > tipo = new List<String>();
+            List<String> tipo = new List<String>();
 
             tipo.Add("root");
             tipo.Add("normal");
 
-            cb_TipoUsuario.DataSource = tipo;            
-            cb_TipoUsuario.DataBind();            
+            cb_TipoUsuario.DataSource = tipo;
+            cb_TipoUsuario.DataBind();
         }
 
 
@@ -231,12 +232,12 @@ namespace WebApp_AutomatizacionCGI
 
 
             txt_rutDocente.Enabled = true;
-            
-            
+
+
             cb_EstadoDocente.Enabled = false;
             cb_EstadoDocente.SelectedValue = "1";
             txt_rutDocente.Text = "";
-            
+
             txt_nombreDocente.Text = "";
             txt_apellidoDocente.Text = "";
             txt_correoDocente.Text = "";
@@ -252,9 +253,9 @@ namespace WebApp_AutomatizacionCGI
             ControladorDocente control = new ControladorDocente();
 
             String nombre = txt_nombreDocente.Text;
-            String rut = txt_rutDocente.Text;            
+            String rut = txt_rutDocente.Text;
             String apellido = txt_apellidoDocente.Text;
-            
+
             String correo = txt_correoDocente.Text;
 
             string codigo = "";
@@ -283,7 +284,7 @@ namespace WebApp_AutomatizacionCGI
                 int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
                 if (contador <= 1)
                 {
-                    
+
                     lb_AvisoDocente.Text = "";
                     DateTime fecha = Convert.ToDateTime(txt_fechaingresoDocente.Text);
                     if (Validar.validarRut(rut))
@@ -357,8 +358,8 @@ namespace WebApp_AutomatizacionCGI
             String rut = Convert.ToString(lbcodigoDocente.Text);
 
             txt_rutDocente.Text = rut;
-            txt_rutDocente.Enabled = false;            
-            
+            txt_rutDocente.Enabled = false;
+
             cb_EstadoDocente.Enabled = true;
 
             Link_addDocente.Visible = false;
@@ -371,16 +372,16 @@ namespace WebApp_AutomatizacionCGI
             txt_fechaingresoDocente.Text = fecha.Substring(0, 10);
 
             //generar barcode
-          
-                LabelKit.BarcodeGenerator code = new LabelKit.BarcodeGenerator();
-                System.Drawing.Graphics g = Graphics.FromImage(new Bitmap(1, 1));
-                System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
-                g = Graphics.FromImage(bmp);
-                code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
-                Image_codigo.ImageUrl = "./barcodes/" + rut + ".png";
-                    
-            
+            LabelKit.BarcodeGenerator code = new LabelKit.BarcodeGenerator();
+            System.Drawing.Graphics g = Graphics.FromImage(new Bitmap(1, 1));
+            System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
+
+            g = Graphics.FromImage(bmp);
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_codigo.ImageUrl = "./barcodes/" + rut + ".png";
+
+
         }
 
         protected void Link_ModificarDocente_Click(object sender, EventArgs e)
@@ -422,7 +423,7 @@ namespace WebApp_AutomatizacionCGI
                     {
                         MostrarDocentes();
                     }
-                    
+
                 }
                 else
                 {
@@ -464,11 +465,11 @@ namespace WebApp_AutomatizacionCGI
 
             txt_RutEncargardo.Enabled = true;
             lb_AvisoEncargado.Text = "";
-            
+
             cb_EstadoEncargado.Enabled = false;
             cb_EstadoEncargado.SelectedValue = "1";
             Link_EditarEncargado.Visible = false;
-            
+
             Link_GuardarEncargado_VistaEncargado.Visible = true;
 
             txt_NombreEncargado.Text = "";
@@ -493,12 +494,12 @@ namespace WebApp_AutomatizacionCGI
             txt_RutEncargardo.Text = rut;
 
             txt_RutEncargardo.Enabled = false;
-            
-            
+
+
             cb_EstadoEncargado.Enabled = true;
 
             Link_GuardarEncargado_VistaEncargado.Visible = false;
-            
+
             Link_EditarEncargado.Visible = true;
 
             txt_NombreEncargado.Text = lbNombreEncargado.Text;
@@ -665,7 +666,7 @@ namespace WebApp_AutomatizacionCGI
 
 
 
-        
+
         protected void GridView_Encargados_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView_Encargados.PageIndex = e.NewPageIndex;
@@ -719,7 +720,7 @@ namespace WebApp_AutomatizacionCGI
 
 
 
-        
+
 
         protected void Link_ModificarCurso_Click(object sender, EventArgs e)
         {
@@ -799,8 +800,8 @@ namespace WebApp_AutomatizacionCGI
                     lb_AvisoCurso.Text = "Rut no valido. Ejemplo 11.111.111-1";
                     ModalPopupExtender1_cursonuevo.Show();
                 }
-            }            
-            
+            }
+
         }
 
 
@@ -914,7 +915,7 @@ namespace WebApp_AutomatizacionCGI
             codigo = codigo.Replace(".", "");
             codigo = codigo.Replace("-", "");
             codigo = codigo.Replace("_", "");
-            
+
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
             rut = rut.Replace(",", ".");
@@ -991,7 +992,7 @@ namespace WebApp_AutomatizacionCGI
         {
             GridView_cursos.PageIndex = e.NewPageIndex;
             MostrarCursos();
-        }      
+        }
 
 
         //PAD
@@ -1041,8 +1042,8 @@ namespace WebApp_AutomatizacionCGI
             String fecha = Convert.ToString(lbFechaPad.Text);
 
             txt_rutDocente.Enabled = false;
-            
-            
+
+
             cb_EstadoDocente.Enabled = true;
             Link_GuardarPad.Visible = false;
             Link_EditarPad.Visible = true;
@@ -1119,8 +1120,8 @@ namespace WebApp_AutomatizacionCGI
                     lb_avisoPAD.Text = "Error, Hora de inicio y termino no pueden ser iguales";
                     ModalPopupExtender5_padnuevo.Show();
                 }
-                
-              
+
+
             }
 
 
@@ -1139,12 +1140,12 @@ namespace WebApp_AutomatizacionCGI
             string hora_inicio = txt_horainicioPad.Text;
             string hora_fin = txt_horafinPad.Text;
 
-            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" ||  txt_horainicioPad.Text == "::" || txt_horainicioPad.Text == "::" ||
+            if (txt_SalaPad.Text == "" || txt_SalaCoffe.Text == "" || txt_horainicioPad.Text == "::" || txt_horainicioPad.Text == "::" ||
                 txt_fechapad.Text == "")
             {
                 lb_avisoPAD.Text = "Complete todo el formulario";
                 ModalPopupExtender5_padnuevo.Show();
-                
+
             }
             else
             {
@@ -1192,9 +1193,9 @@ namespace WebApp_AutomatizacionCGI
                 else
                 {
                     lb_avisoPAD.Text = "Error, Hora de inicio y termino no pueden ser iguales";
-                    ModalPopupExtender5_padnuevo.Show();                   
-                }         
-              
+                    ModalPopupExtender5_padnuevo.Show();
+                }
+
             }
         }
 
@@ -1210,7 +1211,7 @@ namespace WebApp_AutomatizacionCGI
         }
 
 
-       
+
         protected void GridView_asignardocentes_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView_asignardocentes.PageIndex = e.NewPageIndex;
@@ -1224,7 +1225,7 @@ namespace WebApp_AutomatizacionCGI
             int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
             string rut = lbcodigoDocente.Text;
-             
+
             ControladorCursoDocente control = new ControladorCursoDocente();
 
             int aux = control.listaBuscarCurso_Docente(id_curso, rut).Count;
@@ -1247,8 +1248,8 @@ namespace WebApp_AutomatizacionCGI
                 }
             }
             else
-            {                
-                lb_UsuariosYaAsignado.Text = "El usuario "+rut+" Ya ha sido asignado a este curso";
+            {
+                lb_UsuariosYaAsignado.Text = "El usuario " + rut + " Ya ha sido asignado a este curso";
             }
         }
 
@@ -1310,7 +1311,7 @@ namespace WebApp_AutomatizacionCGI
             txt_ApellidoUsuario.Text = lbapellidoUsuario.Text;
             txt_NicknameUsuario.Text = lbnicknameUsuario.Text;
             txt_PasswordUsuario.Text = lbpasswordUsuario.Text;
-            
+
             cb_TipoUsuario.SelectedValue = lbtipoUsuario.Text;
             cb_EstadoUsuario.SelectedValue = lbestadoUsuario.Text;
 
@@ -1319,7 +1320,7 @@ namespace WebApp_AutomatizacionCGI
                 txt_NombreUsuario.Enabled = false;
                 txt_ApellidoUsuario.Enabled = false;
                 txt_NicknameUsuario.Enabled = false;
-                
+
                 cb_TipoUsuario.Enabled = false;
                 cb_EstadoUsuario.Enabled = false;
             }
@@ -1328,7 +1329,7 @@ namespace WebApp_AutomatizacionCGI
                 txt_NombreUsuario.Enabled = true;
                 txt_ApellidoUsuario.Enabled = true;
                 txt_NicknameUsuario.Enabled = true;
-               
+
                 cb_TipoUsuario.Enabled = true;
                 cb_EstadoUsuario.Enabled = true;
             }
@@ -1340,7 +1341,7 @@ namespace WebApp_AutomatizacionCGI
             int id_estado = 0;
             int.TryParse(cb_EstadoUsuario.SelectedValue, out id_estado);
             string tipo = cb_TipoUsuario.SelectedValue;
-           
+
             if (txt_NombreUsuario.Text == "" || txt_ApellidoUsuario.Text == "" || txt_NicknameUsuario.Text == "" ||
                 txt_PasswordUsuario.Text == "")
             {
@@ -1349,25 +1350,25 @@ namespace WebApp_AutomatizacionCGI
             else
             {
                 lb_AvisoUsuario.Text = "";
-               
-                    lb_AvisoUsuario.Text = "";
 
-                    Usuario nuevo = new Usuario
-                    {
-                        Rut = txt_RutUsuario.Text,
-                        Nombre = txt_NombreUsuario.Text,
-                        Apellido = txt_ApellidoUsuario.Text,
-                        Nickname = txt_NicknameUsuario.Text,
-                        Password = txt_PasswordUsuario.Text,
-                        Tipo = tipo,
-                        ID_Estado = id_estado
+                lb_AvisoUsuario.Text = "";
 
-                    };
-                    if (control.ActualizarUsuario(nuevo))
-                    {
-                        MostrarUsuarios();
-                    }
-             }
+                Usuario nuevo = new Usuario
+                {
+                    Rut = txt_RutUsuario.Text,
+                    Nombre = txt_NombreUsuario.Text,
+                    Apellido = txt_ApellidoUsuario.Text,
+                    Nickname = txt_NicknameUsuario.Text,
+                    Password = txt_PasswordUsuario.Text,
+                    Tipo = tipo,
+                    ID_Estado = id_estado
+
+                };
+                if (control.ActualizarUsuario(nuevo))
+                {
+                    MostrarUsuarios();
+                }
+            }
         }
 
         protected void Link_GuardarUsuario_Click(object sender, EventArgs e)
@@ -1383,7 +1384,7 @@ namespace WebApp_AutomatizacionCGI
             string nickname = txt_NicknameUsuario.Text;
             string password = txt_PasswordUsuario.Text;
             string tipo = cb_TipoUsuario.SelectedValue;
-            
+
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
             rut = rut.Replace(",", ".");
@@ -1397,7 +1398,7 @@ namespace WebApp_AutomatizacionCGI
             {
                 lb_AvisoUsuario.Text = "";
                 int aux_nick = control.Buscar_nickname(txt_NicknameUsuario.Text).Count;
-                
+
                 string pCodHomolog = rut;
                 int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
                 if (contador <= 1)
@@ -1477,7 +1478,7 @@ namespace WebApp_AutomatizacionCGI
             cb_EstadoUsuario.SelectedValue = "1";
             lb_AvisoUsuario.Text = "";
             txt_NicknameUsuario.Enabled = true;
-            ModalPopupExtender_Usuario.Show();            
+            ModalPopupExtender_Usuario.Show();
         }
 
         protected void Link_AbrirModalModificarUsuario_Click(object sender, EventArgs e)
@@ -1489,10 +1490,10 @@ namespace WebApp_AutomatizacionCGI
             lb_AvisoUsuario.Text = "";
             ModalPopupExtender_Usuario.Show();
             txt_NicknameUsuario.Enabled = false;
-            
+
         }
 
-        
+
         protected void Link_BuscarDocente_Click(object sender, EventArgs e)
         {
             ControladorDocente control = new ControladorDocente();
@@ -1506,8 +1507,8 @@ namespace WebApp_AutomatizacionCGI
                 MostrarDocentes();
             }
             else
-            {    
-                
+            {
+
                 lb_AvisoBusqueda_Docente.Text = "";
                 string pCodHomolog = rut;
                 int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
@@ -1540,7 +1541,7 @@ namespace WebApp_AutomatizacionCGI
                 {
                     lb_AvisoBusqueda_Docente.Text = "Rut no valido";
                 }
-               
+
             }
         }
 
@@ -1596,14 +1597,14 @@ namespace WebApp_AutomatizacionCGI
                 }
 
             }
-            
+
         }
 
         protected void Link_BuscarCurso_Click(object sender, EventArgs e)
         {
             ControladorCurso control = new ControladorCurso();
             String rut = txt_BuscarCurso.Text;
-            
+
             rut = rut.ToUpper();
             rut = rut.Replace("_", "");
             rut = rut.Replace(",", ".");
@@ -1711,13 +1712,13 @@ namespace WebApp_AutomatizacionCGI
             MultiView1.ActiveViewIndex = 7;
             MostrarAsistencia();
         }
-        
+
         protected void Link_ReportesEncuestas_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 8;
         }
 
-       
+
 
         public void MostrarAsistencia()
         {
@@ -1804,32 +1805,32 @@ namespace WebApp_AutomatizacionCGI
         {
             txt_RutBusqueda.Text = "";
             ControladorAsistencia control = new ControladorAsistencia();
-                        
+
             if (txt_FechaBusqueda.Text == "")
             {
                 MostrarAsistencia();
-                
+
             }
             else
             {
                 DateTime fecha = Convert.ToDateTime(txt_FechaBusqueda.Text);
 
                 lb_AvisoBusquedaReporteAsistencia.Text = "";
-                    int aux = control.Lista_AsistenciaXFecha(fecha).Count;
-                    if (aux != 0)
-                    {
-                        lb_AvisoBusquedaReporteAsistencia.Text = "";
-                        txt_FechaBusqueda.Text = "";
-                        GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXFecha(fecha);
-                        GridView_ReporteAsistencia.DataBind();
-                    }
-                    else
-                    {
-                        MostrarAsistencia();
-                        lb_AvisoBusquedaReporteAsistencia.Text = "No se realizo ningun curso el dia"+fecha;
-                    }
+                int aux = control.Lista_AsistenciaXFecha(fecha).Count;
+                if (aux != 0)
+                {
+                    lb_AvisoBusquedaReporteAsistencia.Text = "";
+                    txt_FechaBusqueda.Text = "";
+                    GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXFecha(fecha);
+                    GridView_ReporteAsistencia.DataBind();
+                }
+                else
+                {
+                    MostrarAsistencia();
+                    lb_AvisoBusquedaReporteAsistencia.Text = "No se realizo ningun curso el dia" + fecha;
+                }
 
-               
+
             }
         }
 
@@ -1842,12 +1843,12 @@ namespace WebApp_AutomatizacionCGI
             if (txt_RutBusqueda.Text == "" || rut.Length < 8)
             {
                 MostrarAsistencia();
-               
+
             }
             else
             {
-               
-                
+
+
                 string pCodHomolog = rut;
                 int contador = pCodHomolog.ToArray().Where(lr => lr.Equals('K')).Count();
                 if (contador <= 1)
@@ -1890,7 +1891,7 @@ namespace WebApp_AutomatizacionCGI
             MostrarAsistencia();
         }
 
-        
+
 
 
         public void cargarReportesEncuestas()
@@ -1940,7 +1941,7 @@ namespace WebApp_AutomatizacionCGI
         {
             try
             {
-                
+
 
                 bd_entities contexto = new bd_entities();
 
@@ -2033,5 +2034,49 @@ namespace WebApp_AutomatizacionCGI
                 Response.End();
             }
         }
+
+        protected void Link_ExportarEncuestasaExcel_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ReporteEncuesta1.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                //To Export all pages                 GridView_docentes.AllowPaging = false;                 MostrarDocentes();  
+                GridView1.HeaderRow.BackColor = Color.White;
+                foreach (TableCell cell in GridView1.HeaderRow.Cells)
+                {
+                    cell.BackColor = GridView1.HeaderStyle.BackColor;
+                }
+
+                foreach (GridViewRow row in GridView1.Rows)
+                {
+                    row.BackColor = Color.White;
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        if (row.RowIndex % 2 == 0)
+                        {
+                            cell.BackColor = GridView1.AlternatingRowStyle.BackColor;
+                        }
+                        else
+                        {
+                            cell.BackColor = GridView1.RowStyle.BackColor;
+                        }
+                        cell.CssClass = "textmode";
+                    }
+                }
+                GridView1.RenderControl(hw);
+                string style = @"<style> .textmode { } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+
+                
+            }
+        }
     }
-    }
+}
