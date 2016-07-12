@@ -1282,14 +1282,135 @@
                             <asp:LinkButton ID="LinkButton2" runat="server" OnClick="Link_ReportesEncuestas_Click" CssClass="btn btn-danger btn-block">Encuestas</asp:LinkButton>
                             <br />
                             <br />
+                            <asp:LinkButton ID="Link_ExportarEncuestasaPDF" OnClick="Link_ExportarEncuestasaPDF_Click" CssClass="btn btn-primary btn-block" runat="server">Exportar a PDF</asp:LinkButton>
+                            <br />
+                            <br />
                              <asp:LinkButton ID="LinkButton5" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-default btn-block">Volver</asp:LinkButton>
                         </div>
                         <div class="col-md-1"></div>
-                        <div class="col-md-8">
-                            encuestas
-                            
+                        <div class="col-md-7">
+                                <div class="form-group">
+                                <label for="txt_FechaBusquedaEncuestas" class="col-sm-1 control-label">Fecha:</label>
+                                <div class="col-sm-2">
+                                    <asp:TextBox ID="txt_FechaBusquedaEncuestas" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                    <asp:CalendarExtender ID="CalendarExtender_txt_FechaBusquedaEncuestas" runat="server" TargetControlID="txt_FechaBusquedaEncuestas" PopupButtonID="Link_FechaBusquedaEncuestas" Format="dd/MM/yyyy"></asp:CalendarExtender>
+                                </div>
+                                <div class="col-sm-1">
+                                    <asp:LinkButton ID="Link_FechaBusquedaEncuestas" runat="server"><i class="fa fa-calendar" aria-hidden="true"></i></asp:LinkButton>
+                                </div>
+                                <div class="col-sm-1">
+                                    <asp:LinkButton ID="Link_buscarENcuestas" OnClick="Link_buscarENcuestas_Click" CssClass="btn btn-primary" runat="server">Buscar</asp:LinkButton>
+                                </div>
+                                    </div>
+                            <br />
+                            <br />
+                            <asp:Panel ID="Panel1_reportesEncuestas" runat="server">
+                            <asp:GridView ID="GridView1" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Preguntas" SortExpression="pregunta">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("pregunta") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("pregunta") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="1" SortExpression="resultado1">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("resultado1") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("resultado1") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="2" SortExpression="resultado2">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("resultado2") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("resultado2") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="3" SortExpression="resultado3">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Eval("resultado3") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("resultado3") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="4" SortExpression="resultado4">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Eval("resultado4") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("resultado4") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="5" SortExpression="resultado5">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Eval("resultado5") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label6" runat="server" Text='<%# Bind("resultado5") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="6" SortExpression="resultado6">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Eval("resultado6") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label7" runat="server" Text='<%# Bind("resultado6") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="7" SortExpression="resulado7">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("resultado7") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label8" runat="server" Text='<%# Bind("resultado7") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                 <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>
+                            <br />
+                            <br />
+
+
+                            <asp:GridView ID="GridView2" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="Preguntas" SortExpression="pregunta">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("pregunta") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("pregunta") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="SI" SortExpression="resultado1">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("resultado1") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("resultado1") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="NO" SortExpression="resultado2">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("resultado2") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("resultado2") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                                 <HeaderStyle CssClass="btn-danger" />
+                            </asp:GridView>
+                                </asp:Panel>
                         </div>
-                    </div>     
+                        <div class="col-md-1"></div>
+                    </div>
                 </asp:View>                
 
             </asp:MultiView>

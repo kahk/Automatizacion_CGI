@@ -46,13 +46,16 @@ namespace WebApp_AutomatizacionCGI
                 MostrarEstadoUsuario();
 
                 MostrarDatosUsuarios();
+                cargarReportesEncuestas();
 
-               
+
 
             }
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
             scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAExcel);
             scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAPDF);
+            scriptManager.RegisterPostBackControl(this.Link_ExportarEncuestasaPDF);
+            
 
         }
 
@@ -1886,5 +1889,149 @@ namespace WebApp_AutomatizacionCGI
             GridView_ReporteAsistencia.PageIndex = e.NewPageIndex;
             MostrarAsistencia();
         }
+
+        
+
+
+        public void cargarReportesEncuestas()
+        {
+            bd_entities contexto = new bd_entities();
+            var consulta = from p in contexto.Pregunta
+                           orderby p.ID_Pregunta
+                           select p;
+
+
+            List<Resultado> res = new List<Resultado>();
+
+            for (int i = 1; i <= 12; i++)
+            {
+
+                res.Add(respEnc(i + ""));
+            }
+            GridView1.DataSource = res;
+            GridView1.DataBind();
+
+            List<Resultado2> res2 = new List<Resultado2>();
+
+            for (int i = 13; i <= 15; i++)
+            {
+
+                res2.Add(respEnc2(i + ""));
+            }
+            GridView2.DataSource = res2;
+            GridView2.DataBind();
+        }
+
+        protected void Link_buscarENcuestas_Click(object sender, EventArgs e)
+        {
+            cargarReportesEncuestas();
+            //for (int i = 1; i <= 12; i++ ) {
+            //    respEnc(i+"");
+            //}
+
+            //for (int i = 13; i <= 15; i++)
+            //{
+            //    respEnc(i + "");
+            //}
+
+        }
+
+        public Resultado respEnc(string idP)
+        {
+            try
+            {
+                
+
+                bd_entities contexto = new bd_entities();
+
+                DateTime fecha = Convert.ToDateTime(txt_FechaBusquedaEncuestas.Text);
+
+                var consultaP1 = from p in contexto.Pregunta
+                                 join r in contexto.Respuestas on p.ID_Pregunta equals r.ID_Pregunta
+                                 join c in contexto.Curso on r.ID_Curso equals c.ID_Curso
+                                 join pd in contexto.Pad on c.ID_Curso equals pd.ID_Curso
+                                 where p.ID_Pregunta == idP && pd.Fecha == fecha
+                                 select new Resultado
+                                 {
+                                     pregunta = p.Pregunta1,
+                                     resultado1 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("1") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado2 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("2") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado3 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("3") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado4 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("4") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado5 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("5") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado6 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("6") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado7 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("7") && rp.ID_Pregunta.Equals(idP) select rp).Count()
+                                 };
+
+                return consultaP1.ToList<Resultado>().ElementAt(0);
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+
+
+        }
+
+
+
+        public Resultado2 respEnc2(string idP2)
+        {
+            try
+            {
+
+                bd_entities contexto = new bd_entities();
+
+                DateTime fecha = Convert.ToDateTime(txt_FechaBusquedaEncuestas.Text);
+                var consultaP2 = from p in contexto.Pregunta
+                                 join r in contexto.Respuestas on p.ID_Pregunta equals r.ID_Pregunta
+                                 join c in contexto.Curso on r.ID_Curso equals c.ID_Curso
+                                 join pd in contexto.Pad on c.ID_Curso equals pd.ID_Curso
+                                 where p.ID_Pregunta == idP2 && pd.Fecha == fecha
+                                 where p.ID_Pregunta == idP2
+                                 select new Resultado2
+                                 {
+                                     pregunta = p.Pregunta1,
+                                     resultado1 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("SI") && rp.ID_Pregunta.Equals(idP2) select rp).Count(),
+                                     resultado2 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("NO") && rp.ID_Pregunta.Equals(idP2) select rp).Count()
+                                 };
+
+                return consultaP2.ToList<Resultado2>().ElementAt(0);
+
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+
+        }
+
+        protected void Link_ExportarEncuestasaPDF_Click(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=ReporteEncuestas.pdf");
+            Response.Charset = "";
+
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                this.Panel1_reportesEncuestas.RenderControl(hw);
+
+
+                StringReader sr = new StringReader(sw.ToString());
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                pdfDoc.Open();
+                htmlparser.Parse(sr);
+                pdfDoc.Close();
+                Response.Write(pdfDoc);
+                Response.End();
+            }
+        }
     }
-}
+    }
