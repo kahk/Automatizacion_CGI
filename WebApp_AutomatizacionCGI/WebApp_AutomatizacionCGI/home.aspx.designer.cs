@@ -1912,6 +1912,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.Label lb_AvisoBusquedaReporteAsistencia;
         
         /// <summary>
+        /// Control Panel_reporteasistencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel_reporteasistencia;
+        
+        /// <summary>
         /// Control GridView_ReporteAsistencia.
         /// </summary>
         /// <remarks>

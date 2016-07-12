@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" Culture="auto" UICulture="auto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="home.aspx.cs" Inherits="WebApp_AutomatizacionCGI.home" Culture="auto" UICulture="auto"  EnableEventValidation="false" %>
 
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -967,7 +967,7 @@
                                         <asp:TextBox ID="txt_nickname" runat="server" CssClass="form-control" placeholder="nickname..." MaxLength="30"></asp:TextBox>   
                                          <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_nickname" TargetControlID="txt_nickname" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>                                     
                                         <br />
-                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="password..." TextMode="Password" MaxLength="30"></asp:TextBox>                                        
+                                        <asp:TextBox ID="txt_password" runat="server" CssClass="form-control" placeholder="Contraseña..." TextMode="Password" MaxLength="30"></asp:TextBox>                                        
                                         <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_password" TargetControlID="txt_password" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>    
                                         <br />
                                         <asp:Label ID="lb_accesonopermitido" runat="server" CssClass="label label-danger" Text=""></asp:Label>                                      
@@ -1028,7 +1028,7 @@
                                             <asp:Label ID="Label4" runat="server" Text='<%# Bind("Nickname") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Password" SortExpression="Password" Visible="False">
+                                    <asp:TemplateField HeaderText="Contraseña" SortExpression="Password" Visible="False">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label7" runat="server" Text='<%# Eval("Password") %>'></asp:Label>
                                         </EditItemTemplate>
@@ -1121,7 +1121,7 @@
                                     <br />
                                     <br />
                                     <div class="form-group">
-                                        <label for="txt_PasswordUsuario" class="col-sm-4 control-label">Password</label>
+                                        <label for="txt_PasswordUsuario" class="col-sm-4 control-label">Contraseña</label>
                                         <div class="col-sm-8">
                                             <asp:TextBox ID="txt_PasswordUsuario" runat="server" CssClass="form-control" MaxLength="30" TextMode="Password"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" TargetControlID="txt_PasswordUsuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
@@ -1174,13 +1174,13 @@
                             <asp:LinkButton ID="Link_ExportarAsistenciaAPDF" runat="server" OnClick="Link_ExportarAsistenciaAPDF_Click" CssClass="btn btn-primary btn-block">Exportar a PDF</asp:LinkButton>
                             <br />
                             <br />
-                             <asp:LinkButton ID="Link_ExportarAsistenciaAExcel" runat="server" OnClick="Link_ExportarAsistenciaAExcel_Click" CssClass="btn btn-primary btn-block">Exportar a PDF</asp:LinkButton>
+                             <asp:LinkButton ID="Link_ExportarAsistenciaAExcel" runat="server" OnClick="Link_ExportarAsistenciaAExcel_Click" CssClass="btn btn-primary btn-block">Exportar a Excel</asp:LinkButton>
                             <br />
                             <br />
                              <asp:LinkButton ID="LinkButton7" runat="server" OnClick="btn_volver_Click" CssClass="btn btn-default btn-block">Volver</asp:LinkButton>
                         </div>
                         <div class="col-md-1"></div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="form-group">
                                 <label for="txt_FechaBusqueda" class="col-sm-1 control-label">Fecha:</label>
                                 <div class="col-sm-2">
@@ -1208,7 +1208,8 @@
                             <asp:Label ID="lb_AvisoBusquedaReporteAsistencia" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_ReporteAsistencia" runat="server" CssClass="table" AutoGenerateColumns="False">
+                            <asp:Panel ID="Panel_reporteasistencia" runat="server">
+                            <asp:GridView ID="GridView_ReporteAsistencia" runat="server" CssClass="table" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView_ReporteAsistencia_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Pad" SortExpression="ID_Pad">
                                         <EditItemTemplate>
@@ -1260,8 +1261,10 @@
                                     </asp:TemplateField>
                                 </Columns>
                                 <HeaderStyle CssClass="btn-danger" />
-                            </asp:GridView>                            
+                            </asp:GridView>
+                                </asp:Panel>                            
                         </div>
+                        <div class="col-md-1"></div>
                     </div>
                 </asp:View>
 

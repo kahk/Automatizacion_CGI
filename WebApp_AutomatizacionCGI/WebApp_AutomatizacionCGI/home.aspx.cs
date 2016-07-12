@@ -10,6 +10,10 @@ using WebApp_AutomatizacionCGI.Modelo;
 using System.Web.Security;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace WebApp_AutomatizacionCGI
 {
@@ -43,8 +47,13 @@ namespace WebApp_AutomatizacionCGI
 
                 MostrarDatosUsuarios();
 
-                
+               
+
             }
+            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAExcel);
+            scriptManager.RegisterPostBackControl(this.Link_ExportarAsistenciaAPDF);
+
         }
 
         public void MostrarDatosUsuarios()
@@ -93,6 +102,11 @@ namespace WebApp_AutomatizacionCGI
             MultiView1.ActiveViewIndex = 4;
             Mostrar_AsignarDocentes();
             txt_Buscar_DocenteAsignar.Text = "";
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+            ControladorCursoDocente control = new ControladorCursoDocente();
+            int contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
+            lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
         }
             
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
@@ -1207,11 +1221,11 @@ namespace WebApp_AutomatizacionCGI
             int id_curso = 0;
             int.TryParse(lb_idcurso.Text, out id_curso);
             string rut = lbcodigoDocente.Text;
-            int contador = 0;
+             
             ControladorCursoDocente control = new ControladorCursoDocente();
 
             int aux = control.listaBuscarCurso_Docente(id_curso, rut).Count;
-
+            int contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
             lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
 
             if (aux == 0)
@@ -1302,7 +1316,7 @@ namespace WebApp_AutomatizacionCGI
                 txt_NombreUsuario.Enabled = false;
                 txt_ApellidoUsuario.Enabled = false;
                 txt_NicknameUsuario.Enabled = false;
-                txt_PasswordUsuario.Enabled = false;
+                
                 cb_TipoUsuario.Enabled = false;
                 cb_EstadoUsuario.Enabled = false;
             }
@@ -1311,7 +1325,7 @@ namespace WebApp_AutomatizacionCGI
                 txt_NombreUsuario.Enabled = true;
                 txt_ApellidoUsuario.Enabled = true;
                 txt_NicknameUsuario.Enabled = true;
-                txt_PasswordUsuario.Enabled = true;
+               
                 cb_TipoUsuario.Enabled = true;
                 cb_EstadoUsuario.Enabled = true;
             }
@@ -1714,12 +1728,73 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_ExportarAsistenciaAExcel_Click(object sender, EventArgs e)
         {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment;filename=ReporteAsistencia.xls");
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.ms-excel";
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                //To Export all pages                 GridView_docentes.AllowPaging = false;                 MostrarDocentes();  
+                GridView_ReporteAsistencia.HeaderRow.BackColor = Color.White;
+                foreach (TableCell cell in GridView_ReporteAsistencia.HeaderRow.Cells)
+                {
+                    cell.BackColor = GridView_ReporteAsistencia.HeaderStyle.BackColor;
+                }
 
+                foreach (GridViewRow row in GridView_ReporteAsistencia.Rows)
+                {
+                    row.BackColor = Color.White;
+                    foreach (TableCell cell in row.Cells)
+                    {
+                        if (row.RowIndex % 2 == 0)
+                        {
+                            cell.BackColor = GridView_ReporteAsistencia.AlternatingRowStyle.BackColor;
+                        }
+                        else
+                        {
+                            cell.BackColor = GridView_ReporteAsistencia.RowStyle.BackColor;
+                        }
+                        cell.CssClass = "textmode";
+                    }
+                }
+                GridView_ReporteAsistencia.RenderControl(hw);
+                string style = @"<style> .textmode { } </style>";
+                Response.Write(style);
+                Response.Output.Write(sw.ToString());
+                Response.Flush();
+                Response.End();
+            }
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            // Confirms that an HtmlForm control is rendered for the specified ASP.NET server control at run time.        
         }
 
         protected void Link_ExportarAsistenciaAPDF_Click(object sender, EventArgs e)
         {
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+            Response.AddHeader("content-disposition", "attachment;filename=ReporteAsistencia.pdf");
+            Response.Charset = "";
 
+            using (StringWriter sw = new StringWriter())
+            {
+                HtmlTextWriter hw = new HtmlTextWriter(sw);
+                this.Panel_reporteasistencia.RenderControl(hw);
+
+
+                StringReader sr = new StringReader(sw.ToString());
+                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                pdfDoc.Open();
+                htmlparser.Parse(sr);
+                pdfDoc.Close();
+                Response.Write(pdfDoc);
+                Response.End();
+            }
         }
 
         protected void Link_BuscarAsistenciaXfecha_Click(object sender, EventArgs e)
@@ -1804,6 +1879,12 @@ namespace WebApp_AutomatizacionCGI
                     lb_AvisoBusquedaReporteAsistencia.Text = "Rut no valido";
                 }
             }
+        }
+
+        protected void GridView_ReporteAsistencia_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView_ReporteAsistencia.PageIndex = e.NewPageIndex;
+            MostrarAsistencia();
         }
     }
 }
