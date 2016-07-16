@@ -181,12 +181,12 @@
     <Compile Include="Controlador\ControladorCursoDocente.cs" />
     <Compile Include="Controlador\ControladorDocente.cs" />
     <Compile Include="Controlador\ControladorEncargado.cs" />
+    <Compile Include="Controlador\ControladorEncuestas.cs" />
     <Compile Include="Controlador\ControladorEstado.cs" />
     <Compile Include="Controlador\ControladorPad.cs" />
     <Compile Include="Controlador\ControladorPreguntas.cs" />
     <Compile Include="Controlador\ControladorUsuario.cs" />
     <Compile Include="Controlador\Resultado.cs" />
-    <Compile Include="Controlador\Resultado2.cs" />
     <Compile Include="Controlador\Validacion.cs" />
     <Compile Include="curso.aspx.cs">
       <DependentUpon>curso.aspx</DependentUpon>

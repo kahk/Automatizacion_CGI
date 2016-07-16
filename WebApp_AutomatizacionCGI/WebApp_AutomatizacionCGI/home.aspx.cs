@@ -1725,23 +1725,37 @@ namespace WebApp_AutomatizacionCGI
             ControladorAsistencia control = new ControladorAsistencia();
             GridView_ReporteAsistencia.DataSource = control.Lista_MostrarAsistencia();
             GridView_ReporteAsistencia.DataBind();
-
-            txt_FechaBusqueda.Text = "";
-            txt_RutBusqueda.Text = "";
+            
         }
 
         protected void Link_ExportarAsistenciaAExcel_Click(object sender, EventArgs e)
         {
             Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=ReporteAsistencia.xls");
+            // Response.Buffer = true;
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
+
+            if (txt_FechaBusqueda.Text == "")
+            {
+                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".xls");
+            }
+            else
+            {
+                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".xls");
+            }
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Charset = "65001";
+            byte[] b = new byte[] {
+             0xef,
+             0xbb,
+             0xbf
+              };
+            Response.BinaryWrite(b);
             using (StringWriter sw = new StringWriter())
             {
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
-                //To Export all pages                 GridView_docentes.AllowPaging = false;                 MostrarDocentes();  
-                GridView_ReporteAsistencia.HeaderRow.BackColor = Color.White;
+                
+                GridView_ReporteAsistencia.HeaderRow.BackColor = Color.Red;
                 foreach (TableCell cell in GridView_ReporteAsistencia.HeaderRow.Cells)
                 {
                     cell.BackColor = GridView_ReporteAsistencia.HeaderStyle.BackColor;
@@ -1764,12 +1778,13 @@ namespace WebApp_AutomatizacionCGI
                     }
                 }
                 GridView_ReporteAsistencia.RenderControl(hw);
-                string style = @"<style> .textmode { } </style>";
-                Response.Write(style);
+                
                 Response.Output.Write(sw.ToString());
                 Response.Flush();
                 Response.End();
             }
+            txt_FechaBusqueda.Text = "";
+            txt_RutBusqueda.Text = "";
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -1780,7 +1795,15 @@ namespace WebApp_AutomatizacionCGI
         {
             Response.Clear();
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=ReporteAsistencia.pdf");
+            if (txt_FechaBusqueda.Text == "")
+            {
+                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".pdf");
+            }
+            else
+            {
+                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".pdf");
+            }
+
             Response.Charset = "";
 
             using (StringWriter sw = new StringWriter())
@@ -1799,6 +1822,8 @@ namespace WebApp_AutomatizacionCGI
                 Response.Write(pdfDoc);
                 Response.End();
             }
+            txt_FechaBusqueda.Text = "";
+            txt_RutBusqueda.Text = "";
         }
 
         protected void Link_BuscarAsistenciaXfecha_Click(object sender, EventArgs e)
@@ -1820,7 +1845,7 @@ namespace WebApp_AutomatizacionCGI
                 if (aux != 0)
                 {
                     lb_AvisoBusquedaReporteAsistencia.Text = "";
-                    txt_FechaBusqueda.Text = "";
+                    
                     GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXFecha(fecha);
                     GridView_ReporteAsistencia.DataBind();
                 }
@@ -1862,7 +1887,7 @@ namespace WebApp_AutomatizacionCGI
                         if (aux != 0)
                         {
                             lb_AvisoBusquedaReporteAsistencia.Text = "";
-                            txt_RutBusqueda.Text = "";
+                            
                             GridView_ReporteAsistencia.DataSource = control.Lista_AsistenciaXRut(rut);
                             GridView_ReporteAsistencia.DataBind();
                         }
@@ -1904,36 +1929,28 @@ namespace WebApp_AutomatizacionCGI
 
             List<Resultado> res = new List<Resultado>();
 
-            for (int i = 1; i <= 12; i++)
+            for (int i = 1; i <= 15; i++)
             {
 
                 res.Add(respEnc(i + ""));
             }
             GridView1.DataSource = res;
             GridView1.DataBind();
+            try {
+                DateTime fecha = Convert.ToDateTime(txt_FechaBusquedaEncuestas.Text);
+                ControladorEncuestas control = new ControladorEncuestas();
+                GridView_Comentario.DataSource = control.listaComentarios(fecha);
+                GridView_Comentario.DataBind();
 
-            List<Resultado2> res2 = new List<Resultado2>();
+            } catch (Exception) { }
+            
 
-            for (int i = 13; i <= 15; i++)
-            {
 
-                res2.Add(respEnc2(i + ""));
-            }
-            GridView2.DataSource = res2;
-            GridView2.DataBind();
         }
 
         protected void Link_buscarENcuestas_Click(object sender, EventArgs e)
         {
-            cargarReportesEncuestas();
-            //for (int i = 1; i <= 12; i++ ) {
-            //    respEnc(i+"");
-            //}
-
-            //for (int i = 13; i <= 15; i++)
-            //{
-            //    respEnc(i + "");
-            //}
+            cargarReportesEncuestas();          
 
         }
 
@@ -1961,13 +1978,15 @@ namespace WebApp_AutomatizacionCGI
                                      resultado4 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("4") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
                                      resultado5 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("5") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
                                      resultado6 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("6") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
-                                     resultado7 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("7") && rp.ID_Pregunta.Equals(idP) select rp).Count()
+                                     resultado7 = (from rp in contexto.Respuestas where rp.Respuesta.Equals("7") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado8 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("SI") && rp.ID_Pregunta.Equals(idP) select rp).Count(),
+                                     resultado9 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("NO") && rp.ID_Pregunta.Equals(idP) select rp).Count()
                                  };
 
                 return consultaP1.ToList<Resultado>().ElementAt(0);
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
                 return null;
@@ -1976,45 +1995,13 @@ namespace WebApp_AutomatizacionCGI
 
         }
 
-
-
-        public Resultado2 respEnc2(string idP2)
-        {
-            try
-            {
-
-                bd_entities contexto = new bd_entities();
-
-                DateTime fecha = Convert.ToDateTime(txt_FechaBusquedaEncuestas.Text);
-                var consultaP2 = from p in contexto.Pregunta
-                                 join r in contexto.Respuestas on p.ID_Pregunta equals r.ID_Pregunta
-                                 join c in contexto.Curso on r.ID_Curso equals c.ID_Curso
-                                 join pd in contexto.Pad on c.ID_Curso equals pd.ID_Curso
-                                 where p.ID_Pregunta == idP2 && pd.Fecha == fecha
-                                 where p.ID_Pregunta == idP2
-                                 select new Resultado2
-                                 {
-                                     pregunta = p.Pregunta1,
-                                     resultado1 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("SI") && rp.ID_Pregunta.Equals(idP2) select rp).Count(),
-                                     resultado2 = (from rp in contexto.Respuestas where rp.Respuesta.Contains("NO") && rp.ID_Pregunta.Equals(idP2) select rp).Count()
-                                 };
-
-                return consultaP2.ToList<Resultado2>().ElementAt(0);
-
-            }
-            catch (Exception ex)
-            {
-
-                return null;
-            }
-
-        }
+        
 
         protected void Link_ExportarEncuestasaPDF_Click(object sender, EventArgs e)
         {
             Response.Clear();
             Response.ContentType = "application/pdf";
-            Response.AddHeader("content-disposition", "attachment;filename=ReporteEncuestas.pdf");
+            Response.AddHeader("content-disposition", "attachment;filename=Reporte Encuestas Fecha " + txt_FechaBusquedaEncuestas.Text + ".pdf");
             Response.Charset = "";
 
             using (StringWriter sw = new StringWriter())
@@ -2038,15 +2025,24 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_ExportarEncuestasaExcel_Click(object sender, EventArgs e)
         {
             Response.Clear();
-            Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment;filename=ReporteEncuesta1.xls");
             Response.Charset = "";
             Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=Reporte Encuestas Fecha " + txt_FechaBusquedaEncuestas.Text + ".xls");
+           
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Charset = "65001";
+            byte[] b = new byte[] {
+                     0xef,
+                      0xbb,
+                     0xbf
+                  };
+            Response.BinaryWrite(b);
+
             using (StringWriter sw = new StringWriter())
             {
                 HtmlTextWriter hw = new HtmlTextWriter(sw);
-                //To Export all pages                 GridView_docentes.AllowPaging = false;                 MostrarDocentes();  
-                GridView1.HeaderRow.BackColor = Color.White;
+                
+                GridView1.HeaderRow.BackColor = Color.Red;
                 foreach (TableCell cell in GridView1.HeaderRow.Cells)
                 {
                     cell.BackColor = GridView1.HeaderStyle.BackColor;
@@ -2068,14 +2064,11 @@ namespace WebApp_AutomatizacionCGI
                         cell.CssClass = "textmode";
                     }
                 }
-                GridView1.RenderControl(hw);
-                string style = @"<style> .textmode { } </style>";
-                Response.Write(style);
+                GridView1.RenderControl(hw);               
                 Response.Output.Write(sw.ToString());
                 Response.Flush();
                 Response.End();
 
-                
             }
         }
     }

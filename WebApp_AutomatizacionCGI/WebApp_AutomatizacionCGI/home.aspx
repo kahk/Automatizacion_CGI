@@ -77,7 +77,7 @@
                         <asp:Label ID="lb_AvisoBusqueda_Docente" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                         <br />
                         <br />
-                        <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_docentes_PageIndexChanging" AllowPaging="True" OnSelectedIndexChanging="GridView_docentes_SelectedIndexChanging" PageSize="5">
+                        <asp:GridView ID="GridView_docentes" runat="server" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_docentes_PageIndexChanging" AllowPaging="True" OnSelectedIndexChanging="GridView_docentes_SelectedIndexChanging">
                             <Columns>
                                 <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                     <EditItemTemplate>
@@ -271,7 +271,7 @@
                             <asp:Label ID="lb_AvisoBusqueda_Encargado" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_Encargados_PageIndexChanging" PageSize="5">
+                            <asp:GridView ID="GridView_Encargados" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_Encargados_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_Encargados_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
@@ -443,7 +443,7 @@
                            <asp:Label ID="lb_AvisoBusqueda_Cursos" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                              <br />
                             <br />
-                            <asp:GridView ID="GridView_cursos" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_cursos_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_cursos_PageIndexChanging" PageSize="5">
+                            <asp:GridView ID="GridView_cursos" runat="server" AutoGenerateColumns="False" CssClass="table" OnSelectedIndexChanging="GridView_cursos_SelectedIndexChanging" AllowPaging="True" OnPageIndexChanging="GridView_cursos_PageIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="ID" SortExpression="ID_Curso">
                                         <EditItemTemplate>
@@ -543,7 +543,7 @@
                             </asp:GridView>
                             <br />
                             <br />
-                            <asp:Label ID="lb_idcurso" runat="server" Text=""></asp:Label>
+                            <asp:Label ID="lb_idcurso" runat="server" Visible="False"></asp:Label>
                             <%--//visible = false--%>
                         </div>
                         <div class="col-md-1"></div>
@@ -808,7 +808,7 @@
                             </div>
                         </div>
                     </asp:Panel>
-                    <asp:Label ID="lb_codigoPad" runat="server" Text=""></asp:Label>
+                    <asp:Label ID="lb_codigoPad" runat="server" Visible="False"></asp:Label>
 
                     <%-----------------------------MODAL PAD CURSO-------------------------%>
                     <asp:Button ID="btn_modalnuevopad" runat="server" Text="Button" CssClass="hidden" />
@@ -903,7 +903,7 @@
                             <asp:Label ID="lb_AvisoBusqueda_AsignarDocente" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" PageSize="8" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
+                            <asp:GridView ID="GridView_asignardocentes" runat="server" AllowPaging="True" CssClass="table" AutoGenerateColumns="False" OnPageIndexChanging="GridView_asignardocentes_PageIndexChanging" OnSelectedIndexChanging="GridView_asignardocentes_SelectedIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
@@ -994,7 +994,7 @@
                             <asp:Label ID="lb_AvisoBusqueda_Usuarios" runat="server" CssClass="label label-danger" Text=""></asp:Label>
                             <br />
                             <br />
-                            <asp:GridView ID="GridView_Usuarios" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_Usuarios_PageIndexChanging" OnSelectedIndexChanging="GridView_Usuarios_SelectedIndexChanging" PageSize="8">
+                            <asp:GridView ID="GridView_Usuarios" runat="server" AllowPaging="True" AutoGenerateColumns="False" CssClass="table" OnPageIndexChanging="GridView_Usuarios_PageIndexChanging" OnSelectedIndexChanging="GridView_Usuarios_SelectedIndexChanging">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Rut" SortExpression="Rut">
                                         <EditItemTemplate>
@@ -1366,7 +1366,7 @@
                                             <asp:Label ID="Label7" runat="server" Text='<%# Bind("resultado6") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="7" SortExpression="resulado7">
+                                    <asp:TemplateField HeaderText="7" SortExpression="resultado7">
                                         <EditItemTemplate>
                                             <asp:Label ID="Label8" runat="server" Text='<%# Eval("resultado7") %>'></asp:Label>
                                         </EditItemTemplate>
@@ -1374,42 +1374,58 @@
                                             <asp:Label ID="Label8" runat="server" Text='<%# Bind("resultado7") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                </Columns>
-                                 <HeaderStyle CssClass="btn-danger" />
-                            </asp:GridView>
-                            <br />
-                            <br />
-
-
-                            <asp:GridView ID="GridView2" runat="server" CssClass="table" AutoGenerateColumns="False">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="Preguntas" SortExpression="pregunta">
+                                    <asp:TemplateField HeaderText=" ">
                                         <EditItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("pregunta") %>'></asp:Label>
+                                            <asp:Label ID="Label9" runat="server"></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("pregunta") %>'></asp:Label>
+                                            <asp:Label ID="Label9" runat="server"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="SI" SortExpression="resultado1">
+                                    <asp:TemplateField HeaderText="Si" SortExpression="resultado8">
                                         <EditItemTemplate>
-                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("resultado1") %>'></asp:Label>
+                                            <asp:Label ID="Label10" runat="server" Text='<%# Eval("resultado8") %>'></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("resultado1") %>'></asp:Label>
+                                            <asp:Label ID="Label10" runat="server" Text='<%# Bind("resultado8") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="NO" SortExpression="resultado2">
+                                    <asp:TemplateField HeaderText="No" SortExpression="resultado9">
                                         <EditItemTemplate>
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("resultado2") %>'></asp:Label>
+                                            <asp:Label ID="Label11" runat="server" Text='<%# Eval("resultado9") %>'></asp:Label>
                                         </EditItemTemplate>
                                         <ItemTemplate>
-                                            <asp:Label ID="Label3" runat="server" Text='<%# Bind("resultado2") %>'></asp:Label>
+                                            <asp:Label ID="Label11" runat="server" Text='<%# Bind("resultado9") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>
                                  <HeaderStyle CssClass="btn-danger" />
                             </asp:GridView>
+                            <br />
+                            <br />
+                                <asp:GridView ID="GridView_Comentario" runat="server" CssClass="table" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="ID" SortExpression="ID_Encuesta">
+                                            <EditItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Encuesta") %>'></asp:Label>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Encuesta") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <HeaderStyle Width="1px" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Sugerencia" SortExpression="Sugerencia">
+                                            <EditItemTemplate>
+                                                <asp:Label ID="Label2" runat="server" Text='<%# Eval("Sugerencia") %>'></asp:Label>
+                                            </EditItemTemplate>
+                                            <ItemTemplate>
+                                                <asp:Label ID="Label2" runat="server" Text='<%# Bind("Sugerencia") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                    <HeaderStyle CssClass="btn-danger" />
+                                </asp:GridView>
+
                                 </asp:Panel>
                         </div>
                         <div class="col-md-1"></div>

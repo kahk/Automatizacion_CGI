@@ -15,10 +15,12 @@ namespace WebApp_AutomatizacionCGI.Controlador
         public int resultado5 { get; set; }
         public int resultado6 { get; set; }
         public int resultado7 { get; set; }
+        public int resultado8 { get; set; }
+        public int resultado9 { get; set; }
 
         public Resultado() { }
 
-        public Resultado(string p, int r1, int r2, int r3, int r4, int r5, int r6, int r7)
+        public Resultado(string p, int r1, int r2, int r3, int r4, int r5, int r6, int r7, int r8, int r9)
         {
             this.pregunta = p;
             this.resultado1 = r1;
@@ -28,6 +30,8 @@ namespace WebApp_AutomatizacionCGI.Controlador
             this.resultado5 = r5;
             this.resultado6 = r6;
             this.resultado7 = r7;
+            this.resultado8 = r8;
+            this.resultado9 = r9;
         }
     }
 }
