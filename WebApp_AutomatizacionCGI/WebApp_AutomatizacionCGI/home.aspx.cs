@@ -97,7 +97,7 @@ namespace WebApp_AutomatizacionCGI
         protected void Link_volverviewcursos_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 3;
-            lb_CantidadUsuariosAsignados.Text = "";
+            
             lb_UsuariosYaAsignado.Text = "";
         }
 
@@ -105,12 +105,7 @@ namespace WebApp_AutomatizacionCGI
         {
             MultiView1.ActiveViewIndex = 4;
             Mostrar_AsignarDocentes();
-            txt_Buscar_DocenteAsignar.Text = "";
-            int id_curso = 0;
-            int.TryParse(lb_idcurso.Text, out id_curso);
-            ControladorCursoDocente control = new ControladorCursoDocente();
-            int contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
-            lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
+            txt_Buscar_DocenteAsignar.Text = "";            
         }
 
         protected void Link_VistaUsuarios_Click(object sender, EventArgs e)
@@ -716,6 +711,12 @@ namespace WebApp_AutomatizacionCGI
             txt_ContraseñaCurso.Text = lbContraseñaCurso.Text;
             cb_EstadoCurso.SelectedValue = lbEstadoCurso.Text;
 
+            ControladorCursoDocente control = new ControladorCursoDocente();
+            int curso = 0;
+            int.TryParse(lbCodigoCurso.Text, out curso);
+            GridView_DocentesAsignados.DataSource = control.ListaDocentesAsignados(curso);
+            GridView_DocentesAsignados.DataBind();
+
         }
 
 
@@ -1229,9 +1230,7 @@ namespace WebApp_AutomatizacionCGI
             ControladorCursoDocente control = new ControladorCursoDocente();
 
             int aux = control.listaBuscarCurso_Docente(id_curso, rut).Count;
-            int contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
-            lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
-
+            
             if (aux == 0)
             {
                 lb_UsuariosYaAsignado.Text = "";
@@ -1242,14 +1241,14 @@ namespace WebApp_AutomatizacionCGI
                 };
 
                 if (control.addCursoDocente(nuevo))
-                {
-                    contador = control.Devolver_CantidadDocentesAsignados(id_curso).Count;
-                    lb_CantidadUsuariosAsignados.Text = "Usuarios Asignados a curso " + id_curso + " Total: " + contador;
+                {                   
+                    GridView_DocentesAsignados.DataSource = control.ListaDocentesAsignados(id_curso);
+                    GridView_DocentesAsignados.DataBind();
                 }
             }
             else
             {
-                lb_UsuariosYaAsignado.Text = "El usuario " + rut + " Ya ha sido asignado a este curso";
+                lb_UsuariosYaAsignado.Text = "El Docente " + rut + " Ya ha sido asignado a este curso";
             }
         }
 
@@ -2070,6 +2069,37 @@ namespace WebApp_AutomatizacionCGI
                 Response.End();
 
             }
+        }
+
+        protected void GridView_DocentesAsignados_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView_DocentesAsignados.PageIndex = e.NewPageIndex;
+            ControladorCursoDocente control = new ControladorCursoDocente();
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+
+            GridView_DocentesAsignados.DataSource = control.ListaDocentesAsignados(id_curso);
+            GridView_DocentesAsignados.DataBind();
+        }
+
+        protected void GridView_DocentesAsignados_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            Label lb1 = (Label)GridView_DocentesAsignados.Rows[e.RowIndex].FindControl("Label1");
+            lb_UsuariosYaAsignado.Text = "";
+            int id_curso = 0;
+            int.TryParse(lb_idcurso.Text, out id_curso);
+
+            int id = 0;
+            int.TryParse(lb1.Text, out id);
+            ControladorCursoDocente control = new ControladorCursoDocente();
+
+            if (control.EliminarAsignacion(id))
+            {
+               
+                GridView_DocentesAsignados.DataSource = control.ListaDocentesAsignados(id_curso);
+                GridView_DocentesAsignados.DataBind();
+            }
+            
         }
     }
 }

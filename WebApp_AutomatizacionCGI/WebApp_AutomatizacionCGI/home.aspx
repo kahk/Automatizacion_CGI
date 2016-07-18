@@ -895,7 +895,7 @@
 
                     <div class="row">
                         <div class="col-md-1"></div>
-                        <div class="col-md-10">
+                        <div class="col-md-7">
                             <asp:TextBox ID="txt_Buscar_DocenteAsignar" runat="server" MaxLength="9"  placeholder="111111111"></asp:TextBox>
                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txt_Buscar_DocenteAsignar" TargetControlID="txt_Buscar_DocenteAsignar" Enabled="true" ValidChars="0123456789kK" runat="server"></asp:FilteredTextBoxExtender>
                             <asp:LinkButton ID="Link_BuscarDocenteAsignar" runat="server" CssClass="btn btn-primary" OnClick="Link_BuscarDocenteAsignar_Click">Buscar</asp:LinkButton>
@@ -940,12 +940,44 @@
                                 <HeaderStyle CssClass="btn-danger" />
                             </asp:GridView>
                             <br />
-                            <br />
-                            <asp:Label ID="lb_CantidadUsuariosAsignados" runat="server" CssClass="label label-danger" Text=""></asp:Label>
-                            <br />
-                            <asp:Label ID="lb_UsuariosYaAsignado" runat="server" CssClass="label label-danger" Text=""></asp:Label>
+                            <br />                          
+                            <h3><asp:Label ID="lb_UsuariosYaAsignado" runat="server" CssClass="label label-danger" Text=""></asp:Label></h3>
                         </div>
-
+                        <div class="col-md-3">
+                            
+                             <h5>Docentes Asignados</h5>
+                            
+                            <br />
+                            <asp:GridView ID="GridView_DocentesAsignados" CssClass="table" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="GridView_DocentesAsignados_PageIndexChanging" OnRowDeleting="GridView_DocentesAsignados_RowDeleting">
+                                <Columns>
+                                    <asp:TemplateField HeaderText="ID" SortExpression="ID_Curso_Docente" Visible="False">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ID_Curso_Docente") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("ID_Curso_Docente") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="1px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Docente" SortExpression="Rut_Docente">
+                                        <EditItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Eval("Rut_Docente") %>'></asp:Label>
+                                        </EditItemTemplate>
+                                        <ItemTemplate>
+                                            <asp:Label ID="Label2" runat="server" Text='<%# Bind("Rut_Docente") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Eliminar">
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete" Text="" CssClass="btn btn-primary"><i class="fa fa-times" aria-hidden="true"></i></asp:LinkButton>
+                                        </ItemTemplate>
+                                        <HeaderStyle Width="3px" />
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                </Columns>
+                                <HeaderStyle CssClass="btn-primary" />
+                            </asp:GridView>
+                        </div>
                         <div class="col-md-1">
                             <asp:Label ID="lb_codigoDocente_Asignar" runat="server" Text="" Visible="false"></asp:Label>
                             <%--//visible = false--%>

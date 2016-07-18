@@ -74,7 +74,7 @@
                                             <asp:TextBox ID="txt_Usuario" runat="server" CssClass="form-control" placeholder="Usuario...."></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuario" TargetControlID="txt_Usuario" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />
-                                            <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeholder="Password...." TextMode="Password"></asp:TextBox>
+                                            <asp:TextBox ID="txt_Clave" runat="server" CssClass="form-control" placeholder="Contraseña...." TextMode="Password"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_clave" TargetControlID="txt_Clave" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />                                            
                                             <asp:Label ID="lb_IngresoAdministrador" CssClass="label label-danger" runat="server" Text=""></asp:Label>
@@ -106,7 +106,7 @@
                                             <asp:TextBox ID="txt_usuarioEncuesta" runat="server" CssClass="form-control" placeholder="Usuario..."></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_usuarioEncuesta" TargetControlID="txt_usuarioEncuesta" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()_" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />
-                                            <asp:TextBox ID="txt_passwordEncuesta" runat="server" CssClass="form-control" placeholder="Password..." TextMode="Password"></asp:TextBox>
+                                            <asp:TextBox ID="txt_passwordEncuesta" runat="server" CssClass="form-control" placeholder="Contraseña..." TextMode="Password"></asp:TextBox>
                                             <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_passwordencuesta" TargetControlID="txt_passwordEncuesta" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789()" runat="server"></asp:FilteredTextBoxExtender>
                                             <br />
                                             <br />

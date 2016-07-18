@@ -1462,15 +1462,6 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.GridView GridView_asignardocentes;
         
         /// <summary>
-        /// Control lb_CantidadUsuariosAsignados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lb_CantidadUsuariosAsignados;
-        
-        /// <summary>
         /// Control lb_UsuariosYaAsignado.
         /// </summary>
         /// <remarks>
@@ -1478,6 +1469,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lb_UsuariosYaAsignado;
+        
+        /// <summary>
+        /// Control GridView_DocentesAsignados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView_DocentesAsignados;
         
         /// <summary>
         /// Control lb_codigoDocente_Asignar.

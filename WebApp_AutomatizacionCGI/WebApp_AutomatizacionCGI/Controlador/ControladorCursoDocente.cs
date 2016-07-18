@@ -92,6 +92,37 @@ namespace WebApp_AutomatizacionCGI.Controlador
             }
         }
 
+        public List<object> ListaDocentesAsignados(int curso)
+        {
+            try
+            {
+                var consulta = from cd in contexto.Curso_Docente
+                               where cd.ID_Curso == curso
+                               select new { cd.ID_Curso_Docente, cd.Rut_Docente };
+
+                return consulta.ToList<object>();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public bool EliminarAsignacion(int id)
+        {
+            try
+            {
+                contexto.Curso_Docente.Remove(contexto.Curso_Docente.Find(id));
+                return contexto.SaveChanges() > 0;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+
+        }
+
 
 
     }
