@@ -202,6 +202,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.RadioButtonList pregunta4;
         
         /// <summary>
+        /// Control lbview2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbview2;
+        
+        /// <summary>
         /// Control Link_Siguiente_Vista1.
         /// </summary>
         /// <remarks>
@@ -344,6 +353,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList pregunta8;
+        
+        /// <summary>
+        /// Control lbview3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbview3;
         
         /// <summary>
         /// Control Link_Siguiente_Vista2.
@@ -490,6 +508,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.RadioButtonList pregunta12;
         
         /// <summary>
+        /// Control lbview4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbview4;
+        
+        /// <summary>
         /// Control Link_Siguiente_Vista3.
         /// </summary>
         /// <remarks>
@@ -607,6 +634,15 @@ namespace WebApp_AutomatizacionCGI {
         protected global::System.Web.UI.WebControls.RadioButtonList pregunta15;
         
         /// <summary>
+        /// Control lbview5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbview5;
+        
+        /// <summary>
         /// Control Link_Siguiente_Vista4.
         /// </summary>
         /// <remarks>
@@ -659,6 +695,15 @@ namespace WebApp_AutomatizacionCGI {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSugerencia;
+        
+        /// <summary>
+        /// Control FilteredTextBoxExtender_txtSugerencia.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender_txtSugerencia;
         
         /// <summary>
         /// Control Link_EnviarEncuesta.

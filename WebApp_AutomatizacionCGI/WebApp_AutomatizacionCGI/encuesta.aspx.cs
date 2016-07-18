@@ -65,7 +65,7 @@ namespace WebApp_AutomatizacionCGI
                 contexto.Encuesta.Add(enc);
                 contexto.SaveChanges();
 
-
+                
 
                 Respuestas nuevo1 = new Respuestas { ID_Encuesta = enc.ID_Encuesta, ID_Pregunta = lbP1.Text, Respuesta = pregunta1.SelectedValue, ID_Curso = idCursito };
                 contexto.Respuestas.Add(nuevo1);
@@ -143,46 +143,82 @@ namespace WebApp_AutomatizacionCGI
 
         }
         protected void Link_Siguiente_Vista0_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 1;
+        {     
+            MultiView1.ActiveViewIndex = 1;          
         }
         protected void Link_Siguiente_Vista1_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 2;
+            if (pregunta1.SelectedValue == "" || pregunta2.SelectedValue == "" || pregunta3.SelectedValue == "" || pregunta4.SelectedValue == "")
+            {
+                lbview2.Text = "Por favor, rellene su encuesta";
+            }
+            else
+            {
+                lbview2.Text = "";
+                MultiView1.ActiveViewIndex = 2;
+            }
+
         }
 
         protected void Link_Anterior_Vista2_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 1;
+            MultiView1.ActiveViewIndex = 1;           
         }
 
         protected void Link_Siguiente_Vista2_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 3;
+            if (pregunta5.SelectedValue == "" || pregunta6.SelectedValue == "" || pregunta7.SelectedValue == "" || pregunta8.SelectedValue == "")
+            {
+                lbview3.Text = "Por favor, rellene su encuesta";
+            }
+            else
+            {
+                lbview3.Text = "";
+                MultiView1.ActiveViewIndex = 3;
+            }
         }
 
         protected void Link_anterior_Vista3_Click(object sender, EventArgs e)
         {
+            
             MultiView1.ActiveViewIndex = 2;
         }
 
         protected void Link_Siguiente_Vista3_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 4;
+            if (pregunta9.SelectedValue == "" || pregunta10.SelectedValue == "" || pregunta11.SelectedValue == "" || pregunta12.SelectedValue == "")
+            {
+                lbview4.Text = "Por favor, rellene su encuesta";
+            }
+            else
+            {
+                lbview4.Text = "";
+                MultiView1.ActiveViewIndex = 4;
+            }
         }
 
         protected void Link_Anterior_Vista4_Click(object sender, EventArgs e)
         {
+            
             MultiView1.ActiveViewIndex = 3;
         }
 
         protected void Link_Siguiente_Vista4_Click(object sender, EventArgs e)
         {
-            MultiView1.ActiveViewIndex = 5;
+            if (pregunta13.SelectedValue == "" || pregunta14.SelectedValue == "" || pregunta15.SelectedValue == "")
+            {
+                lbview5.Text = "Por favor, rellene su encuesta";
+            }
+            else
+            {
+                lbview5.Text = "";
+                MultiView1.ActiveViewIndex = 5;
+            }
         }
 
         protected void Link_Anterior_Vista5_Click(object sender, EventArgs e)
         {
+            
             MultiView1.ActiveViewIndex = 4;
         }
 

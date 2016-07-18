@@ -1,9 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Plantilla.Master" AutoEventWireup="true" CodeBehind="encuesta.aspx.cs" Inherits="WebApp_AutomatizacionCGI.encuesta" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <br />
+    <br />    
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:MultiView ID="MultiView1" runat="server">
@@ -33,8 +35,8 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-6">
                             <div>
-                                <asp:Label ID="Label5" runat="server" Text="Label">Acerca de Los Relatores</asp:Label><br />
-                                <asp:Label ID="Label6" runat="server" Text="Label">Planificación de la sesión</asp:Label><br />
+                                <b><asp:Label ID="Label5" runat="server" Text="Label">Acerca de Los Relatores</asp:Label></b><br />
+                                <b><asp:Label ID="Label6" runat="server" Text="Label">Planificación de la sesión</asp:Label></b><br />
                                 <br />
                             </div>
                             <div class="row">
@@ -43,17 +45,15 @@
                                     <asp:Label ID="lbP1" runat="server" Text="1" Visible="false"></asp:Label>
                                 </div>
                                 <div class="col-md-5">
-
-                                    <asp:RadioButtonList ID="pregunta1" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
-                                        <asp:ListItem Value="2">2</asp:ListItem>
-                                        <asp:ListItem Value="3">3</asp:ListItem>
-                                        <asp:ListItem Value="4">4</asp:ListItem>
-                                        <asp:ListItem Value="5">5</asp:ListItem>
-                                        <asp:ListItem Value="6">6</asp:ListItem>
-                                        <asp:ListItem Value="7">7</asp:ListItem>
-                                    </asp:RadioButtonList>
-
+                                    <asp:RadioButtonList ID="pregunta1" runat="server" RepeatDirection="Horizontal">                                        
+                                        <asp:ListItem Value="1" Text="1"></asp:ListItem>
+                                        <asp:ListItem Value="2" Text="2"></asp:ListItem>
+                                        <asp:ListItem Value="3" Text="3"></asp:ListItem>
+                                        <asp:ListItem Value="4" Text="4"></asp:ListItem>
+                                        <asp:ListItem Value="5" Text="5"></asp:ListItem>
+                                        <asp:ListItem Value="6" Text="6"></asp:ListItem>
+                                        <asp:ListItem Value="7" Text="7"></asp:ListItem>
+                                    </asp:RadioButtonList>                                   
                                 </div>
                             </div>
                             <br />
@@ -64,8 +64,8 @@
                                 </div>
                                 <div class="col-md-5">
 
-                                    <asp:RadioButtonList ID="pregunta2" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                    <asp:RadioButtonList ID="pregunta2" runat="server" RepeatDirection="Horizontal" >                                        
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -86,7 +86,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta3" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -106,7 +106,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta4" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -117,6 +117,10 @@
 
                                 </div>
                             </div>
+                            <br />
+                            <br />
+                            <br />
+                            <h4><asp:Label ID="lbview2" runat="server" Text="" CssClass="label label-danger"></asp:Label></h4>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1">
@@ -134,7 +138,7 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-6">
                             <div>
-                                <asp:Label ID="Label36" runat="server" Text="Label">Acerca de la metodología utilizada</asp:Label><br />
+                               <b> <asp:Label ID="Label36" runat="server" Text="Label">Acerca de la metodología utilizada</asp:Label></b><br />
                                 <br />
                             </div>
                             <div class="row">
@@ -145,7 +149,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta5" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -165,7 +169,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta6" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -185,7 +189,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta7" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -205,7 +209,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta8" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -216,7 +220,10 @@
 
                                 </div>
                             </div>
-
+                            <br />
+                            <br />
+                            <br />
+                            <h4><asp:Label ID="lbview3" runat="server" Text="" CssClass="label label-danger"></asp:Label></h4>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1">
@@ -234,7 +241,7 @@
                         <div class="col-md-1"></div>
                         <div class="col-md-6">
                             <div>
-                                <asp:Label ID="Label35" runat="server" Text="Label">Acerca de los materiales</asp:Label><br />
+                               <b> <asp:Label ID="Label35" runat="server" Text="Label">Acerca de los materiales</asp:Label></b><br />
                                 <br />
                             </div>
                             <div class="row">
@@ -245,7 +252,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta9" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -265,7 +272,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta10" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -285,7 +292,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta11" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -305,7 +312,7 @@
                                 <div class="col-md-5">
 
                                     <asp:RadioButtonList ID="pregunta12" runat="server" RepeatDirection="Horizontal">
-                                        <asp:ListItem Value="1" Selected="True">1</asp:ListItem>
+                                        <asp:ListItem Value="1">1</asp:ListItem>
                                         <asp:ListItem Value="2">2</asp:ListItem>
                                         <asp:ListItem Value="3">3</asp:ListItem>
                                         <asp:ListItem Value="4">4</asp:ListItem>
@@ -316,6 +323,10 @@
 
                                 </div>
                             </div>
+                            <br />
+                            <br />
+                            <br />
+                            <h4><asp:Label ID="lbview4" runat="server" Text="" CssClass="label label-danger"></asp:Label></h4>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-1">
@@ -334,7 +345,7 @@
                        <div class="col-md-1"></div>
                         <div class="col-md-7">
                             <div>
-                                <asp:Label ID="Label101" runat="server" Text="Label">Acerca del taller</asp:Label><br />
+                               <b> <asp:Label ID="Label101" runat="server" Text="Label">Acerca del taller</asp:Label></b><br />
                                 <br />
                             </div>
                             <div class="row">
@@ -346,7 +357,7 @@
 
                                     <asp:RadioButtonList ID="pregunta13" runat="server" RepeatDirection="Horizontal">
                                         <asp:ListItem Value="SI">SI</asp:ListItem>
-                                        <asp:ListItem Value="NO" Selected="True">NO</asp:ListItem>
+                                        <asp:ListItem Value="NO">NO</asp:ListItem>
                                     </asp:RadioButtonList>
 
                                 </div>
@@ -361,7 +372,7 @@
 
                                     <asp:RadioButtonList ID="pregunta14" runat="server" RepeatDirection="Horizontal">
                                         <asp:ListItem Value="SI">SI</asp:ListItem>
-                                        <asp:ListItem Value="NO" Selected="True">NO</asp:ListItem>
+                                        <asp:ListItem Value="NO">NO</asp:ListItem>
                                     </asp:RadioButtonList>
 
                                 </div>
@@ -376,11 +387,15 @@
 
                                     <asp:RadioButtonList ID="pregunta15" runat="server" RepeatDirection="Horizontal">
                                         <asp:ListItem Value="SI">SI</asp:ListItem>
-                                        <asp:ListItem Value="NO" Selected="True">NO</asp:ListItem>
+                                        <asp:ListItem Value="NO">NO</asp:ListItem>
                                     </asp:RadioButtonList>
 
                                 </div>
                             </div>
+                            <br />
+                            <br />
+                            <br />
+                            <h4><asp:Label ID="lbview5" runat="server" Text="" CssClass="label label-danger"></asp:Label></h4>
                         </div>
                         <div class="col-md-1">
                             <asp:LinkButton ID="Link_Siguiente_Vista4" OnClick="Link_Siguiente_Vista4_Click" CssClass="btn btn-danger btn-block" runat="server">Siguiente</asp:LinkButton>
@@ -401,8 +416,9 @@
                             <div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <asp:Label ID="Label107" runat="server" Text="Label">Sugerencia</asp:Label><br />
-                                        <asp:TextBox ID="txtSugerencia" CssClass="form-control" runat="server" Height="224px" TextMode="MultiLine" Width="100%"></asp:TextBox>
+                                        <b><asp:Label ID="Label107" runat="server" Text="Label">Sugerencia</asp:Label></b><br />
+                                        <asp:TextBox ID="txtSugerencia" CssClass="form-control" runat="server" Height="224px" placeholder="*Opcional, Máximo 300 caracteres" TextMode="MultiLine" Width="100%" MaxLength="300"></asp:TextBox>
+                                     <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_txtSugerencia" TargetControlID="txtSugerencia" Enabled="true" ValidChars="abcdefghijklmnñopqrstuvwxyz ABCDEFGHIJKLMNÑOPQRSTUVWXYZ,." runat="server"></asp:FilteredTextBoxExtender>
                                     </div>
                                 </div>
                             </div>
