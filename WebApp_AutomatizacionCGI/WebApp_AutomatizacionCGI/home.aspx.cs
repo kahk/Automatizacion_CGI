@@ -373,8 +373,8 @@ namespace WebApp_AutomatizacionCGI
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
             g = Graphics.FromImage(bmp);
-            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("barcodes/" + rut + ".png"), ImageFormat.Png);
-            Image_codigo.ImageUrl = "barcodes/" + rut + ".png";
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_codigo.ImageUrl = "./barcodes/" + rut + ".png";
 
 
         }
@@ -508,8 +508,8 @@ namespace WebApp_AutomatizacionCGI
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
             g = Graphics.FromImage(bmp);
-            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("barcodes/" + rut + ".png"), ImageFormat.Png);
-            Image_BarcodeEncargado.ImageUrl = "barcodes/" + rut + ".png";
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_BarcodeEncargado.ImageUrl = "./barcodes/" + rut + ".png";
 
 
         }
