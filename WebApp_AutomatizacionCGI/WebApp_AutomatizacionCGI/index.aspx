@@ -40,7 +40,7 @@
                                         <div class="modal-body">
                                             <br />
                                             <asp:TextBox ID="txt_RutEncargado" runat="server" CssClass="form-control" placeholder="Rut..."></asp:TextBox>
-                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargado" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>    
+                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargado" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>    
                                             <br />
                                             <asp:TextBox ID="txt_CodigoEncargado" runat="server" CssClass="form-control" placeholder="Codigo..." TextMode="Password"></asp:TextBox>
                                            <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender_codigoEncargado" TargetControlID="txt_CodigoEncargado" Enabled="true" ValidChars="kK0123456789" runat="server"></asp:FilteredTextBoxExtender>    

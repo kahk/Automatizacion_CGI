@@ -47,7 +47,7 @@ namespace WebApp_AutomatizacionCGI
 
                 MostrarDatosUsuarios();
                 cargarReportesEncuestas();
-
+               
 
 
             }
@@ -373,8 +373,8 @@ namespace WebApp_AutomatizacionCGI
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
             g = Graphics.FromImage(bmp);
-            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
-            Image_codigo.ImageUrl = "./barcodes/" + rut + ".png";
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_codigo.ImageUrl = "barcodes/" + rut + ".png";
 
 
         }
@@ -508,8 +508,8 @@ namespace WebApp_AutomatizacionCGI
             System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
             g = Graphics.FromImage(bmp);
-            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("./barcodes/" + rut + ".png"), ImageFormat.Png);
-            Image_BarcodeEncargado.ImageUrl = "./barcodes/" + rut + ".png";
+            code.DrawCode128(g, rut, 0, 0).Save(Server.MapPath("barcodes/" + rut + ".png"), ImageFormat.Png);
+            Image_BarcodeEncargado.ImageUrl = "barcodes/" + rut + ".png";
 
 
         }
@@ -1729,61 +1729,68 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_ExportarAsistenciaAExcel_Click(object sender, EventArgs e)
         {
-            Response.Clear();
-            // Response.Buffer = true;
-            Response.Charset = "";
-            Response.ContentType = "application/vnd.ms-excel";
+            try
+            {
+                Response.Clear();
+                // Response.Buffer = true;
+                Response.Charset = "";
+                Response.ContentType = "application/vnd.ms-excel";
 
-            if (txt_FechaBusqueda.Text == "")
-            {
-                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".xls");
-            }
-            else
-            {
-                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".xls");
-            }
-            Response.ContentEncoding = System.Text.Encoding.UTF8;
-            Response.Charset = "65001";
-            byte[] b = new byte[] {
+                if (txt_FechaBusqueda.Text == "")
+                {
+                    Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".xls");
+                }
+                else
+                {
+                    Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".xls");
+                }
+                Response.ContentEncoding = System.Text.Encoding.UTF8;
+                Response.Charset = "65001";
+                byte[] b = new byte[] {
              0xef,
              0xbb,
              0xbf
               };
-            Response.BinaryWrite(b);
-            using (StringWriter sw = new StringWriter())
-            {
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
-                
-                GridView_ReporteAsistencia.HeaderRow.BackColor = Color.Red;
-                foreach (TableCell cell in GridView_ReporteAsistencia.HeaderRow.Cells)
+                Response.BinaryWrite(b);
+                using (StringWriter sw = new StringWriter())
                 {
-                    cell.BackColor = GridView_ReporteAsistencia.HeaderStyle.BackColor;
-                }
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
 
-                foreach (GridViewRow row in GridView_ReporteAsistencia.Rows)
-                {
-                    row.BackColor = Color.White;
-                    foreach (TableCell cell in row.Cells)
+                    GridView_ReporteAsistencia.HeaderRow.BackColor = Color.Red;
+                    foreach (TableCell cell in GridView_ReporteAsistencia.HeaderRow.Cells)
                     {
-                        if (row.RowIndex % 2 == 0)
-                        {
-                            cell.BackColor = GridView_ReporteAsistencia.AlternatingRowStyle.BackColor;
-                        }
-                        else
-                        {
-                            cell.BackColor = GridView_ReporteAsistencia.RowStyle.BackColor;
-                        }
-                        cell.CssClass = "textmode";
+                        cell.BackColor = GridView_ReporteAsistencia.HeaderStyle.BackColor;
                     }
+
+                    foreach (GridViewRow row in GridView_ReporteAsistencia.Rows)
+                    {
+                        row.BackColor = Color.White;
+                        foreach (TableCell cell in row.Cells)
+                        {
+                            if (row.RowIndex % 2 == 0)
+                            {
+                                cell.BackColor = GridView_ReporteAsistencia.AlternatingRowStyle.BackColor;
+                            }
+                            else
+                            {
+                                cell.BackColor = GridView_ReporteAsistencia.RowStyle.BackColor;
+                            }
+                            cell.CssClass = "textmode";
+                        }
+                    }
+                    GridView_ReporteAsistencia.RenderControl(hw);
+
+                    Response.Output.Write(sw.ToString());
+                    Response.Flush();
+                    Response.End();
                 }
-                GridView_ReporteAsistencia.RenderControl(hw);
-                
-                Response.Output.Write(sw.ToString());
-                Response.Flush();
-                Response.End();
+                txt_FechaBusqueda.Text = "";
+                txt_RutBusqueda.Text = "";
             }
-            txt_FechaBusqueda.Text = "";
-            txt_RutBusqueda.Text = "";
+            catch (Exception)
+            {
+                lb_AvisoBusquedaReporteAsistencia.Text = "No se ha encontrado asistencia registrada";
+            }
         }
         public override void VerifyRenderingInServerForm(Control control)
         {
@@ -1792,37 +1799,45 @@ namespace WebApp_AutomatizacionCGI
 
         protected void Link_ExportarAsistenciaAPDF_Click(object sender, EventArgs e)
         {
-            Response.Clear();
-            Response.ContentType = "application/pdf";
-            if (txt_FechaBusqueda.Text == "")
+            try
             {
-                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".pdf");
+                Response.Clear();
+                Response.ContentType = "application/pdf";
+                if (txt_FechaBusqueda.Text == "")
+                {
+                    Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_RutBusqueda.Text + ".pdf");
+                }
+                else
+                {
+                    Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".pdf");
+                }
+
+                Response.Charset = "";
+
+                using (StringWriter sw = new StringWriter())
+                {
+                    HtmlTextWriter hw = new HtmlTextWriter(sw);
+                    this.Panel_reporteasistencia.RenderControl(hw);
+
+
+                    StringReader sr = new StringReader(sw.ToString());
+                    Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
+                    HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+                    PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+                    pdfDoc.Open();
+                    htmlparser.Parse(sr);
+                    pdfDoc.Close();
+                    Response.Write(pdfDoc);
+                    Response.End();
+                }
+                txt_FechaBusqueda.Text = "";
+                txt_RutBusqueda.Text = "";
             }
-            else
+            catch (Exception)
             {
-                Response.AddHeader("content-disposition", "attachment;filename=Reporte Asistencia " + txt_FechaBusqueda.Text + ".pdf");
+                lb_AvisoBusquedaReporteAsistencia.Text = "No se ha encontrado asistencia registrada";
             }
-
-            Response.Charset = "";
-
-            using (StringWriter sw = new StringWriter())
-            {
-                HtmlTextWriter hw = new HtmlTextWriter(sw);
-                this.Panel_reporteasistencia.RenderControl(hw);
-
-
-                StringReader sr = new StringReader(sw.ToString());
-                Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 100f, 0f);
-                HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
-                PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
-                pdfDoc.Open();
-                htmlparser.Parse(sr);
-                pdfDoc.Close();
-                Response.Write(pdfDoc);
-                Response.End();
-            }
-            txt_FechaBusqueda.Text = "";
-            txt_RutBusqueda.Text = "";
+            
         }
 
         protected void Link_BuscarAsistenciaXfecha_Click(object sender, EventArgs e)

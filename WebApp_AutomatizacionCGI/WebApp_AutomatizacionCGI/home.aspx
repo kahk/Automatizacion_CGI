@@ -172,7 +172,7 @@
                                         <label for="txt_rutDocente" class="col-sm-3 control-label">Rut</label>
                                         <div class="col-sm-9">                                            
                                             <asp:TextBox ID="txt_rutDocente" runat="server" CssClass="form-control" placeholder="11.111.111" MaxLength="12"></asp:TextBox>
-                                            <asp:MaskedEditExtender ID="MaskedEditExtender_rutdocente" TargetControlID="txt_rutDocente" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                            <asp:MaskedEditExtender ID="MaskedEditExtender_rutdocente" TargetControlID="txt_rutDocente" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>                                       
                                     </div>
                                     <br />
@@ -228,7 +228,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarDocente" runat="server" CssClass="btn btn-success" Visible="false" OnClick="Link_EditarDocente_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_addDocente" runat="server" CssClass="btn btn-success" OnClick="Link_addDocente_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_addDocente" runat="server" CssClass="btn btn-success" OnClick="Link_addDocente_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_cancelardocente" runat="server" CssClass="btn btn-danger" OnClick="btn_volver_Click">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -358,7 +358,7 @@
                                         <label for="txt_RutEncargado" class="col-sm-3 control-label">Rut</label>
                                         <div class="col-sm-9">                                           
                                             <asp:TextBox ID="txt_RutEncargardo" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
-                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargardo" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado" TargetControlID="txt_RutEncargardo" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>                                        
                                     </div>
                                     <br />
@@ -402,7 +402,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarEncargado" runat="server" Visible="false" CssClass="btn btn-success" OnClick="Link_EditarEncargado_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarEncargado_VistaEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_VistaEncargado_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>                                   
+                                    <asp:LinkButton ID="Link_GuardarEncargado_VistaEncargado" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargado_VistaEncargado_Click">Guardar</asp:LinkButton>                                   
                                     <asp:LinkButton ID="Link_CancelarEncargado" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -565,7 +565,7 @@
                                         <label for="txt_RutEncargadoCurso" class="col-sm-3 control-label">Rut</label>
                                         <div class="col-sm-9">                                           
                                             <asp:TextBox ID="txt_RutEncargardoCurso" Enabled="false" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
-                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargadoCurso" TargetControlID="txt_RutEncargardoCurso" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                              <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargadoCurso" TargetControlID="txt_RutEncargardoCurso" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>                                        
                                     </div>
 
@@ -609,7 +609,7 @@
                                     <asp:Label ID="lb_AvisoEncargadoCurso" CssClass="label label-danger" runat="server" Text=""></asp:Label>
                                 </div>
                                 <div class="modal-footer">                                    
-                                    <asp:LinkButton ID="Link_GuardarEncargadoCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargadoCurso_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarEncargadoCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarEncargadoCurso_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_CancelarEncargadoCurso" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -632,7 +632,7 @@
                                         <label for="txt_RutEncargardo_Curso" class="col-sm-4 control-label">Encargado</label>
                                         <div class="col-sm-8">
                                             <asp:TextBox ID="txt_RutEncargardo_Curso" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
-                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado_Curso" TargetControlID="txt_RutEncargardo_Curso" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                             <asp:MaskedEditExtender ID="MaskedEditExtender_rutencargado_Curso" TargetControlID="txt_RutEncargardo_Curso" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -676,7 +676,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_EditarCurso_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarCurso_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarCurso" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarCurso_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_CancelarCurso" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -882,7 +882,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarPad" runat="server" CssClass="btn btn-success" OnClick="Link_EditarPad_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarPad" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarPad_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_Salirpad1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
@@ -1120,7 +1120,7 @@
                                         <label for="txt_RutUsuario" class="col-sm-4 control-label">Rut</label>
                                         <div class="col-sm-8">
                                             <asp:TextBox ID="txt_RutUsuario" runat="server" CssClass="form-control" MaxLength="12"></asp:TextBox>
-                                            <asp:MaskedEditExtender ID="MaskedEditExtender3" TargetControlID="txt_RutUsuario" Mask="99,999,999-C" Filtered="123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
+                                            <asp:MaskedEditExtender ID="MaskedEditExtender3" TargetControlID="txt_RutUsuario" Mask="99,999,999-C" Filtered="0123456789kK" MaskType="Number" ClearMaskOnLostFocus="false" runat="server"></asp:MaskedEditExtender>
                                         </div>
                                     </div>
                                     <br />
@@ -1181,7 +1181,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <asp:LinkButton ID="Link_EditarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_EditarUsuario_Click">Editar</asp:LinkButton>
-                                    <asp:LinkButton ID="Link_GuardarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarUsuario_Click"><i class="fa fa-floppy-o" aria-hidden="true"></i></asp:LinkButton>
+                                    <asp:LinkButton ID="Link_GuardarUsuario" runat="server" CssClass="btn btn-success" OnClick="Link_GuardarUsuario_Click">Guardar</asp:LinkButton>
                                     <asp:LinkButton ID="Link_SalirUsuario1" runat="server" CssClass="btn btn-danger">Cancelar</asp:LinkButton>
                                 </div>
                             </div>
