@@ -3,7 +3,7 @@ Control asistencia y encuestas para cursos PAD
 
 Tecnologias:
 
--.Net Framework WebForms (con Entoty framework to sql 2014)
+-.Net Framework WebForms (con Entity framework to sql 2014)
 
 -Boostrap
 
@@ -26,6 +26,10 @@ Funciones:
 -Seccion Administrador para realizar el registro de datos.
 
 -Seccion Orador de la clase menu en el cual se mostrara la informacion del curso y el lector de codigo para reistrar asistencia.
+
+
+## Nota
+* En caso de problemas con AjaxControlTools, se debe agregar la referencia a la dll incluida en este repositorio.
 
 
 
